@@ -1,0 +1,77 @@
+<html>
+
+<head>
+  <title> Test application</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="javascript.js"></script>
+</head>
+<body>
+
+  <div class="container">
+
+        <input type="text" name="FirstName" placeholder="FirstName">
+        <input type="text" name="LastName" placeholder="LastName"><br/>
+        <input type="number" min="0" max = "111" name="Age" placeholder="Age"><br />
+        <input type="radio" name="gender" value="male"> Male
+        <input type="radio" name="gender" value="female"> Female <br />
+        <fieldset>
+          <legend>Choose your interests</legend>
+          <input type="checkbox" name="inter1" value="programming"> programming
+          <input type="checkbox" name="inter2" value="travels"> travels
+          <input type="checkbox" name="inter3" value="music"> music
+          <input type="checkbox" name="inter4" value="painting"> painting
+          <input type="checkbox" name="inter5" value="dancing"> dancing
+          <input type="checkbox" name="inter6" value="reading"> reading
+          <input type="checkbox" name="inter7" value="driving"> driving
+          <input type="checkbox" name="inter8" value="fitness"> fitness
+          <input type="checkbox" name="inter9" value="cookery"> cookery
+          <input type="checkbox" name="inter10" value="drinking"> drinking <br />
+        </fieldset>
+        <div class="form-group">
+          <fieldset>
+            <legend>Choose your interests</legend>
+            <select class="form-control" id="sel1">
+              <option>Ukraine</option>
+              <option>USA</option>
+              <option>Poland</option>
+              <option>Turkey</option>
+              <option>Egipt</option>
+              <option>Belgium</option>
+              <option>Norway</option>
+              <option>France</option>
+              <option>Germany</option>
+              <option>Great Britain</option>
+            </select>
+          </fieldset>
+        </div>
+        <div>
+          <button type="button" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-warning">Edit</button>
+          <button type="button" class="btn btn-danger">Delete</button>
+        </div>
+
+  </div>
+  <div class="container">
+    <h3 > Users: </h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Interests</th>
+          <th>Country</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+  </body>
+</html>
