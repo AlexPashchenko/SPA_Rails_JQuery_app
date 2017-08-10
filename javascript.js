@@ -1,5 +1,13 @@
   $(document).ready(function(){
 
+    $('#table').paging({
+
+      limit: 5,
+      rowDisplayStyle: 'block',
+      activePage: 0,
+      rows: []
+    });
+
     var interestsArr = ['programming', 'travels', 'music', 'painting', 'dancing', 'reading', 'driving', 'fitness',
     'cookery', 'drinking']
     var user;
@@ -50,18 +58,19 @@
 
       }
     });
-    //sorting table
-        $(function () {
-          $('#table').sortable({
+            $('#table').sortable({
             nested: true,
             containerPath: "td",
             containerSelector: '.table',
             itemPath: '> tbody',
             itemSelector: 'tr',
-            placeholder: ''
-          });
-        });
-
+            placeholder: '',
+            revert: true,
+            update: function(){
+              var tab = $('#table').html();
+              localStorage.setItem('table', tab);
+               }
+            });
 
       //Get data from localstorage
     if (localStorage.getItem('table')) {
