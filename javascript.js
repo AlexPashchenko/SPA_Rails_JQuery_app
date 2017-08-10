@@ -3,9 +3,14 @@
     var interestsArr = ['programming', 'travels', 'music', 'painting', 'dancing', 'reading', 'driving', 'fitness',
     'cookery', 'drinking']
     var user;
-      //save function
+    var id = localStorage.getItem("id");
+    if (id === null) {
+      id = 1;
+    }
+       //save function
       $("#btnsave").click(function() {
-          user = JSON.stringify({
+            user = JSON.stringify({
+            Id : id,
             FirstName : $("#firstname").val(),
             LastName : $('#lastname').val(),
             Age : $("#age").val(),
@@ -15,11 +20,10 @@
             }).get(),
             Country :  $("#country").val()
           });
+          var userparse = JSON.parse(user);
 
-        var userparse = JSON.parse(user);
-        //validation of form
-
-        if($("#firstname").val() == '' | $('#lastname').val() == '' | $("#age").val() == '' | $("#age").val() >111){
+          //validation of form
+          if($("#firstname").val() == '' | $('#lastname').val() == '' | $("#age").val() == '' | $("#age").val() >111){
           alert(":Incorrect Name or Age");
         }
         else if (!$('input[name=gender]:checked').val() ) {
@@ -29,7 +33,9 @@
           alert(":Select your interests");}
         else {
           //Add data to table
-          $('#table').prepend("<tbody><tr><td>" + userparse.FirstName + "</td><td>"
+
+          $('#table').prepend("<tbody><tr><td>" + userparse.Id + "</td><td>"
+                                        + userparse.FirstName + "</td><td>"
                                         + userparse.LastName +"</td><td>"
                                         + userparse.Age +"</td><td>"
                                         + userparse.Gender +"</td><td>"
@@ -38,7 +44,10 @@
           var tab = $('#table').html();
           localStorage.setItem('table', tab);
           $('#frm')[0].reset();
-          return true;
+          id++;
+          localStorage.setItem("id", id);
+          return false;
+
       }
     });
     //sorting table
@@ -51,19 +60,13 @@
             itemSelector: 'tr',
             placeholder: ''
           });
-          var tab = $('#table').html();
-          localStorage.setItem('table', tab);
         });
-
 
 
       //Get data from localstorage
     if (localStorage.getItem('table')) {
           $('#table').html(localStorage.getItem('table'));
-          // $(function () {
-          //       $("#table").hpaging({ "limit": 2 });
-          //   });
-      }
+            }
     var rIndex, table = document.getElementById('table');
 
     for(var i = 1; i < table.rows.length; i++)
@@ -74,16 +77,16 @@
           for(interest of interestsArr){
             $("#"+interest).prop('checked', false);
             }
-            document.getElementById("firstname").value = this.cells[0].innerHTML;
-            document.getElementById("lastname").value = this.cells[1].innerHTML;
-            document.getElementById("age").value = this.cells[2].innerHTML;
-            if(this.cells[3].innerText == 'male'){
+            document.getElementById("firstname").value = this.cells[1].innerHTML;
+            document.getElementById("lastname").value = this.cells[2].innerHTML;
+            document.getElementById("age").value = this.cells[3].innerHTML;
+            if(this.cells[4].innerText == 'male'){
               $("#maleGender").prop("checked", true)
             }
             else{
               $("#femaleGender").prop("checked", true)
             }
-            let checkboxValues = this.cells[4].innerText.split(',')
+            let checkboxValues = this.cells[5].innerText.split(',')
             for(interest of interestsArr){
               for(item of checkboxValues){
                 if(interest == item)
@@ -92,28 +95,31 @@
                 }
               }
             }
-            document.getElementById("country").value = this.cells[5].innerHTML;
+            document.getElementById("country").value = this.cells[6].innerHTML;
           };
         }
 
         //deleting functions
       $('#btndelete').click(function() {
+        // window.localStorage.clear();
+        // location.reload();
+        // return true;
         table.rows[rIndex].remove();
         var tab = $('#table').html();
         localStorage.setItem('table', tab);
-          $('#frm')[0].reset();
+        $('#frm')[0].reset();
         });
 
         // edit function
       $("#btnedit").click(function() {
-        table.rows[rIndex].cells[0].innerHTML = $("#firstname").val();
-        table.rows[rIndex].cells[1].innerHTML = $("#lastname").val();
-        table.rows[rIndex].cells[2].innerHTML = $("#age").val();
-        table.rows[rIndex].cells[3].innerHTML = $(':radio[name=gender]:checked').val();
-        table.rows[rIndex].cells[4].innerHTML = $(':checkbox[name=inter]:checked').map(function() {
+        table.rows[rIndex].cells[1].innerHTML = $("#firstname").val();
+        table.rows[rIndex].cells[2].innerHTML = $("#lastname").val();
+        table.rows[rIndex].cells[3].innerHTML = $("#age").val();
+        table.rows[rIndex].cells[4].innerHTML = $(':radio[name=gender]:checked').val();
+        table.rows[rIndex].cells[5].innerHTML = $(':checkbox[name=inter]:checked').map(function() {
             return $(this).val();
           }).get();
-        table.rows[rIndex].cells[5].innerHTML = $("#country").val();
+        table.rows[rIndex].cells[6].innerHTML = $("#country").val();
         var tab = $('#table').html();
         localStorage.setItem('table', tab);
           $('#frm')[0].reset();
