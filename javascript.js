@@ -5,19 +5,20 @@
     var user;
       //save function
       $("#btnsave").click(function() {
-        user = JSON.stringify({
-        FirstName : $("#firstname").val(),
-        LastName : $('#lastname').val(),
-        Age : $("#age").val(),
-        Gender : $(':radio[name=gender]:checked').val(),
-        Interests : $(':checkbox[name=inter]:checked').map(function() {
-            return $(this).val();
-          }).get(),
-          Country :  $("#country").val()
-        });
+          user = JSON.stringify({
+            FirstName : $("#firstname").val(),
+            LastName : $('#lastname').val(),
+            Age : $("#age").val(),
+            Gender : $(':radio[name=gender]:checked').val(),
+            Interests : $(':checkbox[name=inter]:checked').map(function() {
+              return $(this).val();
+            }).get(),
+            Country :  $("#country").val()
+          });
 
         var userparse = JSON.parse(user);
         //validation of form
+
         if($("#firstname").val() == '' | $('#lastname').val() == '' | $("#age").val() == '' | $("#age").val() >111){
           alert(":Incorrect Name or Age");
         }
@@ -38,18 +39,18 @@
           localStorage.setItem('table', tab);
           $('#frm')[0].reset();
           return false;
-        }
+      }
     });
 
-    //sorting func
         $('#table').sortable({
-      nested: true,
-      containerPath: "td",
-      containerSelector: '.table',
-      itemPath: '> tbody',
-      itemSelector: 'tr',
-      placeholder: ''
-      });
+          nested: true,
+          containerPath: "td",
+          containerSelector: '.table',
+          itemPath: '> tbody',
+          itemSelector: 'tr',
+          placeholder: ''
+        });
+
 
       //Get data from localstorage
     if (localStorage.getItem('table')) {
@@ -58,17 +59,9 @@
           //       $("#table").hpaging({ "limit": 2 });
           //   });
       }
-      //deleting all users from localstorage
-    $('#btndelete').click(function() {
-      window.localStorage.clear();
-      location.reload();
-      return true;
-      });
+    var rIndex, table = document.getElementById('table');
 
-      var rIndex, table = document.getElementById('table');
-
-
-      for(var i = 1; i < table.rows.length; i++)
+    for(var i = 1; i < table.rows.length; i++)
       {
         table.rows[i].onclick = function()
         {
@@ -97,6 +90,15 @@
             document.getElementById("country").value = this.cells[5].innerHTML;
           };
         }
+
+        //deleting functions
+      $('#btndelete').click(function() {
+        table.rows[rIndex].remove();
+        var tab = $('#table').html();
+        localStorage.setItem('table', tab);
+        });
+
+        // edit function
       $("#btnedit").click(function() {
         table.rows[rIndex].cells[0].innerHTML = $("#firstname").val();
         table.rows[rIndex].cells[1].innerHTML = $("#lastname").val();
