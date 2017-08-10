@@ -2,9 +2,10 @@
 
     var interestsArr = ['programming', 'travels', 'music', 'painting', 'dancing', 'reading', 'driving', 'fitness',
     'cookery', 'drinking']
-    
+    var user;
+      //save function
       $("#btnsave").click(function() {
-      var user = JSON.stringify({
+        user = JSON.stringify({
         FirstName : $("#firstname").val(),
         LastName : $('#lastname').val(),
         Age : $("#age").val(),
@@ -14,7 +15,9 @@
           }).get(),
           Country :  $("#country").val()
         });
+
         var userparse = JSON.parse(user);
+        //validation of form
         if($("#firstname").val() == '' | $('#lastname').val() == '' | $("#age").val() == '' | $("#age").val() >111){
           alert(":Incorrect Name or Age");
         }
@@ -24,6 +27,7 @@
         else if (!$('input[name=inter]:checked').val()){
           alert(":Select your interests");}
         else {
+          //Add data to table
           $('#table').prepend("<tbody><tr><td>" + userparse.FirstName + "</td><td>"
                                         + userparse.LastName +"</td><td>"
                                         + userparse.Age +"</td><td>"
@@ -36,6 +40,8 @@
           return false;
         }
     });
+
+    //sorting func
         $('#table').sortable({
       nested: true,
       containerPath: "td",
@@ -44,60 +50,64 @@
       itemSelector: 'tr',
       placeholder: ''
       });
+
+      //Get data from localstorage
     if (localStorage.getItem('table')) {
           $('#table').html(localStorage.getItem('table'));
           // $(function () {
           //       $("#table").hpaging({ "limit": 2 });
           //   });
       }
-
+      //deleting all users from localstorage
     $('#btndelete').click(function() {
-    window.localStorage.clear();
-    location.reload();
-    return true;
-});
-  var table = document.getElementById('table');
-    for(var i = 1; i < table.rows.length; i++)
-  {
-      table.rows[i].onclick = function()
+      window.localStorage.clear();
+      location.reload();
+      return true;
+      });
+
+      var rIndex, table = document.getElementById('table');
+
+
+      for(var i = 1; i < table.rows.length; i++)
       {
-        for(interest of interestsArr){
-          $("#"+interest).prop('checked', false);
-        }
-
-        document.getElementById("firstname").value = this.cells[0].innerHTML;
-        document.getElementById("lastname").value = this.cells[1].innerHTML;
-        document.getElementById("age").value = this.cells[2].innerHTML;
-        //RadioButtons
-        if(this.cells[3].innerText == 'male'){
-         $("#maleGender").prop("checked", true)
-        }
-        else{
-          $("#femaleGender").prop("checked", true)
-        }
-        //Checkboxes
-        let checkboxValues = this.cells[4].innerText.split(',')
-        console.log(checkboxValues)
-        for(interest of interestsArr){
-          for(item of checkboxValues){
-            if(interest == item)
-            {
-              $("#"+item).prop('checked', true);
+        table.rows[i].onclick = function()
+        {
+          rIndex = this.rowIndex;
+          for(interest of interestsArr){
+            $("#"+interest).prop('checked', false);
             }
-          }
+            document.getElementById("firstname").value = this.cells[0].innerHTML;
+            document.getElementById("lastname").value = this.cells[1].innerHTML;
+            document.getElementById("age").value = this.cells[2].innerHTML;
+            if(this.cells[3].innerText == 'male'){
+              $("#maleGender").prop("checked", true)
+            }
+            else{
+              $("#femaleGender").prop("checked", true)
+            }
+            let checkboxValues = this.cells[4].innerText.split(',')
+            for(interest of interestsArr){
+              for(item of checkboxValues){
+                if(interest == item)
+                {
+                  $("#"+item).prop('checked', true);
+                }
+              }
+            }
+            document.getElementById("country").value = this.cells[5].innerHTML;
+          };
         }
-        //fieldset
-        document.getElementById("country").value = this.cells[5].innerHTML;
-
-   };
- }
-  $("#btnedit").click(function() {
-        table.rows[rIndex].cells[0].innerHTML = document.getElementById("firstname").value;
-        table.rows[rIndex].cells[1].innerHTML = document.getElementById("lastname").value;
-        table.rows[rIndex].cells[2].innerHTML = document.getElementById("age").value;
-        table.rows[rIndex].cells[3].innerHTML = document.getElementByName("gender").value;
-        table.rows[rIndex].cells[4].innerHTML = document.getElementByName("inter").value;
-        table.rows[rIndex].cells[5].innerHTML = document.getElementById("country").value;
+      $("#btnedit").click(function() {
+        table.rows[rIndex].cells[0].innerHTML = $("#firstname").val();
+        table.rows[rIndex].cells[1].innerHTML = $("#lastname").val();
+        table.rows[rIndex].cells[2].innerHTML = $("#age").val();
+        table.rows[rIndex].cells[3].innerHTML = $(':radio[name=gender]:checked').val();
+        table.rows[rIndex].cells[4].innerHTML = $(':checkbox[name=inter]:checked').map(function() {
+            return $(this).val();
+          }).get();
+        table.rows[rIndex].cells[5].innerHTML = $("#country").val();
+        var tab = $('#table').html();
+        localStorage.setItem('table', tab);
     });
 
   });
