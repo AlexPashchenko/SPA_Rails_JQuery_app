@@ -4,12 +4,16 @@
   <title> Test application</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
+   <link href="paging.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
-  <script src="jquery.table.hpaging.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="javascript.js"></script>
+  <link href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.2.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="/scripts/jquery.table.hpaging.min.js"></script>
 
 </head>
 <body>
@@ -20,25 +24,25 @@
         <input type="text" id ="firstname" name="FirstName" placeholder="FirstName">
         <input type="text" id ="lastname" name="LastName" placeholder="LastName"><br/>
         <input type="number" id ="age" min="1" max = "111" name="Age" placeholder="Age"><br />
-        <input type="radio" name="gender" value="male"> Male
-        <input type="radio" name="gender" value="female"> Female <br />
+        <input type="radio" id="maleGender" name="gender" value="male"> Male
+        <input type="radio" id="femaleGender" name="gender" value="female"> Female <br />
         <fieldset>
           <legend>Choose your interests</legend>
-          <input type="checkbox" name="inter" value="programming"> programming
-          <input type="checkbox" name="inter" value="travels"> travels
-          <input type="checkbox" name="inter" value="music"> music
-          <input type="checkbox" name="inter" value="painting"> painting
-          <input type="checkbox" name="inter" value="dancing"> dancing
-          <input type="checkbox" name="inter" value="reading"> reading
-          <input type="checkbox" name="inter" value="driving"> driving
-          <input type="checkbox" name="inter" value="fitness"> fitness
-          <input type="checkbox" name="inter" value="cookery"> cookery
-          <input type="checkbox" name="inter" value="drinking"> drinking <br />
+          <input type="checkbox" name="inter" value="programming" id="programming"> programming
+          <input type="checkbox" name="inter" value="travels" id="travels"> travels
+          <input type="checkbox" name="inter" value="music" id="music"> music
+          <input type="checkbox" name="inter" value="painting" id="painting"> painting
+          <input type="checkbox" name="inter" value="dancing" id="dancing"> dancing
+          <input type="checkbox" name="inter" value="reading" id="reading"> reading
+          <input type="checkbox" name="inter" value="driving" id="driving"> driving
+          <input type="checkbox" name="inter" value="fitness" id="fitness"> fitness
+          <input type="checkbox" name="inter" value="cookery" id="cookery"> cookery
+          <input type="checkbox" name="inter" value="drinking" id="drinking"> drinking <br />
         </fieldset>
         <div class="form-group">
           <fieldset>
             <legend>Choose your interests</legend>
-            <select class="form-control" id="sel1">
+            <select class="form-control" id="country">
               <option value="Ukraine">Ukraine</option>
               <option value="USA">USA</option>
               <option value="Poland">Poland</option>
@@ -54,7 +58,7 @@
         </div>
         <div>
           <button id="btnsave" type="button" class="btn btn-success">Save</button>
-          <button id="btnedit" type="button" class="btn btn-warning" onclick="editRow()">Edit</button>
+          <button id="btnedit" type="button" class="btn btn-warning">Edit</button>
           <button id="btndelete" type="button" class="btn btn-danger">Delete</button>
         </div>
 

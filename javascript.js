@@ -1,5 +1,8 @@
   $(document).ready(function(){
 
+    var interestsArr = ['programming', 'travels', 'music', 'painting', 'dancing', 'reading', 'driving', 'fitness',
+    'cookery', 'drinking']
+    
       $("#btnsave").click(function() {
       var user = JSON.stringify({
         FirstName : $("#firstname").val(),
@@ -9,10 +12,10 @@
         Interests : $(':checkbox[name=inter]:checked').map(function() {
             return $(this).val();
           }).get(),
-          Country :  $("#sel1").val()
+          Country :  $("#country").val()
         });
         var userparse = JSON.parse(user);
-        if($("#firstname").val() == '' | $('#lastname').val() == '' | $("#age").val() == ''){
+        if($("#firstname").val() == '' | $('#lastname').val() == '' | $("#age").val() == '' | $("#age").val() >111){
           alert(":Incorrect Name or Age");
         }
         else if (!$('input[name=gender]:checked').val() ) {
@@ -33,37 +36,68 @@
           return false;
         }
     });
+        $('#table').sortable({
+      nested: true,
+      containerPath: "td",
+      containerSelector: '.table',
+      itemPath: '> tbody',
+      itemSelector: 'tr',
+      placeholder: ''
+      });
     if (localStorage.getItem('table')) {
           $('#table').html(localStorage.getItem('table'));
+          // $(function () {
+          //       $("#table").hpaging({ "limit": 2 });
+          //   });
       }
+
     $('#btndelete').click(function() {
     window.localStorage.clear();
     location.reload();
     return true;
 });
   var table = document.getElementById('table');
-
-  for(var i = 1; i < table.rows.length; i++)
+    for(var i = 1; i < table.rows.length; i++)
   {
       table.rows[i].onclick = function()
       {
-         document.getElementById("firstname").value = this.cells[0].innerHTML;
-         document.getElementById("lastname").value = this.cells[1].innerHTML;
-         document.getElementById("age").value = this.cells[2].innerHTML;
-         document.getElementByName("gender").value = this.cells[3].innerHTML;
-         document.getElementByName("inter").value = this.cells[4].innerHTML;
-         document.getElementById("sel1").value = this.cells[5].innerHTML;
-    };
-  }
-  function editRow()
-              {
-                  table.rows[rIndex].cells[0].innerHTML = document.getElementById("firstname").value;
-                  table.rows[rIndex].cells[1].innerHTML = document.getElementById("lastname").value;
-                  table.rows[rIndex].cells[2].innerHTML = document.getElementById("age").value;
-                  table.rows[rIndex].cells[3].innerHTML = document.getElementByName("gender").value;
-                  table.rows[rIndex].cells[4].innerHTML = document.getElementByName("inter").value;
-                  table.rows[rIndex].cells[5].innerHTML = document.getElementById("sel1").value;
-              }
+        for(interest of interestsArr){
+          $("#"+interest).prop('checked', false);
+        }
 
+        document.getElementById("firstname").value = this.cells[0].innerHTML;
+        document.getElementById("lastname").value = this.cells[1].innerHTML;
+        document.getElementById("age").value = this.cells[2].innerHTML;
+        //RadioButtons
+        if(this.cells[3].innerText == 'male'){
+         $("#maleGender").prop("checked", true)
+        }
+        else{
+          $("#femaleGender").prop("checked", true)
+        }
+        //Checkboxes
+        let checkboxValues = this.cells[4].innerText.split(',')
+        console.log(checkboxValues)
+        for(interest of interestsArr){
+          for(item of checkboxValues){
+            if(interest == item)
+            {
+              $("#"+item).prop('checked', true);
+            }
+          }
+        }
+        //fieldset
+        document.getElementById("country").value = this.cells[5].innerHTML;
+
+   };
+ }
+  $("#btnedit").click(function() {
+        table.rows[rIndex].cells[0].innerHTML = document.getElementById("firstname").value;
+        table.rows[rIndex].cells[1].innerHTML = document.getElementById("lastname").value;
+        table.rows[rIndex].cells[2].innerHTML = document.getElementById("age").value;
+        table.rows[rIndex].cells[3].innerHTML = document.getElementByName("gender").value;
+        table.rows[rIndex].cells[4].innerHTML = document.getElementByName("inter").value;
+        table.rows[rIndex].cells[5].innerHTML = document.getElementById("country").value;
+    });
 
   });
