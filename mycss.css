@@ -1,0 +1,14 @@
+.focus {
+  background-color: #ff00ff;
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+}
+.pageNumber {
+  padding: 2px;
+  color: red;
+
+}
+.pages{
+  color: red;
+}
