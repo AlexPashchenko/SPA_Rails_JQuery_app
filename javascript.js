@@ -131,9 +131,9 @@
     });
     $(function pagFun() {
       var totalRows = $('#table').find('tbody tr:has(td)').length;
-      var recordPerPage = 3;
+      var recordPerPage = 10;
       var totalPages = Math.ceil(totalRows / recordPerPage);
-      var $pages = $('<div id="pages" ></div>');
+      var $pages = $('<div id="pages" class="pagin" ></div>');
       for (i = 0; i < totalPages; i++) {
           $('<button type="button" class="pagination">&nbsp;' + (i + 1) + '</button>').appendTo($pages);
       }
