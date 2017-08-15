@@ -1,10 +1,11 @@
   $(document).ready(function(){
+
     var interestsArr = ['programming', 'travels', 'music', 'painting', 'dancing', 'reading', 'driving', 'fitness',
     'cookery', 'drinking'];
     var user;
     var table = document.getElementById('table');
     var tableUsers = new Array();
-     tableUsers = JSON.parse(localStorage.getItem("users"));
+    tableUsers = JSON.parse(localStorage.getItem("users"));
     if (tableUsers === null){
       tableUsers =[];
     }
@@ -13,9 +14,11 @@
       id = 1;
     }
 
+
+    //get data from array into table rows
     $(function() {
       $.each(tableUsers, function (index, data) {
-     var eachrow = "<tbody><tr>"
+        var eachrow = "<tbody><tr>"
                  + "<td>" + data.Id + "</td>"
                  + "<td>" + data.FirstName + "</td>"
                  + "<td>" + data.LastName + "</td>"
@@ -27,7 +30,11 @@
         $('#table').append(eachrow);
       });
     });
-    function pagFun() {
+
+
+    //Pagination function
+
+    $(function Pag() {
       var totalRows = $('#table').find('tbody tr:has(td)').length;
       var recordPerPage = 10;
       var totalPages = Math.ceil(totalRows / recordPerPage);
@@ -53,11 +60,13 @@
          {
            $(tr[i]).show();
          }
-      });
-    };
-    window.onhashchange = pagFun;
+       });
+    });
+
+
+
        //save function
-      $('#btnsave').on('click', function() {
+    $('#btnsave').on('click', function() {
             user ={
             Id : id,
             FirstName : $("#firstname").val(),
@@ -72,16 +81,16 @@
 
           //validation of form
           if($("#firstname").val() == '' | $('#lastname').val() == '' | $("#age").val() == '' | $("#age").val() >111){
-          alert(":Incorrect Name or Age");
-        }
+            alert(":Incorrect Name or Age");
+          }
           else if (!$('input[name=gender]:checked').val() ) {
-          alert(":Select your gender");
-        }
+            alert(":Select your gender");
+          }
           else if (!$('input[name=inter]:checked').val()){
-          alert(":Select your interests");}
+            alert(":Select your interests");}
           else {
 
-          // Add data to table
+          // Add data to array and table
           tableUsers.unshift(user);
           localStorage.setItem('users', JSON.stringify(tableUsers));
           $('#frm')[0].reset();
@@ -92,14 +101,17 @@
                                         + user.Gender +"</td><td>"
                                         + user.Interests +"</td><td>"
                                         + user.Country + "</td></tr></tbody>");
-          id++;
-          localStorage.setItem("id", id);
-          tab = document.getElementById('table');
-          return false;
-        }
-    });
 
-            $('#table').sortable({
+            id++;
+            localStorage.setItem("id", id);
+            Pag();
+            return false;
+          }
+        });
+
+
+        // sortable function
+        $('#table').sortable({
             nested: true,
             containerPath: "td",
             containerSelector: '.table',
@@ -120,41 +132,46 @@
                       Country: table.rows[i].cells[6].innerHTML
                     });
                   }
-                  localStorage.setItem("users", JSON.stringify(sortedTab));
+              localStorage.setItem("users", JSON.stringify(sortedTab));
              }
           });
 
-    $(document).on('click','tr', function() {
-    for(var i = 1; i < table.rows.length; i++)
-      {
-        table.rows[i].onclick = function()
-        {
-          rIndex = this.rowIndex;
-          for(interest of interestsArr){
-            $("#"+interest).prop('checked', false);
-            }
-            document.getElementById("firstname").value = this.cells[1].innerHTML;
-            document.getElementById("lastname").value = this.cells[2].innerHTML;
-            document.getElementById("age").value = this.cells[3].innerHTML;
-            if(this.cells[4].innerText == 'male'){
-              $("#maleGender").prop("checked", true)
-            }
-            else{
-              $("#femaleGender").prop("checked", true)
-            }
-            let checkboxValues = this.cells[5].innerText.split(',')
-            for(interest of interestsArr){
-              for(item of checkboxValues){
-                if(interest == item)
-                {
-                  $("#"+item).prop('checked', true);
+
+
+          //Selecting row
+        $(document).on('click','tr', function() {
+          for(var i = 1; i < table.rows.length; i++)
+          {
+            table.rows[i].onclick = function()
+              {
+                rIndex = this.rowIndex;
+                for(interest of interestsArr){
+                  $("#"+interest).prop('checked', false);
                 }
-              }
+                document.getElementById("firstname").value = this.cells[1].innerHTML;
+                document.getElementById("lastname").value = this.cells[2].innerHTML;
+                document.getElementById("age").value = this.cells[3].innerHTML;
+                if(this.cells[4].innerText == 'male'){
+                  $("#maleGender").prop("checked", true)
+                }
+                else{
+                  $("#femaleGender").prop("checked", true)
+                }
+                let checkboxValues = this.cells[5].innerText.split(',')
+                for(interest of interestsArr){
+                  for(item of checkboxValues){
+                    if(interest == item)
+                    {
+                      $("#"+item).prop('checked', true);
+                    }
+                  }
+                }
+                document.getElementById("country").value = this.cells[6].innerHTML;
+              };
             }
-            document.getElementById("country").value = this.cells[6].innerHTML;
-          };
-        }
-      });
+          });
+
+
 
         //deleting functions
       $('#btndelete').click(function() {
@@ -162,7 +179,11 @@
         tableUsers.splice(rIndex-1, 1);
         localStorage.setItem("users", JSON.stringify(tableUsers));
         $('#frm')[0].reset();
+        Pag();
         });
+
+
+
 
         // edit function
       $("#btnedit").on("click", function() {
@@ -183,9 +204,9 @@
             Gender: table.rows[rIndex].cells[4].innerHTML,
             Interests: table.rows[rIndex].cells[5].innerHTML,
             Country: table.rows[rIndex].cells[6].innerHTML
-          };
-          localStorage.setItem('users', JSON.stringify(tableUsers));
-          $('#frm')[0].reset();
-        });
-
+        };
+        localStorage.setItem('users', JSON.stringify(tableUsers));
+        $('#frm')[0].reset();
+        Pag();
+      });
 });
