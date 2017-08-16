@@ -97,8 +97,9 @@
 
       //save sorted array
       function saveSort() {
+        sortedTab=[];
         for ( var i = 1; i < table.rows.length; i++ ) {
-            sortedTab.push({
+                sortedTab.push({
                 Id: table.rows[i].cells[0].innerHTML,
                 FirstName: table.rows[i].cells[1].innerHTML,
                 LastName: table.rows[i].cells[2].innerHTML,
