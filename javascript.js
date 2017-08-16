@@ -116,6 +116,7 @@
             nested: true,
             containerPath: "td",
             containerSelector: '.table',
+            items: 'tbody',
             itemPath: '> tbody',
             itemSelector: 'tr',
             placeholder: '',
