@@ -15,8 +15,12 @@
       id = 1;
     }
 
+    $(function() {
+      GetTable();
+      Pag();
+    });
     //get data from array into table rows
-    $(function GetTable() {
+    function GetTable() {
       $.each(tableUsers, function (index, data) {
         var eachrow = "<tbody><tr>"
                  + "<td>" + data.Id + "</td>"
@@ -29,7 +33,7 @@
                  + "</tr></tbody>";
         $('#table').append(eachrow);
       });
-    });
+    };
 
     //set user object
     function setUser() {
@@ -51,17 +55,14 @@
     function valodateForm() {
       if($("#firstname").val() == '' | $('#lastname').val() == '' | $("#age").val() == '' | $("#age").val() >111){
         alert(":Incorrect Name or Age");
-        GetTable();
         return false;
       }
       else if (!$('input[name=gender]:checked').val() ) {
         alert(":Select your gender");
-        GetTable();
         return false;
       }
       else if (!$('input[name=inter]:checked').val()){
         alert(":Select your interests");
-        GetTable();
         return false;
       }
       return true;
@@ -90,7 +91,6 @@
           $('#frm')[0].reset();
           id++;
           localStorage.setItem("id", id);
-          Pag();
           return false;
         }
     });
@@ -163,12 +163,16 @@
 
         //deleting function
       $('#btndelete').click(function() {
+        if(typeof rIndex == 'undefined'){
+          alert("Select row for deleting");
+        }
+        else{
         table.rows[rIndex].remove();
         tableUsers.splice(rIndex-1, 1);
         localStorage.setItem("users", JSON.stringify(tableUsers));
         $('#frm')[0].reset();
-        Pag();
-        });
+        }
+      });
 
 
         //editing of selected array item
@@ -199,42 +203,49 @@
 
         // edit function
       $("#btnedit").on("click", function() {
+        if(typeof rIndex == 'undefined'){
+          alert("Select row for editing");
+        }
+        else{
         editSelectedRow();
         editArrayItem();
         localStorage.setItem('users', JSON.stringify(tableUsers));
         $('#frm')[0].reset();
-        Pag();
+        }
       });
 
 
       //Pagination function
 
-      $(function Pag() {
-        var totalRows = $('#table').find('tbody tr:has(td)').length;
-        var recordPerPage = 10;
-        var totalPages = Math.ceil(totalRows / recordPerPage);
-        var $pages = $('<div id="pages" class="pagin" ></div>');
-        for (i = 0; i < totalPages; i++) {
-            $('<button type="button" class="pagination">&nbsp;' + (i + 1) + '</button>').appendTo($pages);
-        }
-         $pages.appendTo('#pagin');
-         $('.pagination').hover(
-           function() { $(this).addClass('focus'); },
-           function() { $(this).removeClass('focus'); }
-         );
-         $('table').find('tbody tr:has(td)').hide();
-         var tr = $('table tbody tr:has(td)');
-         for (var i = 0; i <= recordPerPage - 1; i++) {
-           $(tr[i]).show();
-         }
-         $('button').on('click', function(event) {
-           $('#table').find('tbody tr:has(td)').hide();
-           var nBegin = ($(this).text() - 1) * recordPerPage;
-           var nEnd = $(this).text() * recordPerPage - 1;
-           for (var i = nBegin; i <= nEnd; i++)
-           {
+
+
+    function Pag() {
+
+      var totalRows = $('#table').find('tbody tr:has(td)').length;
+          var recordPerPage = 10;
+          var totalPages = Math.ceil(totalRows / recordPerPage);
+          var $pages = $('<div id="pages" class="pagin" ></div>');
+          for (i = 0; i < totalPages; i++) {
+              $('<button type="button" class="pagination">&nbsp;' + (i + 1) + '</button>').appendTo($pages);
+          }
+           $pages.appendTo('#pagin');
+           $('.pagination').hover(
+             function() { $(this).addClass('focus'); },
+             function() { $(this).removeClass('focus'); }
+           );
+           $('table').find('tbody tr:has(td)').hide();
+           var tr = $('table tbody tr:has(td)');
+           for (var i = 0; i <= recordPerPage - 1; i++) {
              $(tr[i]).show();
            }
-         });
-      });
+           $('.pagination').on('click', function(event) {
+             $('#table').find('tbody tr:has(td)').hide();
+             var nBegin = ($(this).text() - 1) * recordPerPage;
+             var nEnd = $(this).text() * recordPerPage - 1;
+             for (var i = nBegin; i <= nEnd; i++)
+             {
+               $(tr[i]).show();
+             }
+           });
+       };
 });
