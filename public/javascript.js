@@ -3,7 +3,7 @@ $(document).ready(function() {
     var interestsArr = ['programming', 'travels', 'music', 'painting', 'dancing', 'reading', 'driving', 'fitness',
     'cookery', 'drinking'];
     var user;
-    var table = document.getElementById('table');
+    var table = $('#table');
     var tableUsers = new Array();
     sortedTab = [];
     tableUsers = JSON.parse(localStorage.getItem("users"));
@@ -17,7 +17,7 @@ $(document).ready(function() {
 
     $(function() {
       GetTable();
-      Pag();
+      Pagination();
     });
 
     //get data from array into table rows
@@ -113,7 +113,7 @@ $(document).ready(function() {
     }
 
         // sortable function
-   $('#table').sortable({
+   $('#table').sortable( {
       nested: true,
       containerPath: "td",
       containerSelector: '.table',
@@ -122,7 +122,7 @@ $(document).ready(function() {
       itemSelector: 'tr',
       placeholder: '',
       revert: true,
-      update: function(){
+      update: function() {
         saveSort();
         localStorage.setItem("users", JSON.stringify(sortedTab));
       }
@@ -135,9 +135,9 @@ $(document).ready(function() {
           for(interest of interestsArr) {
             $("#"+interest).prop('checked', false);
           }
-          document.getElementById("firstname").value = this.cells[1].innerHTML;
-          document.getElementById("lastname").value = this.cells[2].innerHTML;
-          document.getElementById("age").value = this.cells[3].innerHTML;
+          $("#firstname").value = this.cells[1].innerHTML;
+          $("#lastname").value = this.cells[2].innerHTML;
+          $("#age").value = this.cells[3].innerHTML;
           if(this.cells[4].innerText == 'male') {
             $("#maleGender").prop("checked", true)
           } else {
@@ -151,7 +151,7 @@ $(document).ready(function() {
               }
             }
           }
-          document.getElementById("country").value = this.cells[6].innerHTML;
+          $("#country").value = this.cells[6].innerHTML;
         };
       }
     });
@@ -207,7 +207,7 @@ $(document).ready(function() {
     });
 
       //Pagination function
-   function Pag() {
+   function Pagination() {
      var totalRows = $('#table').find('tbody tr:has(td)').length;
      var recordPerPage = 10;
      var totalPages = Math.ceil(totalRows / recordPerPage);
