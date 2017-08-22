@@ -48,3 +48,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rubocop', require: false
 gem 'validates_email_format_of'
 gem 'enumerize'
+gem 'devise'
