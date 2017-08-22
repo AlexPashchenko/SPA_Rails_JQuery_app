@@ -1,20 +1,19 @@
 <html>
-
   <head>
     <title> Test application</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <link href="test_app/public/mycss.css" rel="stylesheet" type="text/css"/>
+    <link href="mycss.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <%= javascript_include_tag "/javascript" %>
-    <%= stylesheet_link_tag "/mycss" %>
+    <script type="text/javascript" src="javascript.js"></script>
     <link href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.0.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   </head>
+
   <body>
       <form id="frm" class="form">
       <input type="text" id ="firstname" name="FirstName" placeholder="FirstName">
@@ -76,5 +75,5 @@
         </table>
         <p id="pagin"> </p>
       </div>
-    </body>
+  </body>
 </html>

@@ -3,7 +3,7 @@ $(document).ready(function() {
     var interestsArr = ['programming', 'travels', 'music', 'painting', 'dancing', 'reading', 'driving', 'fitness',
     'cookery', 'drinking'];
     var user;
-    var table = $('#table');
+    var table = document.getElementById('table');
     var tableUsers = new Array();
     sortedTab = [];
     tableUsers = JSON.parse(localStorage.getItem("users"));
@@ -135,9 +135,9 @@ $(document).ready(function() {
           for(interest of interestsArr) {
             $("#"+interest).prop('checked', false);
           }
-          $("#firstname").value = this.cells[1].innerHTML;
-          $("#lastname").value = this.cells[2].innerHTML;
-          $("#age").value = this.cells[3].innerHTML;
+          $("#firstname").val(this.cells[1].innerHTML);
+          $("#lastname").val(this.cells[2].innerHTML);
+          $("#age").val(this.cells[3].innerHTML);
           if(this.cells[4].innerText == 'male') {
             $("#maleGender").prop("checked", true)
           } else {
@@ -151,7 +151,7 @@ $(document).ready(function() {
               }
             }
           }
-          $("#country").value = this.cells[6].innerHTML;
+          $("#country").val(this.cells[6].innerHTML);
         };
       }
     });
