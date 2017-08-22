@@ -10,9 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20170822093028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hobbies", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "age"
+    t.string   "gender"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "country_id"
+  end
+
+  create_table "users_hobbies", id: false, force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_users_hobbies_on_country_id", using: :btree
+    t.index ["user_id"], name: "index_users_hobbies_on_user_id", using: :btree
+  end
 
 end
