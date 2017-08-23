@@ -18,6 +18,7 @@ $(document).ready(function() {
     $(function() {
       GetTable();
       Pagination();
+      HideAutorization();
     });
 
     //get data from array into table rows
@@ -81,7 +82,17 @@ $(document).ready(function() {
                                     + user.Country + "</td></tr></tbody>");
     }
 
+    $("#loginform").dialog( {
+      autoOpen: false,
+      modal: true,
+      close: function() {
+        form[ 0 ].reset();
+      }
+    });
 
+    $("#signbtn").on("click", function() {
+      $("#loginform").dialog( "open" )
+    });
        //save function
     $('#btnsave').on('click', function() {
       setUser();
