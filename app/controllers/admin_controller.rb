@@ -1,11 +1,10 @@
 class AdminController < ApplicationController
   before_action :authenticate_admin!
+  before_action :set_admin
 
   def destroy
-    @admins = Admin.all
-    unless @admins.count == 1
-    @admin.destroy
 
+    @admin.destroy
     respond_to do |format|
       format.json { head :no_content }
     end
