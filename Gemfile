@@ -49,3 +49,4 @@ gem 'rubocop', require: false
 gem 'validates_email_format_of'
 gem 'enumerize'
 gem 'devise'
+gem 'annotate'

@@ -1,8 +1,8 @@
 Started GET "/fon.png" for 127.0.0.1 at 2017-08-21 17:00:34 +0300
-  
+
 ActiveRecord::NoDatabaseError (FATAL:  database "db/development.sqlite3" does not exist
 ):
-  
+
 activerecord (5.0.0.1) lib/active_record/connection_adapters/postgresql_adapter.rb:675:in `rescue in connect'
 activerecord (5.0.0.1) lib/active_record/connection_adapters/postgresql_adapter.rb:671:in `connect'
 activerecord (5.0.0.1) lib/active_record/connection_adapters/postgresql_adapter.rb:217:in `initialize'
@@ -509,9 +509,9 @@ Completed 200 OK in 7ms (Views: 5.3ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/" for 127.0.0.1 at 2017-08-22 14:13:43 +0300
-  
+
 ArgumentError (Missing :controller key on routes definition, please check your routes.):
-  
+
 config/routes.rb:3:in `block in <top (required)>'
 config/routes.rb:1:in `<top (required)>'
   Rendering /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
@@ -524,9 +524,9 @@ config/routes.rb:1:in `<top (required)>'
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (47.5ms)
 Started GET "/" for 127.0.0.1 at 2017-08-22 14:21:42 +0300
   [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
-  
+
 AbstractController::ActionNotFound (The action 'index' could not be found for ApplicationController):
-  
+
 actionpack (5.0.0.1) lib/abstract_controller/base.rb:121:in `process'
 actionview (5.0.0.1) lib/action_view/rendering.rb:30:in `process'
 actionpack (5.0.0.1) lib/action_controller/metal.rb:190:in `dispatch'
@@ -587,14 +587,14 @@ Processing by ApplicationController#index as HTML
 Completed 406 Not Acceptable in 29ms (ActiveRecord: 0.0ms)
 
 
-  
+
 ActionController::UnknownFormat (ApplicationController#index is missing a template for this request format and variant.
 
 request.formats: ["text/html"]
 request.variant: []
 
 NOTE! For XHR/Ajax or API requests, this action would normally respond with 204 No Content: an empty white screen. Since you're loading it in a web browser, we assume that you expected to actually render a template, not… nothing, so we're showing an error to be extra-clear. If you expect 204 No Content, carry on. That's what you'll get from an XHR or API request. Give it a shot.):
-  
+
 actionpack (5.0.0.1) lib/action_controller/metal/implicit_render.rb:56:in `default_render'
 actionpack (5.0.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `block in send_action'
 actionpack (5.0.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `tap'
@@ -712,9 +712,9 @@ Completed 200 OK in 10ms (Views: 8.8ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/" for 127.0.0.1 at 2017-08-22 14:30:18 +0300
-  
+
 ArgumentError (Missing :controller key on routes definition, please check your routes.):
-  
+
 config/routes.rb:3:in `block in <top (required)>'
 config/routes.rb:1:in `<top (required)>'
   Rendering /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
@@ -740,9 +740,9 @@ Completed 200 OK in 39ms (Views: 36.2ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/public/javascript.js" for 127.0.0.1 at 2017-08-22 14:31:50 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/public/javascript.js"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -785,9 +785,9 @@ Completed 200 OK in 50ms (Views: 47.4ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/public/mycss.css" for 127.0.0.1 at 2017-08-22 14:32:55 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -815,9 +815,9 @@ puma (3.10.0) lib/puma/server.rb:437:in `process_client'
 puma (3.10.0) lib/puma/server.rb:301:in `block in run'
 puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
 Started GET "/public/javascript.js" for 127.0.0.1 at 2017-08-22 14:32:55 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/public/javascript.js"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -868,15 +868,15 @@ Completed 200 OK in 53ms (Views: 50.9ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 14:33:51 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
 Started GET "/public/javascript.js" for 127.0.0.1 at 2017-08-22 14:33:51 +0300
-  
-  
+
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 ActionController::RoutingError (No route matches [GET] "/public/javascript.js"):
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
-  
+
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
@@ -951,14 +951,14 @@ Completed 200 OK in 40ms (Views: 37.9ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 14:33:54 +0300
-  
+
 Started GET "/public/javascript.js" for 127.0.0.1 at 2017-08-22 14:33:54 +0300
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
-  
+
+
 ActionController::RoutingError (No route matches [GET] "/public/javascript.js"):
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
-  
+
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -1027,9 +1027,9 @@ puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (58.6ms)
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 14:33:54 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -1065,9 +1065,9 @@ puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (23.5ms)
 Started GET "/public/javascript.js" for 127.0.0.1 at 2017-08-22 14:33:54 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/public/javascript.js"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -1111,13 +1111,13 @@ Completed 200 OK in 220ms (Views: 211.5ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 14:34:10 +0300
-  
+
 Started GET "/public/javascript.js" for 127.0.0.1 at 2017-08-22 14:34:10 +0300
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 ActionController::RoutingError (No route matches [GET] "/public/javascript.js"):
-  
-  
+
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
@@ -1187,9 +1187,9 @@ puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (80.4ms)
 Started GET "/public/javascript.js" for 127.0.0.1 at 2017-08-22 14:34:11 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/public/javascript.js"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -1233,12 +1233,12 @@ Completed 200 OK in 19ms (Views: 17.6ms | ActiveRecord: 0.0ms)
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 14:35:05 +0300
 Started GET "/test_app/public/javascript.js" for 127.0.0.1 at 2017-08-22 14:35:05 +0300
-  
-  
+
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
 ActionController::RoutingError (No route matches [GET] "/test_app/public/javascript.js"):
-  
-  
+
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
@@ -1308,9 +1308,9 @@ puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (60.8ms)
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 14:35:05 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -1346,9 +1346,9 @@ puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (24.0ms)
 Started GET "/test_app/public/javascript.js" for 127.0.0.1 at 2017-08-22 14:35:05 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/javascript.js"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -1390,16 +1390,16 @@ Processing by MainpageController#index as HTML
 Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.0ms)
 
 
-  
+
 ActionView::Template::Error (require_tree argument must be a relative path):
      5:     <%= csrf_meta_tags %>
-     6: 
+     6:
      7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
      8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
      9:   </head>
-    10: 
+    10:
     11:   <body>
-  
+
 app/assets/javascripts/application.js:17
 app/views/layouts/application.html.erb:8:in `_app_views_layouts_application_html_erb__676630306500310989_36956580'
   Rendering /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
@@ -1417,16 +1417,16 @@ Processing by MainpageController#index as HTML
 Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.0ms)
 
 
-  
+
 ActionView::Template::Error (require_tree argument must be a relative path):
      5:     <%= csrf_meta_tags %>
-     6: 
+     6:
      7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
      8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
      9:   </head>
-    10: 
+    10:
     11:   <body>
-  
+
 app/assets/javascripts/application.js:16
 app/views/layouts/application.html.erb:8:in `_app_views_layouts_application_html_erb__676630306500310989_70315494830940'
   Rendering /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
@@ -1444,16 +1444,16 @@ Processing by MainpageController#index as HTML
 Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.0ms)
 
 
-  
+
 ActionView::Template::Error (require_tree argument must be a relative path):
      5:     <%= csrf_meta_tags %>
-     6: 
+     6:
      7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
      8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
      9:   </head>
-    10: 
+    10:
     11:   <body>
-  
+
 app/assets/javascripts/application.js:16
 app/views/layouts/application.html.erb:8:in `_app_views_layouts_application_html_erb__676630306500310989_24845860'
   Rendering /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
@@ -1472,9 +1472,9 @@ Completed 200 OK in 33ms (Views: 31.0ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 14:38:07 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -1502,9 +1502,9 @@ puma (3.10.0) lib/puma/server.rb:437:in `process_client'
 puma (3.10.0) lib/puma/server.rb:301:in `block in run'
 puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
 Started GET "/test_app/public/javascript.js" for 127.0.0.1 at 2017-08-22 14:38:07 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/javascript.js"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -1555,9 +1555,9 @@ Completed 200 OK in 28ms (Views: 25.6ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 14:38:19 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -1585,9 +1585,9 @@ puma (3.10.0) lib/puma/server.rb:437:in `process_client'
 puma (3.10.0) lib/puma/server.rb:301:in `block in run'
 puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
 Started GET "/test_app/public/javascript.js" for 127.0.0.1 at 2017-08-22 14:38:19 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/javascript.js"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -1638,16 +1638,16 @@ Completed 200 OK in 35ms (Views: 33.4ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 14:38:24 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 Started GET "/test_app/public/javascript.js" for 127.0.0.1 at 2017-08-22 14:38:24 +0300
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
-  
+
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 ActionController::RoutingError (No route matches [GET] "/test_app/public/javascript.js"):
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
-  
+
 web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
@@ -1714,9 +1714,9 @@ puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (59.7ms)
 Started GET "/test_app/public/javascript.js" for 127.0.0.1 at 2017-08-22 14:38:25 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/javascript.js"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -1758,7 +1758,7 @@ Processing by MainpageController#index as HTML
 Completed 500 Internal Server Error in 157ms (ActiveRecord: 0.0ms)
 
 
-  
+
 ActionView::Template::Error (undefined method `css_include_tag' for #<#<Class:0x00000003f0f138>:0x007fe73c2c77e0>):
     10:     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
     11:     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -1767,7 +1767,7 @@ ActionView::Template::Error (undefined method `css_include_tag' for #<#<Class:0x
     14:     <link href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
     15:     <script src="https://code.jquery.com/jquery-3.2.0.js"></script>
     16:     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  
+
 app/views/mainpage/index.html.erb:13:in `_app_views_mainpage_index_html_erb___1586337300968452111_70315647385960'
   Rendering /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
   Rendering /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
@@ -1785,9 +1785,9 @@ Completed 200 OK in 27ms (Views: 26.1ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 14:41:58 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -1830,9 +1830,9 @@ Completed 200 OK in 21ms (Views: 20.6ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 14:42:04 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -1875,9 +1875,9 @@ Completed 200 OK in 28ms (Views: 26.6ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 14:42:40 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -1921,9 +1921,9 @@ Completed 200 OK in 225ms (Views: 216.4ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 14:58:32 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -1966,9 +1966,9 @@ Completed 200 OK in 35ms (Views: 33.6ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 14:58:43 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2011,9 +2011,9 @@ Completed 200 OK in 46ms (Views: 44.8ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 14:58:47 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2056,9 +2056,9 @@ Completed 200 OK in 103ms (Views: 101.5ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:06:25 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2101,9 +2101,9 @@ Completed 200 OK in 52ms (Views: 50.9ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:22:16 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2146,9 +2146,9 @@ Completed 200 OK in 36ms (Views: 35.0ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:22:25 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2191,9 +2191,9 @@ Completed 200 OK in 31ms (Views: 29.7ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:33:48 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2236,9 +2236,9 @@ Completed 200 OK in 36ms (Views: 34.7ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:34:00 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2274,9 +2274,9 @@ puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (21.9ms)
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:34:01 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2319,9 +2319,9 @@ Completed 200 OK in 33ms (Views: 32.0ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:34:04 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2365,9 +2365,9 @@ Completed 200 OK in 261ms (Views: 251.8ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:34:44 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2403,9 +2403,9 @@ puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (35.5ms)
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:34:44 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2448,9 +2448,9 @@ Completed 200 OK in 36ms (Views: 34.7ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:35:00 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2493,9 +2493,9 @@ Completed 200 OK in 38ms (Views: 36.3ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:35:19 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2538,9 +2538,9 @@ Completed 200 OK in 37ms (Views: 35.1ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:35:25 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2583,9 +2583,9 @@ Completed 200 OK in 34ms (Views: 32.6ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:36:58 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2628,9 +2628,9 @@ Completed 200 OK in 49ms (Views: 46.8ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:37:09 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2673,9 +2673,9 @@ Completed 200 OK in 35ms (Views: 33.0ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:37:23 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2718,9 +2718,9 @@ Completed 200 OK in 37ms (Views: 35.3ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:37:29 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2763,9 +2763,9 @@ Completed 200 OK in 43ms (Views: 41.0ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:37:59 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2801,9 +2801,9 @@ puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (23.7ms)
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:37:59 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2846,9 +2846,9 @@ Completed 200 OK in 46ms (Views: 44.0ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:38:02 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2891,9 +2891,9 @@ Completed 200 OK in 30ms (Views: 29.0ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:38:07 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2929,9 +2929,9 @@ puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.2ms)
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (25.2ms)
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:38:07 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -2974,9 +2974,9 @@ Completed 200 OK in 22ms (Views: 21.0ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/test_app/public/mycss.css" for 127.0.0.1 at 2017-08-22 15:38:15 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/test_app/public/mycss.css"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -3040,9 +3040,9 @@ Completed 200 OK in 28ms (Views: 27.1ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/javascripts/public/javascript.js" for 127.0.0.1 at 2017-08-22 15:42:01 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/javascripts/public/javascript.js"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -3078,9 +3078,9 @@ puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (26.2ms)
 Started GET "/javascripts/public/javascript.js" for 127.0.0.1 at 2017-08-22 15:42:02 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/javascripts/public/javascript.js"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -3123,9 +3123,9 @@ Completed 200 OK in 40ms (Views: 38.8ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/public/javascript.js" for 127.0.0.1 at 2017-08-22 15:42:17 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/public/javascript.js"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -3161,9 +3161,9 @@ puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (28.2ms)
 Started GET "/public/javascript.js" for 127.0.0.1 at 2017-08-22 15:42:17 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/public/javascript.js"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -3206,9 +3206,9 @@ Completed 200 OK in 33ms (Views: 31.5ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/public/javascript.js" for 127.0.0.1 at 2017-08-22 15:42:54 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/public/javascript.js"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -3244,9 +3244,9 @@ puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (32.9ms)
 Started GET "/public/javascript.js" for 127.0.0.1 at 2017-08-22 15:42:54 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/public/javascript.js"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -3289,9 +3289,9 @@ Completed 200 OK in 37ms (Views: 35.7ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/javascripts/javascript.js" for 127.0.0.1 at 2017-08-22 15:43:03 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/javascripts/javascript.js"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -3327,9 +3327,9 @@ puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (25.2ms)
 Started GET "/javascripts/javascript.js" for 127.0.0.1 at 2017-08-22 15:43:03 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/javascripts/javascript.js"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -3588,7 +3588,7 @@ Processing by MainpageController#index as HTML
 Completed 500 Internal Server Error in 850ms (ActiveRecord: 0.0ms)
 
 
-  
+
 ActionView::Template::Error (undefined local variable or method `new_user_session_path' for #<#<Class:0x00000004c47a08>:0x00000004c45c80>
 Did you mean?  new_admin_session_path):
     19:           </div>
@@ -3598,7 +3598,7 @@ Did you mean?  new_admin_session_path):
     23:             <%= link_to 'Sign up', new_user_registration_path%>
     24:           </div>
     25:       <% end %>
-  
+
 app/views/layouts/application.html.erb:22:in `_app_views_layouts_application_html_erb__122286874994754542_40088540'
   Rendering /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
   Rendering /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
@@ -3897,9 +3897,9 @@ Completed 200 OK in 31ms (Views: 29.8ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/public/index" for 127.0.0.1 at 2017-08-22 19:19:24 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/public/index"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -3935,9 +3935,9 @@ puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (102.3ms)
 Started GET "/public/index.html" for 127.0.0.1 at 2017-08-22 19:19:46 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/public/index.html"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -3973,9 +3973,9 @@ puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
   Rendered /home/alex/.rvm/gems/ruby-2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (27.7ms)
 Started GET "/public/index.html" for 127.0.0.1 at 2017-08-22 19:21:48 +0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/public/index.html"):
-  
+
 actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
 web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
 web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
@@ -4480,43 +4480,3 @@ ORDER BY c.conname
   [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
   [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "admins"[0m
   [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
-  [1m[36mAdmin Load (0.6ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" ORDER BY "admins"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
-  [1m[36mAdmin Load (0.6ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" ORDER BY "admins"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
-  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
-  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "admins"[0m
-  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
-  [1m[36mAdmin Load (0.6ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" ORDER BY "admins"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
-  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
-  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "admins"[0m
-  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
-  [1m[36mAdmin Load (0.6ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" ORDER BY "admins"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
-  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
-  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "admins"[0m
-  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
-  [1m[36mAdmin Load (0.8ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" ORDER BY "admins"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
-  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
-  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "admins"[0m
-  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
-  [1m[36mAdmin Load (0.5ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" ORDER BY "admins"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
-  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
-  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "admins"[0m
-  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
-  [1m[36mAdmin Load (0.6ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" ORDER BY "admins"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
-  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "admins"[0m
-  [1m[36mAdmin Load (0.6ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" ORDER BY "admins"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
-  [1m[36mAdmin Load (0.6ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" ORDER BY "admins"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
-  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "admins"[0m
-  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mAdmin Exists (1.1ms)[0m  [1m[34mSELECT  1 AS one FROM "admins" WHERE "admins"."email" = $1 LIMIT $2[0m  [["email", "erhsgwgrj@mail.ru"], ["LIMIT", 1]]
-  [1m[36mAdmin Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "admins" WHERE "admins"."email" = $1 LIMIT $2[0m  [["email", "erhsgwgrj@mail.ru"], ["LIMIT", 1]]
-  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "admins" ("email", "created_at", "updated_at", "encrypted_password") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "erhsgwgrj@mail.ru"], ["created_at", 2017-08-23 10:27:58 UTC], ["updated_at", 2017-08-23 10:27:58 UTC], ["encrypted_password", "$2a$11$DNxZY5G/zCLxkUPKl4jaR.pCXBGYGn8/LfhQ4628g2cibeYDOp9sC"]]
-  [1m[35m (15.8ms)[0m  [1m[35mCOMMIT[0m
-  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "admins"[0m
-  [1m[36mAdmin Load (0.6ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" ORDER BY "admins"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
-  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "admins"[0m
-  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
-  [1m[35mSQL (0.5ms)[0m  [1m[31mDELETE FROM "admins" WHERE "admins"."id" = $1[0m  [["id", 19]]
-  [1m[35m (14.0ms)[0m  [1m[35mCOMMIT[0m
-  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "admins"[0m
-  [1m[36mAdmin Load (0.6ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" ORDER BY "admins"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
-  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "admins"[0m

@@ -1,34 +1,34 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:update, :destroy]
+  skip_before_filter :verify_authenticity_token
+  before_action :set_user, only: [:show, :update, :destroy]
+  respond_to :json
 
+  def index
+    @users = User.all
+    render json: @users
+  end
 
+  def show
+    render json: @user
+  end
 
   # POST /users
   # POST /users.json
+
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.'}
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      render json: @user, status: :ok
     end
   end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      render json: @user, status: :ok
+    else
+      render status: :unprocessable_entity
     end
   end
 
@@ -36,10 +36,7 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    head :no_content
   end
 
   private
@@ -50,6 +47,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :age, :gender)
+      params.permit(:first_name, :last_name, :age, :gender, :country_id)
     end
 end
