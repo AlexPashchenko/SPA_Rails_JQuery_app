@@ -169,3 +169,1656 @@ Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.3ms)
 
   [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
   [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 12:46:02 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.8ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 8ms (Views: 6.6ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 12:46:15 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"alexander", "last_name"=>"pashchenko", "age"=>"21", "gender"=>"male", "country_id"=>"11"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "created_at", "updated_at", "country_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "alexander"], ["last_name", "pashchenko"], ["age", 21], ["gender", "male"], ["created_at", 2017-08-28 09:46:15 UTC], ["updated_at", 2017-08-28 09:46:15 UTC], ["country_id", "11"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 9ms (Views: 0.7ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 12:49:05 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 12:49:33 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 12:49:37 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"alexander", "last_name"=>"pashchenko", "age"=>"21", "gender"=>"male", "country_id"=>"11"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "created_at", "updated_at", "country_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "alexander"], ["last_name", "pashchenko"], ["age", 21], ["gender", "male"], ["created_at", 2017-08-28 09:49:37 UTC], ["updated_at", 2017-08-28 09:49:37 UTC], ["country_id", "11"]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 8ms (Views: 0.5ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 12:51:10 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 12:51:21 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"alexander", "last_name"=>"pashchenko", "age"=>"21", "gender"=>"male", "country_id"=>"11"}
+  [1m[35m (1.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "created_at", "updated_at", "country_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "alexander"], ["last_name", "pashchenko"], ["age", 21], ["gender", "male"], ["created_at", 2017-08-28 09:51:21 UTC], ["updated_at", 2017-08-28 09:51:21 UTC], ["country_id", "11"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 9ms (Views: 0.5ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 12:51:28 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 12:51:33 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (1.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 6ms (Views: 3.6ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 12:52:52 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 12:53:07 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"alex", "last_name"=>"pashchenko", "age"=>"21", "gender"=>"male", "country_id"=>"6"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "created_at", "updated_at", "country_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "alex"], ["last_name", "pashchenko"], ["age", 21], ["gender", "male"], ["created_at", 2017-08-28 09:53:07 UTC], ["updated_at", 2017-08-28 09:53:07 UTC], ["country_id", "6"]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 9ms (Views: 0.5ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 12:53:10 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 5ms (Views: 3.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 13:43:35 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (1.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 6ms (Views: 3.7ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 13:43:35 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (1.9ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 24ms (Views: 5.6ms | ActiveRecord: 5.4ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 13:43:47 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 13:43:47 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+  [1m[36mCountry Load (2.6ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.4ms)
+
+
+Completed 200 OK in 14ms (Views: 10.5ms | ActiveRecord: 2.6ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 13:44:12 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"3455", "last_name"=>"64", "age"=>"23", "gender"=>"male", "country_id"=>"11"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "created_at", "updated_at", "country_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "3455"], ["last_name", "64"], ["age", 23], ["gender", "male"], ["created_at", 2017-08-28 10:44:12 UTC], ["updated_at", 2017-08-28 10:44:12 UTC], ["country_id", "11"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 8ms (Views: 0.5ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 13:44:43 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 13:44:43 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 4ms (Views: 3.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 13:46:03 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 13:46:03 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (3.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 9ms (Views: 5.1ms | ActiveRecord: 3.0ms)
+
+
+  [1m[36mHobby Load (4.5ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 8ms (Views: 3.3ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 13:46:13 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 13:46:13 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 7ms (Views: 4.9ms | ActiveRecord: 1.2ms)
+
+
+  [1m[36mHobby Load (4.0ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 10ms (Views: 5.6ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 13:47:57 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 13:47:57 +0300
+Completed 200 OK in 4ms (Views: 2.8ms | ActiveRecord: 0.5ms)
+
+
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 13:48:59 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.6ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 13:48:59 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 13:50:13 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 13:50:13 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 6ms (Views: 3.2ms | ActiveRecord: 1.4ms)
+
+
+  [1m[36mHobby Load (2.7ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 13:51:21 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 13:51:21 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 15ms (Views: 5.3ms | ActiveRecord: 2.8ms)
+
+
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 18ms (Views: 4.7ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 13:59:56 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 13:59:56 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CountriesController#index as JSON
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+  [1m[36mHobby Load (2.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 44ms (Views: 5.4ms | ActiveRecord: 5.1ms)
+
+
+Completed 200 OK in 45ms (Views: 8.0ms | ActiveRecord: 10.3ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 13:59:57 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 13:59:57 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 1.1ms)
+
+
+  [1m[36mHobby Load (2.3ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 7ms (Views: 4.1ms | ActiveRecord: 2.3ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 14:00:11 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"alexander", "last_name"=>"pashchenko", "age"=>"21", "gender"=>"male", "country_id"=>"11"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "created_at", "updated_at", "country_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "alexander"], ["last_name", "pashchenko"], ["age", 21], ["gender", "male"], ["created_at", 2017-08-28 11:00:11 UTC], ["updated_at", 2017-08-28 11:00:11 UTC], ["country_id", "11"]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 38ms (Views: 0.5ms | ActiveRecord: 5.0ms)
+
+
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mHobby Load (0.3ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies" WHERE "hobbies"."id" IN (1, 2)[0m
+  [1m[36mUserHobby Load (0.4ms)[0m  [1m[34mSELECT "user_hobbies".* FROM "user_hobbies"[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "hobbies".id FROM "hobbies" INNER JOIN "user_hobby" ON "hobbies"."id" = "user_hobby"."hobby_id" WHERE "user_hobby"."user_id" = $1[0m  [["user_id", 14]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "hobbies".id FROM "hobbies" INNER JOIN "users_hobbies" ON "hobbies"."id" = "users_hobbies"."hobby_id" WHERE "users_hobbies"."user_id" = $1[0m  [["user_id", 14]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3485467185403225470);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to RenameUsersHobbiesColumn (20170828111949)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "users_hobbies" RENAME COLUMN "country_id" TO "hobby_id"[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER INDEX "index_users_hobbies_on_country_id" RENAME TO "index_users_hobbies_on_hobby_id"[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170828111949"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3485467185403225470)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'admins'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'countries'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'hobbies'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users_hobbies'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "hobbies".id FROM "hobbies" INNER JOIN "users_hobbies" ON "hobbies"."id" = "users_hobbies"."hobby_id" WHERE "users_hobbies"."user_id" = $1[0m  [["user_id", 14]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies" WHERE "hobbies"."id" IN (1, 2)[0m
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies" INNER JOIN "users_hobbies" ON "hobbies"."id" = "users_hobbies"."hobby_id" WHERE "users_hobbies"."user_id" = $1[0m  [["user_id", 14]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users_hobbies" ("user_id", "hobby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4)[0m  [["user_id", 14], ["hobby_id", 1], ["created_at", 2017-08-28 11:23:19 UTC], ["updated_at", 2017-08-28 11:23:19 UTC]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users_hobbies" ("user_id", "hobby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4)[0m  [["user_id", 14], ["hobby_id", 2], ["created_at", 2017-08-28 11:23:19 UTC], ["updated_at", 2017-08-28 11:23:19 UTC]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "hobbies".id FROM "hobbies" INNER JOIN "users_hobbies" ON "hobbies"."id" = "users_hobbies"."hobby_id" WHERE "users_hobbies"."user_id" = $1[0m  [["user_id", 14]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mHobby Load (0.6ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies" INNER JOIN "users_hobbies" ON "hobbies"."id" = "users_hobbies"."hobby_id" WHERE "users_hobbies"."user_id" = $1[0m  [["user_id", 14]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies" INNER JOIN "users_hobbies" ON "hobbies"."id" = "users_hobbies"."hobby_id" WHERE "users_hobbies"."user_id" = $1[0m  [["user_id", 14]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "hobbies".id FROM "hobbies" INNER JOIN "users_hobbies" ON "hobbies"."id" = "users_hobbies"."hobby_id" WHERE "users_hobbies"."user_id" = $1[0m  [["user_id", 14]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "hobbies".id FROM "hobbies" INNER JOIN "users_hobbies" ON "hobbies"."id" = "users_hobbies"."hobby_id" WHERE "users_hobbies"."user_id" = $1[0m  [["user_id", 14]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "hobbies".id FROM "hobbies" INNER JOIN "users_hobbies" ON "hobbies"."id" = "users_hobbies"."hobby_id" WHERE "users_hobbies"."user_id" = $1[0m  [["user_id", 14]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "hobbies".id FROM "hobbies" INNER JOIN "users_hobbies" ON "hobbies"."id" = "users_hobbies"."hobby_id" WHERE "users_hobbies"."user_id" = $1[0m  [["user_id", 14]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mHobby Load (1.0ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies" INNER JOIN "users_hobbies" ON "hobbies"."id" = "users_hobbies"."hobby_id" WHERE "users_hobbies"."user_id" = $1[0m  [["user_id", 14]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies" INNER JOIN "users_hobbies" ON "hobbies"."id" = "users_hobbies"."hobby_id" WHERE "users_hobbies"."user_id" = $1[0m  [["user_id", 14]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mHobby Load (0.7ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies" INNER JOIN "users_hobbies" ON "hobbies"."id" = "users_hobbies"."hobby_id" WHERE "users_hobbies"."user_id" = $1[0m  [["user_id", 14]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mHobby Load (0.6ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies" INNER JOIN "users_hobbies" ON "hobbies"."id" = "users_hobbies"."hobby_id" WHERE "users_hobbies"."user_id" = $1[0m  [["user_id", 14]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mHobby Load (0.2ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies" INNER JOIN "users_hobbies" ON "hobbies"."id" = "users_hobbies"."hobby_id" WHERE "users_hobbies"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mHobby Load (0.5ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies" WHERE "hobbies"."id" IN (5, 6, 7)[0m
+  [1m[36mHobby Load (0.6ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies" INNER JOIN "users_hobbies" ON "hobbies"."id" = "users_hobbies"."hobby_id" WHERE "users_hobbies"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users_hobbies" ("user_id", "hobby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4)[0m  [["user_id", 1], ["hobby_id", 5], ["created_at", 2017-08-28 11:31:10 UTC], ["updated_at", 2017-08-28 11:31:10 UTC]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users_hobbies" ("user_id", "hobby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4)[0m  [["user_id", 1], ["hobby_id", 6], ["created_at", 2017-08-28 11:31:10 UTC], ["updated_at", 2017-08-28 11:31:10 UTC]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users_hobbies" ("user_id", "hobby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4)[0m  [["user_id", 1], ["hobby_id", 7], ["created_at", 2017-08-28 11:31:10 UTC], ["updated_at", 2017-08-28 11:31:10 UTC]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:32:20 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:32:20 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 11ms (Views: 4.7ms | ActiveRecord: 3.0ms)
+
+
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 15ms (Views: 4.3ms | ActiveRecord: 2.0ms)
+
+
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "hobbies" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "fishing"], ["created_at", 2017-08-28 11:32:48 UTC], ["updated_at", 2017-08-28 11:32:48 UTC]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:32:56 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:32:56 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.5ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 6ms (Views: 4.6ms | ActiveRecord: 0.5ms)
+
+
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 17ms (Views: 7.4ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:33:12 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:33:12 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.6ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 7ms (Views: 4.6ms | ActiveRecord: 1.6ms)
+
+
+  [1m[36mHobby Load (3.7ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 9ms (Views: 4.6ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:33:22 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:33:22 +0300
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Processing by HobbiesController#index as JSON
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.2ms)
+
+
+  [1m[36mHobby Load (0.7ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:35:07 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:35:07 +0300
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.5ms)
+
+
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.5ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 5ms (Views: 4.6ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 14:36:00 +0300
+  
+SyntaxError (/home/alexander/Projects/test_app/app/controllers/users_controller.rb:50: syntax error, unexpected ':', expecting ')'
+nder, :country_id, :hobby_ids:[])
+                              ^):
+  
+app/controllers/users_controller.rb:50: syntax error, unexpected ':', expecting ')'
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.5ms)
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.8ms)
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.6ms)
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (17.9ms)
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:37:21 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:37:21 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 16ms (Views: 7.7ms | ActiveRecord: 0.4ms)
+
+
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 20ms (Views: 6.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 14:37:30 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"alexander", "last_name"=>"pashchenko", "age"=>"21", "gender"=>"male", "country_id"=>"7"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "created_at", "updated_at", "country_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "alexander"], ["last_name", "pashchenko"], ["age", 21], ["gender", "male"], ["created_at", 2017-08-28 11:37:30 UTC], ["updated_at", 2017-08-28 11:37:30 UTC], ["country_id", "7"]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 37ms (Views: 0.5ms | ActiveRecord: 7.5ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:46:44 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 5ms (Views: 3.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:46:44 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.6ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 5ms (Views: 3.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:47:36 +0300
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:47:36 +0300
+Processing by HobbiesController#index as JSON
+Processing by CountriesController#index as JSON
+  [1m[36mHobby Load (0.9ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.9ms)
+
+
+  [1m[36mCountry Load (2.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 6ms (Views: 3.7ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:47:44 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:47:44 +0300
+  [1m[36mCountry Load (0.7ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Processing by HobbiesController#index as JSON
+Completed 200 OK in 4ms (Views: 3.5ms | ActiveRecord: 0.7ms)
+
+
+  [1m[36mHobby Load (0.7ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:48:22 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:48:22 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (3.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+  [1m[36mHobby Load (0.9ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 6ms (Views: 2.3ms | ActiveRecord: 3.2ms)
+
+
+Completed 200 OK in 7ms (Views: 5.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:49:08 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:49:08 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 6ms (Views: 4.0ms | ActiveRecord: 1.2ms)
+
+
+  [1m[36mHobby Load (3.1ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 8ms (Views: 5.0ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:49:40 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:49:40 +0300
+  [1m[36mCountry Load (0.6ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Processing by HobbiesController#index as JSON
+Completed 200 OK in 9ms (Views: 8.1ms | ActiveRecord: 0.6ms)
+
+
+  [1m[36mHobby Load (0.5ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 5ms (Views: 4.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:49:56 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:49:56 +0300
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.4ms)
+
+
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.8ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 6ms (Views: 4.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:51:00 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:51:00 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.9ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 5ms (Views: 2.6ms | ActiveRecord: 1.9ms)
+
+
+  [1m[36mHobby Load (2.7ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 6ms (Views: 3.2ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:51:10 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:51:10 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:51:36 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:51:36 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.3ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:51:52 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.6ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 5ms (Views: 4.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:51:52 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:51:59 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:51:59 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.9ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 6ms (Views: 4.5ms | ActiveRecord: 0.9ms)
+
+
+  [1m[36mCountry Load (7.9ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 13ms (Views: 4.1ms | ActiveRecord: 7.9ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:52:51 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:52:51 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (4.9ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 9ms (Views: 3.6ms | ActiveRecord: 4.9ms)
+
+
+  [1m[36mHobby Load (3.9ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 8ms (Views: 3.5ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:53:21 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:53:21 +0300
+Processing by CountriesController#index as JSON
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (0.7ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.7ms)
+
+
+  [1m[36mHobby Load (3.2ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 7ms (Views: 3.6ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:53:51 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:53:51 +0300
+Processing by CountriesController#index as JSON
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 10ms (Views: 9.6ms | ActiveRecord: 0.4ms)
+
+
+  [1m[36mCountry Load (11.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 15ms (Views: 2.9ms | ActiveRecord: 11.2ms)
+
+
+  [1m[36mHobby Load (0.2ms)[0m  [1m[34mSELECT  "hobbies".* FROM "hobbies" ORDER BY "hobbies"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mHobby Load (0.3ms)[0m  [1m[34mSELECT  "hobbies".* FROM "hobbies" ORDER BY "hobbies"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "users_hobbies" WHERE "users_hobbies"."hobby_id" = $1[0m  [["hobby_id", 11]]
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "hobbies" WHERE "hobbies"."id" = $1[0m  [["id", 11]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:54:56 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:54:56 +0300
+Completed 200 OK in 5ms (Views: 4.6ms | ActiveRecord: 0.5ms)
+
+
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.4ms)
+
+
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "hobbies" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "fishing"], ["created_at", 2017-08-28 11:55:19 UTC], ["updated_at", 2017-08-28 11:55:19 UTC]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 14:55:25 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 14:55:25 +0300
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.4ms)
+
+
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.5ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 6ms (Views: 4.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:01:23 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:01:23 +0300
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.5ms)
+
+
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.3ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 15:01:34 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"3455", "last_name"=>"64", "age"=>"23", "gender"=>"male", "hobby_ids"=>["driving", "drinking", "cookery", "fishing"], "country_id"=>"11"}
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies" WHERE "hobbies"."id" IN (0, 0, 0, 0)[0m
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.4ms)
+
+
+  
+ActiveRecord::AssociationTypeMismatch (Hobby(#69872944037460) expected, got NilClass(#16228060)):
+  
+app/controllers/users_controller.rb:19:in `create'
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.5ms)
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.8ms)
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (14.3ms)
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:02:55 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.8ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:02:55 +0300
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.8ms)
+
+
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.6ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:03:44 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:03:44 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (2.9ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 8ms (Views: 4.7ms | ActiveRecord: 2.9ms)
+
+
+  [1m[36mHobby Load (3.9ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 7ms (Views: 3.0ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:04:52 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:04:52 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (2.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 8ms (Views: 5.2ms | ActiveRecord: 2.2ms)
+
+
+  [1m[36mHobby Load (5.2ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 12ms (Views: 6.6ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:10:16 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:10:16 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.8ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 7ms (Views: 4.3ms | ActiveRecord: 1.8ms)
+
+
+  [1m[36mHobby Load (3.5ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 10ms (Views: 6.5ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:10:54 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:10:54 +0300
+Processing by CountriesController#index as JSON
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+  [1m[36mHobby Load (0.6ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 5ms (Views: 3.4ms | ActiveRecord: 1.3ms)
+
+
+Completed 200 OK in 9ms (Views: 7.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:11:05 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:11:05 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (2.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 6ms (Views: 3.3ms | ActiveRecord: 2.4ms)
+
+
+  [1m[36mHobby Load (2.2ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 6ms (Views: 3.9ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:15:34 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:15:34 +0300
+Processing by CountriesController#index as JSON
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+  [1m[36mCountry Load (1.7ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 36ms (Views: 9.8ms | ActiveRecord: 6.2ms)
+
+
+Completed 200 OK in 40ms (Views: 5.8ms | ActiveRecord: 13.4ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:16:14 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:16:14 +0300
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:16:24 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:16:24 +0300
+Processing by CountriesController#index as JSON
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (0.7ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 22ms (Views: 4.8ms | ActiveRecord: 2.8ms)
+
+
+Completed 200 OK in 29ms (Views: 6.8ms | ActiveRecord: 7.5ms)
+
+
+Processing by CountriesController#index as JSON
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (0.7ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 19ms (Views: 4.4ms | ActiveRecord: 0.4ms)
+
+
+Completed 200 OK in 29ms (Views: 6.9ms | ActiveRecord: 7.2ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:16:46 +0300
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:16:46 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  
+NameError (uninitialized constant ActiveRecord::Core::LegacyYamlAdapter):
+  
+activerecord (5.0.0.1) lib/active_record/core.rb:340:in `init_with'
+activerecord (5.0.0.1) lib/active_record/persistence.rb:69:in `instantiate'
+activerecord (5.0.0.1) lib/active_record/querying.rb:50:in `block (2 levels) in find_by_sql'
+activerecord (5.0.0.1) lib/active_record/result.rb:52:in `block in each'
+activerecord (5.0.0.1) lib/active_record/result.rb:52:in `each'
+activerecord (5.0.0.1) lib/active_record/result.rb:52:in `each'
+activerecord (5.0.0.1) lib/active_record/querying.rb:50:in `map'
+activerecord (5.0.0.1) lib/active_record/querying.rb:50:in `block in find_by_sql'
+activesupport (5.0.0.1) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activerecord (5.0.0.1) lib/active_record/querying.rb:49:in `find_by_sql'
+activerecord (5.0.0.1) lib/active_record/relation.rb:699:in `exec_queries'
+activerecord (5.0.0.1) lib/active_record/relation.rb:580:in `load'
+activerecord (5.0.0.1) lib/active_record/relation.rb:260:in `records'
+activerecord (5.0.0.1) lib/active_record/relation/delegation.rb:38:in `map'
+activerecord (5.0.0.1) lib/active_record/migration.rb:1030:in `block in get_all_versions'
+activesupport (5.0.0.1) lib/active_support/deprecation/reporting.rb:36:in `silence'
+activesupport (5.0.0.1) lib/active_support/deprecation/instance_delegator.rb:19:in `silence'
+activerecord (5.0.0.1) lib/active_record/migration.rb:1028:in `get_all_versions'
+activerecord (5.0.0.1) lib/active_record/migration.rb:1042:in `needs_migration?'
+activerecord (5.0.0.1) lib/active_record/migration.rb:572:in `check_pending!'
+activerecord (5.0.0.1) lib/active_record/migration.rb:548:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.10.0) lib/puma/configuration.rb:225:in `call'
+puma (3.10.0) lib/puma/server.rb:605:in `handle_request'
+puma (3.10.0) lib/puma/server.rb:437:in `process_client'
+puma (3.10.0) lib/puma/server.rb:301:in `block in run'
+puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.5ms)
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.6ms)
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (14.2ms)
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 40ms (Views: 6.5ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:18:06 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (1.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:18:06 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (1.0ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 1.0ms)
+
+
+Completed 200 OK in 24ms (Views: 6.6ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:18:21 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:18:21 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (3.6ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 7ms (Views: 2.6ms | ActiveRecord: 3.6ms)
+
+
+  [1m[36mHobby Load (3.0ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 6ms (Views: 2.7ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 15:18:40 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"qwer", "last_name"=>"12345", "age"=>"12", "gender"=>"female", "country_id"=>"11"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "created_at", "updated_at", "country_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "qwer"], ["last_name", "12345"], ["age", 12], ["gender", "female"], ["created_at", 2017-08-28 12:18:40 UTC], ["updated_at", 2017-08-28 12:18:40 UTC], ["country_id", "11"]]
+  [1m[35m (3.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 43ms (Views: 0.7ms | ActiveRecord: 6.1ms)
+
+
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mHobby Load (0.7ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies" INNER JOIN "users_hobbies" ON "hobbies"."id" = "users_hobbies"."hobby_id" WHERE "users_hobbies"."user_id" = $1[0m  [["user_id", 16]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "hobbies".id FROM "hobbies" INNER JOIN "users_hobbies" ON "hobbies"."id" = "users_hobbies"."hobby_id" WHERE "users_hobbies"."user_id" = $1[0m  [["user_id", 16]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:23:52 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (1.7ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:23:52 +0300
+Completed 200 OK in 5ms (Views: 2.6ms | ActiveRecord: 1.7ms)
+
+
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.3ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:23:55 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.6ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:23:55 +0300
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.6ms)
+
+
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.3ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:23:56 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:23:56 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.8ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 7ms (Views: 4.3ms | ActiveRecord: 1.8ms)
+
+
+  [1m[36mHobby Load (4.6ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 9ms (Views: 4.3ms | ActiveRecord: 4.6ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 15:24:12 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"alexander", "last_name"=>"pashchenko", "age"=>"21", "gender"=>"male", "hobby_attributes"=>["drinking", "fishing"], "country_id"=>"10"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'hobby_attributes' for User.):
+  
+app/controllers/users_controller.rb:19:in `create'
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.5ms)
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.4ms)
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.6ms)
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (14.2ms)
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:32:53 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:32:53 +0300
+Processing by CountriesController#index as JSON
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (0.6ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 18ms (Views: 4.4ms | ActiveRecord: 2.9ms)
+
+
+Completed 200 OK in 22ms (Views: 4.0ms | ActiveRecord: 6.3ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:34:45 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:34:45 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.6ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 8ms (Views: 5.5ms | ActiveRecord: 1.6ms)
+
+
+  [1m[36mHobby Load (4.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 9ms (Views: 4.2ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:34:47 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:34:47 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 1.3ms)
+
+
+  [1m[36mHobby Load (2.1ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 5ms (Views: 2.9ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 15:34:51 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"alexander", "last_name"=>"pashchenko", "age"=>"21", "gender"=>"male", "hobby_attributes"=>["drinking", "fishing"], "country_id"=>"10"}
+Unpermitted parameter: hobby_attributes
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "created_at", "updated_at", "country_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "alexander"], ["last_name", "pashchenko"], ["age", 21], ["gender", "male"], ["created_at", 2017-08-28 12:34:51 UTC], ["updated_at", 2017-08-28 12:34:51 UTC], ["country_id", "10"]]
+  [1m[35m (3.3ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 28ms (Views: 0.9ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:35:31 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.7ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:35:31 +0300
+Completed 200 OK in 7ms (Views: 5.5ms | ActiveRecord: 0.7ms)
+
+
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 5ms (Views: 3.5ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 15:35:58 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"alexander", "last_name"=>"pashchenko", "age"=>"21", "gender"=>"male", "hobby_attributes"=>["driving", "dancing"], "country_id"=>"10"}
+Unpermitted parameter: hobby_attributes
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "created_at", "updated_at", "country_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "alexander"], ["last_name", "pashchenko"], ["age", 21], ["gender", "male"], ["created_at", 2017-08-28 12:35:59 UTC], ["updated_at", 2017-08-28 12:35:59 UTC], ["country_id", "10"]]
+  [1m[35m (3.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 11ms (Views: 0.6ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:36:31 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:36:31 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CountriesController#index as JSON
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (0.7ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+  [1m[36mHobby Load (0.6ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 27ms (Views: 7.5ms | ActiveRecord: 4.4ms)
+
+
+Completed 200 OK in 38ms (Views: 5.4ms | ActiveRecord: 11.2ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 15:36:41 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"alexander", "last_name"=>"pashchenko", "age"=>"21", "gender"=>"male", "hobby_attributes"=>["driving", "painting", "dancing"], "country_id"=>"10"}
+Unpermitted parameter: hobby_attributes
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "created_at", "updated_at", "country_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "alexander"], ["last_name", "pashchenko"], ["age", 21], ["gender", "male"], ["created_at", 2017-08-28 12:36:41 UTC], ["updated_at", 2017-08-28 12:36:41 UTC], ["country_id", "10"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 44ms (Views: 0.7ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:37:31 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:37:31 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 8ms (Views: 5.9ms | ActiveRecord: 1.5ms)
+
+
+  [1m[36mHobby Load (4.1ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 8ms (Views: 3.4ms | ActiveRecord: 4.1ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 15:37:37 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"alexander", "last_name"=>"pashchenko", "age"=>"21", "gender"=>"male", "country_id"=>"10"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "created_at", "updated_at", "country_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "alexander"], ["last_name", "pashchenko"], ["age", 21], ["gender", "male"], ["created_at", 2017-08-28 12:37:37 UTC], ["updated_at", 2017-08-28 12:37:37 UTC], ["country_id", "10"]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 7ms (Views: 0.6ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:37:41 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 4ms (Views: 3.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:37:41 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.5ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 15:38:15 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"alexander", "last_name"=>"pashchenko", "age"=>"21", "gender"=>"male", "country_id"=>"7"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "created_at", "updated_at", "country_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "alexander"], ["last_name", "pashchenko"], ["age", 21], ["gender", "male"], ["created_at", 2017-08-28 12:38:15 UTC], ["updated_at", 2017-08-28 12:38:15 UTC], ["country_id", "7"]]
+  [1m[35m (3.4ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 10ms (Views: 1.1ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:38:59 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:38:59 +0300
+Processing by CountriesController#index as JSON
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.4ms)
+
+
+  [1m[36mCountry Load (7.6ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 11ms (Views: 2.9ms | ActiveRecord: 7.6ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 15:39:05 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"alexander", "last_name"=>"pashchenko", "age"=>"21", "gender"=>"male", "hobby_ids"=>["drinking", "fitness"], "country_id"=>"11"}
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies" WHERE "hobbies"."id" IN (0, 0)[0m
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.4ms)
+
+
+  
+ActiveRecord::AssociationTypeMismatch (Hobby(#37600540) expected, got NilClass(#16023260)):
+  
+app/controllers/users_controller.rb:19:in `create'
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.5ms)
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendering /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.9ms)
+  Rendered /home/alexander/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (15.0ms)
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:40:54 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:40:54 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 8ms (Views: 5.9ms | ActiveRecord: 1.3ms)
+
+
+  [1m[36mHobby Load (5.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 14ms (Views: 8.6ms | ActiveRecord: 5.4ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 15:41:04 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"alexander", "last_name"=>"pashchenko", "age"=>"21", "gender"=>"male", "hobby_ids"=>["2", "8"], "country_id"=>"5"}
+  [1m[36mHobby Load (0.6ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies" WHERE "hobbies"."id" IN (2, 8)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "created_at", "updated_at", "country_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "alexander"], ["last_name", "pashchenko"], ["age", 21], ["gender", "male"], ["created_at", 2017-08-28 12:41:04 UTC], ["updated_at", 2017-08-28 12:41:04 UTC], ["country_id", "5"]]
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "users_hobbies" ("user_id", "hobby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4)[0m  [["user_id", 22], ["hobby_id", 2], ["created_at", 2017-08-28 12:41:04 UTC], ["updated_at", 2017-08-28 12:41:04 UTC]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users_hobbies" ("user_id", "hobby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4)[0m  [["user_id", 22], ["hobby_id", 8], ["created_at", 2017-08-28 12:41:04 UTC], ["updated_at", 2017-08-28 12:41:04 UTC]]
+  [1m[35m (3.2ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 39ms (Views: 0.5ms | ActiveRecord: 8.6ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:44:48 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (1.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:44:48 +0300
+Completed 200 OK in 10ms (Views: 7.5ms | ActiveRecord: 1.0ms)
+
+
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 12ms (Views: 10.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:45:03 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:45:03 +0300
+Processing by CountriesController#index as JSON
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 7ms (Views: 4.4ms | ActiveRecord: 1.5ms)
+
+
+  [1m[36mHobby Load (4.6ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 19ms (Views: 13.2ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:45:06 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:45:06 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (2.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 8ms (Views: 5.2ms | ActiveRecord: 2.0ms)
+
+
+  [1m[36mHobby Load (4.3ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 11ms (Views: 6.0ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:45:23 +0300
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:45:23 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HobbiesController#index as JSON
+Processing by CountriesController#index as JSON
+  [1m[36mHobby Load (0.8ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+  [1m[36mCountry Load (0.6ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 58ms (Views: 6.7ms | ActiveRecord: 4.3ms)
+
+
+Completed 200 OK in 58ms (Views: 7.4ms | ActiveRecord: 9.1ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:45:27 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.6ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 5ms (Views: 3.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:45:27 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.7ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 5ms (Views: 3.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:45:29 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 12ms (Views: 3.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:45:29 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:47:14 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:47:14 +0300
+Processing by CountriesController#index as JSON
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (0.9ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 5ms (Views: 3.2ms | ActiveRecord: 0.9ms)
+
+
+  [1m[36mHobby Load (3.5ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 8ms (Views: 3.5ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:47:27 +0300
+Processing by HobbiesController#index as JSON
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:47:27 +0300
+  [1m[36mHobby Load (0.5ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Processing by CountriesController#index as JSON
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.5ms)
+
+
+  [1m[36mCountry Load (0.8ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:47:29 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:47:29 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.8ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 6ms (Views: 4.2ms | ActiveRecord: 1.8ms)
+
+
+  [1m[36mHobby Load (3.3ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 7ms (Views: 3.5ms | ActiveRecord: 3.3ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 15:50:26 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"dfm,g sdfmg", "last_name"=>"dgsrherw", "age"=>"32", "gender"=>"male", "hobby_ids"=>["1", "3", "7", "8", "9"], "country_id"=>"3"}
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies" WHERE "hobbies"."id" IN (1, 3, 7, 8, 9)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "created_at", "updated_at", "country_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "dfm,g sdfmg"], ["last_name", "dgsrherw"], ["age", 32], ["gender", "male"], ["created_at", 2017-08-28 12:50:26 UTC], ["updated_at", 2017-08-28 12:50:26 UTC], ["country_id", "3"]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users_hobbies" ("user_id", "hobby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4)[0m  [["user_id", 23], ["hobby_id", 1], ["created_at", 2017-08-28 12:50:26 UTC], ["updated_at", 2017-08-28 12:50:26 UTC]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users_hobbies" ("user_id", "hobby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4)[0m  [["user_id", 23], ["hobby_id", 3], ["created_at", 2017-08-28 12:50:26 UTC], ["updated_at", 2017-08-28 12:50:26 UTC]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users_hobbies" ("user_id", "hobby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4)[0m  [["user_id", 23], ["hobby_id", 7], ["created_at", 2017-08-28 12:50:26 UTC], ["updated_at", 2017-08-28 12:50:26 UTC]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users_hobbies" ("user_id", "hobby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4)[0m  [["user_id", 23], ["hobby_id", 8], ["created_at", 2017-08-28 12:50:26 UTC], ["updated_at", 2017-08-28 12:50:26 UTC]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users_hobbies" ("user_id", "hobby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4)[0m  [["user_id", 23], ["hobby_id", 9], ["created_at", 2017-08-28 12:50:26 UTC], ["updated_at", 2017-08-28 12:50:26 UTC]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 71ms (Views: 0.6ms | ActiveRecord: 8.1ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:55:48 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:55:48 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 6ms (Views: 3.6ms | ActiveRecord: 1.2ms)
+
+
+  [1m[36mHobby Load (2.3ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 5ms (Views: 2.8ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 15:56:21 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 15:56:21 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (2.8ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 7ms (Views: 3.5ms | ActiveRecord: 2.8ms)
+
+
+  [1m[36mHobby Load (3.7ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 9ms (Views: 4.8ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 16:33:31 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 16:33:31 +0300
+Processing by CountriesController#index as JSON
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (0.9ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 5ms (Views: 3.8ms | ActiveRecord: 0.9ms)
+
+
+  [1m[36mHobby Load (3.8ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 10ms (Views: 5.9ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 16:35:33 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 16:35:33 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (3.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 8ms (Views: 4.5ms | ActiveRecord: 3.0ms)
+
+
+  [1m[36mHobby Load (3.7ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 9ms (Views: 4.8ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 16:35:38 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 16:35:38 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (2.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 8ms (Views: 5.5ms | ActiveRecord: 2.3ms)
+
+
+  [1m[36mHobby Load (3.6ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 9ms (Views: 3.9ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 16:36:17 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 16:36:17 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 16:40:34 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 16:40:34 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (2.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 5ms (Views: 2.5ms | ActiveRecord: 2.3ms)
+
+
+  [1m[36mHobby Load (2.7ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 8ms (Views: 4.5ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 16:41:06 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 16:41:06 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 16:44:37 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 16:44:37 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.6ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 16:45:17 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 16:45:17 +0300
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Processing by HobbiesController#index as JSON
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.4ms)
+
+
+  [1m[36mHobby Load (2.7ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 7ms (Views: 3.4ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 16:51:33 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 16:51:33 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (2.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 7ms (Views: 3.4ms | ActiveRecord: 2.3ms)
+
+
+  [1m[36mHobby Load (3.5ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 7ms (Views: 3.6ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 16:51:45 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 16:51:45 +0300
+Processing by CountriesController#index as JSON
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (0.8ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.8ms)
+
+
+  [1m[36mHobby Load (2.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 7ms (Views: 4.3ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 16:52:37 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 5ms (Views: 4.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 16:52:37 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.5ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 16:52:38 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 16:52:38 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.8ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 6ms (Views: 3.3ms | ActiveRecord: 1.8ms)
+
+
+  [1m[36mHobby Load (3.9ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 7ms (Views: 3.1ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 16:53:13 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 16:53:13 +0300
+Processing by HobbiesController#index as JSON
+Completed 200 OK in 4ms (Views: 3.5ms | ActiveRecord: 0.5ms)
+
+
+  [1m[36mHobby Load (0.6ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 6ms (Views: 4.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 16:53:42 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 16:53:42 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (2.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 6ms (Views: 3.4ms | ActiveRecord: 2.4ms)
+
+
+  [1m[36mHobby Load (2.5ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 8ms (Views: 4.9ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 16:53:43 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 16:53:43 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.9ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 6ms (Views: 3.7ms | ActiveRecord: 1.9ms)
+
+
+  [1m[36mHobby Load (3.7ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 7ms (Views: 3.2ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 16:54:29 +0300
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 16:54:29 +0300
+Processing by CountriesController#index as JSON
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (0.9ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 5ms (Views: 3.3ms | ActiveRecord: 0.9ms)
+
+
+  [1m[36mHobby Load (3.3ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 8ms (Views: 4.2ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 16:56:04 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 16:56:04 +0300
+Completed 200 OK in 5ms (Views: 3.8ms | ActiveRecord: 0.5ms)
+
+
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 16:56:54 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 16:56:54 +0300
+  [1m[36mCountry Load (0.6ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Processing by HobbiesController#index as JSON
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.6ms)
+
+
+  [1m[36mHobby Load (0.6ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 17:01:28 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 17:01:28 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.3ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 17:02:59 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 17:02:59 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.7ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 6ms (Views: 4.2ms | ActiveRecord: 1.7ms)
+
+
+  [1m[36mHobby Load (3.5ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 10ms (Views: 5.7ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 17:03:18 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 17:03:18 +0300
+  [1m[36mCountry Load (0.9ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Processing by HobbiesController#index as JSON
+Completed 200 OK in 5ms (Views: 3.6ms | ActiveRecord: 0.9ms)
+
+
+  [1m[36mHobby Load (0.7ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 17:05:13 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 17:05:13 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (1.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 6ms (Views: 4.3ms | ActiveRecord: 1.5ms)
+
+
+  [1m[36mHobby Load (4.2ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 8ms (Views: 3.9ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 17:05:48 +0300
+Processing by CountriesController#index as JSON
+  [1m[36mCountry Load (1.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 8ms (Views: 5.8ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 17:05:48 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 17:06:28 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 17:06:28 +0300
+  [1m[36mCountry Load (0.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Processing by HobbiesController#index as JSON
+Completed 200 OK in 5ms (Views: 4.0ms | ActiveRecord: 0.5ms)
+
+
+  [1m[36mHobby Load (0.6ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/countries" for 127.0.0.1 at 2017-08-28 17:07:01 +0300
+Processing by CountriesController#index as JSON
+Started GET "/hobbies" for 127.0.0.1 at 2017-08-28 17:07:01 +0300
+Processing by HobbiesController#index as JSON
+  [1m[36mCountry Load (2.0ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+Completed 200 OK in 7ms (Views: 4.3ms | ActiveRecord: 2.0ms)
+
+
+  [1m[36mHobby Load (3.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies"[0m
+Completed 200 OK in 8ms (Views: 3.9ms | ActiveRecord: 3.4ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-28 17:07:40 +0300
+Processing by UsersController#create as JSON
+  Parameters: {"first_name"=>"alexander", "last_name"=>"pashchenko", "age"=>"21", "gender"=>"female", "hobby_ids"=>["6", "7", "10"], "country_id"=>"10"}
+  [1m[36mHobby Load (0.4ms)[0m  [1m[34mSELECT "hobbies".* FROM "hobbies" WHERE "hobbies"."id" IN (6, 7, 10)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "created_at", "updated_at", "country_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "alexander"], ["last_name", "pashchenko"], ["age", 21], ["gender", "female"], ["created_at", 2017-08-28 14:07:40 UTC], ["updated_at", 2017-08-28 14:07:40 UTC], ["country_id", "10"]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users_hobbies" ("user_id", "hobby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4)[0m  [["user_id", 24], ["hobby_id", 6], ["created_at", 2017-08-28 14:07:40 UTC], ["updated_at", 2017-08-28 14:07:40 UTC]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users_hobbies" ("user_id", "hobby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4)[0m  [["user_id", 24], ["hobby_id", 7], ["created_at", 2017-08-28 14:07:40 UTC], ["updated_at", 2017-08-28 14:07:40 UTC]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users_hobbies" ("user_id", "hobby_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4)[0m  [["user_id", 24], ["hobby_id", 10], ["created_at", 2017-08-28 14:07:40 UTC], ["updated_at", 2017-08-28 14:07:40 UTC]]
+  [1m[35m (3.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 22ms (Views: 1.4ms | ActiveRecord: 4.9ms)
+
+

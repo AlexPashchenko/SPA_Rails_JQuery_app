@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
-    var interestsArr = ['programming', 'travels', 'music', 'painting', 'dancing', 'reading', 'driving', 'fitness',
-    'cookery', 'drinking'];
+    var interestsArr = [];
     var user;
     var country;
     var table = document.getElementById('table');
@@ -20,13 +19,10 @@ $(document).ready(function() {
       GetTable();
       Pagination();
       getCountry();
-
+      getHobbies();
     });
 
     function getCountry() {
-      country = {
-        title: $('#country').val()
-      }
       $.ajax({
         type: "GET",
         url: "/countries",
@@ -36,14 +32,30 @@ $(document).ready(function() {
           })
         },
         error:function(result) {
-          alert("error");
+          alert("error reading countries");
         },
         dataType: 'json'
       });
     }
 
     function getHobbies() {
-
+      $.ajax({
+        type: "GET",
+        url: "/hobbies",
+        success:function(data) {
+          data.map(function(c) {
+            $('#checkboxes').append("<label><input type = \"checkbox\" name =\"inter\" value = " + c.title
+             + " id = " + c.id
+             +">&nbsp"
+             + c.title + "</label>" );
+             interestsArr.push(c.title);
+          });
+        },
+        error:function(result) {
+          alert("error reading hobbies");
+        },
+        dataType: 'json'
+      });
     }
 
     //get data from array into table rows
@@ -135,6 +147,9 @@ $(document).ready(function() {
               last_name: user.LastName,
               age: user.Age,
               gender: user.Gender,
+              hobby_ids: $(':checkbox:checked').map(function() {
+               return $(this).attr("id");
+              }).get(),
               country_id: $("#country").children(":selected").attr("id")
             },
               success:function(result) {
@@ -145,8 +160,8 @@ $(document).ready(function() {
             },
             dataType: 'json'
         });
-        $('#frm')[0].reset();
         id++;
+        $('#frm')[0].reset();
         localStorage.setItem("id", id);
         return false;
       }
@@ -188,9 +203,9 @@ $(document).ready(function() {
       for(var i = 1; i < table.rows.length; i++) {
         table.rows[i].onclick = function() {
           rIndex = this.rowIndex;
-          for(interest of interestsArr) {
-            $("#"+interest).prop('checked', false);
-          }
+          $(':checkbox').each(function() {
+            $(this).prop("checked", false)
+          });
           $("#firstname").val(this.cells[1].innerHTML);
           $("#lastname").val(this.cells[2].innerHTML);
           $("#age").val(this.cells[3].innerHTML);
@@ -203,7 +218,7 @@ $(document).ready(function() {
           for(interest of interestsArr) {
             for(item of checkboxValues) {
               if(interest == item) {
-                $("#"+item).prop('checked', true);
+                $('input[value='+ item+']').prop('checked', true);
               }
             }
           }

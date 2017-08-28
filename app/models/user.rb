@@ -15,7 +15,7 @@
 class User < ApplicationRecord
   extend Enumerize
 
-  has_and_belongs_to_many :hobbies
+  has_and_belongs_to_many :hobbies,  join_table: "users_hobbies"
   belongs_to :country
 
   validates :first_name, :last_name, :age, :country_id, :gender, presence: true
