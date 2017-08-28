@@ -26,7 +26,7 @@ $(document).ready(function() {
 
     function getCountry() {
       country = {
-        title: $('#country').val();
+        title: $('#country').val()
       }
       $.ajax({
           type: "GET",
@@ -129,17 +129,13 @@ $(document).ready(function() {
         $.ajax({
             type: "POST",
             url: "/users",
-<<<<<<< 1eb27d2e1cbcc9c86699e97e7fa431d30f068904
             data: {
               first_name: user.FirstName,
               last_name: user.LastName,
               age: user.Age,
               gender: user.Gender,
               country_id: country.id },
-=======
-            data: { first_name: user.FirstName, last_name: user.LastName, age: user.Age, gender: user.Gender, country_id:1},
->>>>>>> Add ajax for creating user
-            success:function(result) {
+              success:function(result) {
                 alert("OK");
             },
             error:function(result) {
