@@ -4,7 +4,6 @@ $(document).ready(function() {
     'cookery', 'drinking'];
     var user;
     var country;
-    var Countries = [];
     var table = document.getElementById('table');
     var tableUsers = new Array();
     sortedTab = [];
@@ -29,20 +28,22 @@ $(document).ready(function() {
         title: $('#country').val()
       }
       $.ajax({
-          type: "GET",
-          url: "/countries",
-          success:function(data) {
-            data.map(function(c) {
-              $('#country').append("<option id=" + c.id +">" + c.title + "</option>");
-              Countries.push(c);
-            })
-            console.log(Countries);
-          },
-          error:function(result) {
-            alert("error");
-          },
-          dataType: 'json'
+        type: "GET",
+        url: "/countries",
+        success:function(data) {
+          data.map(function(c) {
+            $('#country').append("<option id=" + c.id +">" + c.title + "</option>");
+          })
+        },
+        error:function(result) {
+          alert("error");
+        },
+        dataType: 'json'
       });
+    }
+
+    function getHobbies() {
+
     }
 
     //get data from array into table rows
@@ -134,7 +135,8 @@ $(document).ready(function() {
               last_name: user.LastName,
               age: user.Age,
               gender: user.Gender,
-              country_id: country.id },
+              country_id: $("#country").children(":selected").attr("id")
+            },
               success:function(result) {
                 alert("OK");
             },
