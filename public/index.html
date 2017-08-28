@@ -1,0 +1,80 @@
+<html>
+
+  <head>
+    <title> Test application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link href="mycss.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="javascript.js"></script>
+    <link href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  </head>
+
+  <body>
+    <form id="frm" class="form">
+      <input type="text" id ="firstname" name="FirstName" placeholder="FirstName">
+      <input type="text" id ="lastname" name="LastName" placeholder="LastName"><br/>
+      <input type="number" class="age" id ="age" min="1" max = "111" name="Age" placeholder="Age"><br />
+      <label><input type="radio" id="maleGender" name="gender" value="male">&nbsp Male</label>
+      <label><input type="radio" id="femaleGender" name="gender" value="female">&nbsp Female </label> <br />
+      <fieldset>
+        <legend>Choose your interests:</legend>
+        <label><input type="checkbox" name="inter" value="programming" id="programming">&nbsp programming</label>
+        <label><input type="checkbox" name="inter" value="travels" id="travels">&nbsp travels</label>
+        <label><input type="checkbox" name="inter" value="music" id="music">&nbsp music</label>
+        <label><input type="checkbox" name="inter" value="painting" id="painting">&nbsp painting</label>
+        <label><input type="checkbox" name="inter" value="dancing" id="dancing">&nbsp dancing</label>
+        <label><input type="checkbox" name="inter" value="reading" id="reading">&nbsp reading</label>
+        <label><input type="checkbox" name="inter" value="driving" id="driving">&nbsp driving</label>
+        <label><input type="checkbox" name="inter" value="fitness" id="fitness">&nbsp fitness</label>
+        <label><input type="checkbox" name="inter" value="cookery" id="cookery">&nbsp cookery</label>
+        <label><input type="checkbox" name="inter" value="drinking" id="drinking">&nbsp drinking</label> <br />
+      </fieldset>
+
+      <div class="form-group">
+        <fieldset>
+          <legend>Choose your country:</legend>
+          <select class="form-control" id="country">
+            <option value="Ukraine">Ukraine</option>
+            <option value="USA">USA</option>
+            <option value="Poland">Poland</option>
+            <option value="Turkey">Turkey</option>
+            <option value="Egipt">Egipt</option>
+            <option value="Belgium">Belgium</option>
+            <option value="Norway">Norway</option>
+            <option value="France">France</option>
+            <option value="Germany">Germany</option>
+            <option value="Great Britain">Great Britain</option>
+          </select>
+        </fieldset>
+      </div>
+      <div class="buttons">
+        <button id="btnsave" type="button" class="btn btn-success">Save</button>
+        <button id="btnedit" type="button" class="btn btn-warning">Edit</button>
+        <button id="btndelete" type="button" class="btn btn-danger">Delete</button>
+      </div>
+    </form>
+      <div class="container">
+        <h3 > Users: </h3>
+        <table  class="table table-hover" id="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Firstname</th>
+              <th>Lastname</th>
+              <th>Age</th>
+              <th>Gender</th>
+              <th>Interests</th>
+              <th>Country</th>
+            </tr>
+          </thead>
+        </table>
+        <p id="pagin"> </p>
+      </div>
+    </body>
+</html>

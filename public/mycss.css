@@ -1,0 +1,58 @@
+body {
+  background-image: url("fon.png");
+}
+
+.form {
+  margin-top: 10px;
+  margin-left: 1%; /* Отступ слева */
+  margin-right: 60%;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #F3F3F2;
+  padding: 10px;
+}
+
+.form .form-control {
+  width: 30%;
+}
+
+.form .age {
+  width: 15%;
+}
+
+.form .buttons {
+  margin: auto;
+  width: 40%;
+}
+
+.form input {
+  margin: 3px;
+}
+
+h3, .pagin {
+  margin-left: 1%;
+}
+
+.table {
+  border-collapse:separate;
+  margin-bottom: 1px !important;
+}
+
+.table thead {
+  background-color: #F1FBA7;
+}
+
+.table tbody {
+  background-color: #fff
+}
+
+.pagination {
+  background-color: #ddd;
+}
+
+.focus {
+  background-color: #7ECDA9;
+  color: #358C64;
+  cursor: pointer;
+  font-weight: bold;
+}
