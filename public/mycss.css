@@ -12,6 +12,10 @@ body {
   padding: 10px;
 }
 
+.loginform {
+  display: none;
+}
+
 .form .form-control {
   width: 30%;
 }

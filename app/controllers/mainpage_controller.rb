@@ -1,0 +1,3 @@
+class MainpageController < ApplicationController
+
+end
