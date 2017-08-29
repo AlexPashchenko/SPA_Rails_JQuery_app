@@ -10,13 +10,14 @@ $(document).ready(function() {
     if (tableUsers === null) {
       tableUsers =[];
     }
-    var id = localStorage.getItem("id");
-    if (id === null) {
-      id = 1;
-    }
+    // var id = localStorage.getItem("id");
+    // if (id === null) {
+    //   id = 1;
+    // }
 
     $(function() {
-      GetTable();
+      // GetTable();
+      getUsers();
       Pagination();
       getCountry();
       getHobbies();
@@ -38,6 +39,7 @@ $(document).ready(function() {
       });
     }
 
+
     function getHobbies() {
       $.ajax({
         type: "GET",
@@ -58,26 +60,37 @@ $(document).ready(function() {
       });
     }
 
-    //get data from array into table rows
-    function GetTable() {
-      $.each(tableUsers, function (index, data) {
-        var eachrow = "<tbody><tr>"
-                 + "<td>" + data.Id + "</td>"
-                 + "<td>" + data.FirstName + "</td>"
-                 + "<td>" + data.LastName + "</td>"
-                 + "<td>" + data.Age + "</td>"
-                 + "<td>" + data.Gender + "</td>"
-                 + "<td>" + data.Interests + "</td>"
-                 + "<td>" + data.Country + "</td>"
-                 + "</tr></tbody>";
-        $('#table').append(eachrow);
+    function getUsers() {
+      $.ajax({
+        type: "GET",
+        url: "/users",
+        success:function(data) {
+          data.map(function(c) {
+            var eachrow = "<tbody><tr>"
+                     + "<td>" + c.id + "</td>"
+                     + "<td>" + c.first_name + "</td>"
+                     + "<td>" + c.last_name + "</td>"
+                     + "<td>" + c.age + "</td>"
+                     + "<td>" + c.gender + "</td>"
+                     + "<td>" + c.hobbies + "</td>"
+                     + "<td>" + c.title + "</td>"
+                     + "</tr></tbody>";
+            $('#table').append(eachrow);
+          });
+          console.log(JSON.stringify(data));
+        },
+        error:function(result) {
+          alert("error reading users");
+        },
+        dataType: 'json'
       });
-    };
+
+    }
 
     //set user object
     function setUser() {
         user = {
-          Id : id,
+          Id : '',
           FirstName : $("#firstname").val(),
           LastName : $('#lastname').val(),
           Age : $("#age").val(),
@@ -110,6 +123,7 @@ $(document).ready(function() {
 
     //add new row to table
     function addrow() {
+
       $('#table').prepend("<tbody><tr><td>" + user.Id + "</td><td>"
                                     + user.FirstName + "</td><td>"
                                     + user.LastName +"</td><td>"
@@ -132,13 +146,12 @@ $(document).ready(function() {
     $("#signbtn").on("click", function() {
       $("#loginform").dialog( "open" )
     });
+
+
        //save function
     $('#btnsave').on('click', function() {
       setUser();
       if (validateForm()=== true) {
-        tableUsers.unshift(user);
-        localStorage.setItem('users', JSON.stringify(tableUsers));
-        addrow();
         $.ajax({
             type: "POST",
             url: "/users",
@@ -160,9 +173,10 @@ $(document).ready(function() {
             },
             dataType: 'json'
         });
-        id++;
+        tableUsers.unshift(user);
+        localStorage.setItem('users', JSON.stringify(tableUsers));
+        addrow();
         $('#frm')[0].reset();
-        localStorage.setItem("id", id);
         return false;
       }
     });
@@ -232,6 +246,19 @@ $(document).ready(function() {
       if(typeof rIndex == 'undefined') {
         alert("Select row for deleting");
       } else {
+          $.ajax({
+            url: "/users/"+ table.rows[rIndex].cells[0].innerHTML ,
+            type: 'DELETE',
+            data: {"id": id },
+            success: function(result) {
+              alert("deleted")
+            },
+            error:function(result) {
+              alert("error");
+              console.log(table.rows[rIndex].cells[0].innerHTML);
+            },
+            dataType: 'json'
+          });
           table.rows[rIndex].remove();
           tableUsers.splice(rIndex-1, 1);
           localStorage.setItem("users", JSON.stringify(tableUsers));

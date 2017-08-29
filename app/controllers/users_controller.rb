@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: [:show , :update, :destroy]
   respond_to :json
 
   def index
-    @users = User.all
+    @users = User.joins(:country).collect { |user| user.country.attributes.merge(user.attributes).merge({hobbies: user.user_hobbies}) }
     render json: @users
   end
 
@@ -47,6 +47,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.permit(:first_name, :last_name, :age, :gender, :country_id, hobby_ids:[])
+      params.permit(:first_name, :last_name, :age, :gender, :country_id, hobbies_attributes:[])
     end
 end
