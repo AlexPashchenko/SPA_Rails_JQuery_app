@@ -25,11 +25,11 @@ class User < ApplicationRecord
 
   delegate :country_name, to: :country
   attr_accessor :country_name
-  # scope :hobbies_title, lambda { |n| joins(:hobbies).where("hobbies.title = ?", n) }
+
   def user_hobbies
     hobby_titles=[]
     self.hobbies.map  do |hobby|
-      hobby_titles<<hobby.title
+      hobby_titles << hobby.title
     end
     hobby_titles
   end

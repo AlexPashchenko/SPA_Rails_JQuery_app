@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-  skip_before_filter :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
   before_action :set_user, only: [:show , :update, :destroy]
   respond_to :json
 
   def index
-    @users = User.joins(:country).collect { |user| user.country.attributes.merge(user.attributes).merge({hobbies: user.user_hobbies}) }
+    @users = User.joins(:country).collect { |user| user.country.attributes.merge(user.attributes).merge({hobbies_attributes: user.user_hobbies}) }
     render json: @users
   end
 
@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    # byebug
     if @user.save
       render json: @user, status: :created
     end
@@ -31,6 +32,9 @@ class UsersController < ApplicationController
       render status: :unprocessable_entity
     end
   end
+
+  # def update_order
+  # end
 
   # DELETE /users/1
   # DELETE /users/1.json
@@ -47,6 +51,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.permit(:first_name, :last_name, :age, :gender, :country_id, hobbies_attributes:[])
+      params.permit(:id, :first_name, :last_name, :age, :gender, :country_id, hobby_ids:[])
     end
 end

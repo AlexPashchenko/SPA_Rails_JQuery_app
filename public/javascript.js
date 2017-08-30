@@ -3,6 +3,8 @@ $(document).ready(function() {
     var interestsArr = [];
     var user;
     var country;
+    var maxId;
+    var IdArray = [];
     var table = document.getElementById('table');
     var tableUsers = new Array();
     sortedTab = [];
@@ -10,15 +12,13 @@ $(document).ready(function() {
     if (tableUsers === null) {
       tableUsers =[];
     }
-    // var id = localStorage.getItem("id");
-    // if (id === null) {
-    //   id = 1;
-    // }
+    var id = localStorage.getItem("id");
+    if (id === null) {
+      id = 1;
+    }
 
     $(function() {
-      // GetTable();
       getUsers();
-      Pagination();
       getCountry();
       getHobbies();
     });
@@ -72,34 +72,34 @@ $(document).ready(function() {
                      + "<td>" + c.last_name + "</td>"
                      + "<td>" + c.age + "</td>"
                      + "<td>" + c.gender + "</td>"
-                     + "<td>" + c.hobbies + "</td>"
+                     + "<td>" + c.hobbies_attributes + "</td>"
                      + "<td>" + c.title + "</td>"
                      + "</tr></tbody>";
             $('#table').append(eachrow);
           });
-          console.log(JSON.stringify(data));
+          Pagination();
         },
         error:function(result) {
           alert("error reading users");
         },
         dataType: 'json'
       });
-
     }
 
     //set user object
     function setUser() {
-        user = {
-          Id : '',
-          FirstName : $("#firstname").val(),
-          LastName : $('#lastname').val(),
-          Age : $("#age").val(),
-          Gender : $(':radio[name=gender]:checked').val(),
-          Interests : $(':checkbox[name=inter]:checked').map(function() {
-            return $(this).val();
-          }).get(),
-          Country :  $("#country").val()
-        };
+      setId();
+      user = {
+        Id : maxId,
+        FirstName : $("#firstname").val(),
+        LastName : $('#lastname').val(),
+        Age : $("#age").val(),
+        Gender : $(':radio[name=gender]:checked').val(),
+        Interests : $(':checkbox[name=inter]:checked').map(function() {
+          return $(this).val();
+        }).get(),
+        Country :  $("#country").val()
+      };
     }
 
 
@@ -123,7 +123,6 @@ $(document).ready(function() {
 
     //add new row to table
     function addrow() {
-
       $('#table').prepend("<tbody><tr><td>" + user.Id + "</td><td>"
                                     + user.FirstName + "</td><td>"
                                     + user.LastName +"</td><td>"
@@ -132,7 +131,6 @@ $(document).ready(function() {
                                     + user.Interests +"</td><td>"
                                     + user.Country + "</td></tr></tbody>");
     }
-
 
     $("#loginform").dialog( {
       autoOpen: false,
@@ -161,12 +159,12 @@ $(document).ready(function() {
               age: user.Age,
               gender: user.Gender,
               hobby_ids: $(':checkbox:checked').map(function() {
-               return $(this).attr("id");
+               return $(this).attr('id');
               }).get(),
               country_id: $("#country").children(":selected").attr("id")
             },
-              success:function(result) {
-                alert("OK");
+            success:function(result) {
+              alert("User Created");
             },
             error:function(result) {
               alert("error");
@@ -180,6 +178,24 @@ $(document).ready(function() {
         return false;
       }
     });
+
+    function setId() {
+      $.ajax({
+        type: "GET",
+        url: "/users",
+        async: false,
+        dataType: 'json',
+        success:function (data) {
+          $.each(data, function (i) {
+            IdArray.push(data[i].id);
+          });
+        },
+        error:function(result) {
+          alert("id error");
+        },
+      });
+      maxId = Math.max.apply(null, IdArray)+1;
+    }
 
       //save sorted array
     function saveSort() {
@@ -197,7 +213,7 @@ $(document).ready(function() {
       }
     }
 
-        // sortable function
+    // sortable function
    $('#table').sortable( {
       nested: true,
       containerPath: "td",
@@ -208,7 +224,6 @@ $(document).ready(function() {
       placeholder: '',
       revert: true,
       update: function() {
-        saveSort();
         localStorage.setItem("users", JSON.stringify(sortedTab));
       }
     });
@@ -249,13 +264,11 @@ $(document).ready(function() {
           $.ajax({
             url: "/users/"+ table.rows[rIndex].cells[0].innerHTML ,
             type: 'DELETE',
-            data: {"id": id },
             success: function(result) {
               alert("deleted")
             },
             error:function(result) {
               alert("error");
-              console.log(table.rows[rIndex].cells[0].innerHTML);
             },
             dataType: 'json'
           });
@@ -270,7 +283,6 @@ $(document).ready(function() {
         //editing of selected array item
     function editArrayItem() {
      tableUsers[rIndex-1] = {
-       Id: table.rows[rIndex].cells[0].innerHTML,
        FirstName: table.rows[rIndex].cells[1].innerHTML,
        LastName: table.rows[rIndex].cells[2].innerHTML,
        Age: table.rows[rIndex].cells[3].innerHTML,
@@ -298,6 +310,28 @@ $(document).ready(function() {
      } else if (validateForm()=== true) {
         editSelectedRow();
         editArrayItem();
+        setUser();
+        $.ajax({
+            type: "PUT",
+            url: "/users/"+ table.rows[rIndex].cells[0].innerHTML,
+            data: {
+              first_name: user.FirstName,
+              last_name: user.LastName,
+              age: user.Age,
+              gender: user.Gender,
+               hobby_ids: $(':checkbox:checked').map(function() {
+               return $(this).attr("id");
+              }).get(),
+              country_id: $("#country").children(":selected").attr("id")
+            },
+              success:function(result) {
+                alert("Updated");
+            },
+            error:function(result) {
+              alert("error");
+            },
+            dataType: 'json'
+        });
         $('#frm')[0].reset();
         rIndex = undefined;
        }
