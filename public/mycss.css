@@ -2,6 +2,42 @@ body {
   background-image: url("fon.png");
 }
 
+#tabs-min {
+    background: transparent;
+    border: none;
+}
+
+#tabs-min .ui-widget-header {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #c0c0c0;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+
+#tabs-min .ui-tabs-nav .ui-state-default {
+    border: none;
+}
+
+#tabs-min .ui-tabs-nav .ui-state-default a {
+    color: #6CDA97;
+    font-weight:bold;
+    font-size:18px;
+    border-radius: 5px 5px 0 0;
+}
+
+#tabs-min .ui-tabs-nav .ui-state-active a {
+    background: #459e00;
+    color: #FFFFFF;
+    font-weight:bold;
+    font-size:18px;
+}
+
+ul {
+  list-style-type: none;
+}
+
 .form {
   margin-top: 10px;
   margin-left: 1%; /* Отступ слева */
@@ -12,9 +48,10 @@ body {
   padding: 10px;
 }
 
-.loginform {
+.loginform, .county_form {
   display: none;
 }
+
 
 .form .form-control {
   width: 30%;
@@ -25,8 +62,7 @@ body {
 }
 
 .form .buttons {
-  margin: auto;
-  width: 40%;
+  text-align: center;
 }
 
 .form input {

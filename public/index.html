@@ -15,51 +15,84 @@
   </head>
 
   <body>
-    <button id="signbtn" type="button">Sign_in</button>
-    <form id="loginform" class="">
-      <input type="text" id ="email" placeholder="email">
-      <input type="password" id ="password" placeholder="password"><br/>
-    </form>
-    <form id="frm" class="form">
-      <input type="text" id ="firstname" name="FirstName" placeholder="FirstName">
-      <input type="text" id ="lastname" name="LastName" placeholder="LastName"><br/>
-      <input type="number" class="age" id ="age" min="1" max = "111" name="Age" placeholder="Age"><br />
-      <label><input type="radio" id="maleGender" name="gender" value="male">&nbsp Male</label>
-      <label><input type="radio" id="femaleGender" name="gender" value="female">&nbsp Female </label> <br />
-      <fieldset id="checkboxes">
-        <legend>Choose your interests:</legend>
-      </fieldset>
+    <div id="tabs-min">
+      <ul>
+        <li><a href="#tabs-1">Users</a></li>
+        <li><a href="#tabs-2">Hobbies</a></li>
+        <li><a href="#tabs-3">Countries</a></li>
+        <li><a href="#tabs-4">Admins</a></li>
+      </ul>
+      <div id="tabs-1">
 
-      <div class="form-group">
-        <fieldset>
-          <legend>Choose your country:</legend>
-          <select class="form-control" id="country">
-
-          </select>
-        </fieldset>
+        <form id="frm" class="form">
+          <input type="text" id ="firstname" name="FirstName" placeholder="FirstName">
+          <input type="text" id ="lastname" name="LastName" placeholder="LastName"><br/>
+          <input type="number" class="age" id ="age" min="1" max = "111" name="Age" placeholder="Age"><br />
+          <label><input type="radio" id="maleGender" name="gender" value="male">&nbsp Male</label>
+          <label><input type="radio" id="femaleGender" name="gender" value="female">&nbsp Female </label> <br />
+          <fieldset id="checkboxes">
+            <legend>Choose your interests:</legend>
+          </fieldset>
+          <div class="form-group">
+            <fieldset>
+              <legend>Choose your country:</legend>
+              <select class="form-control" id="country">
+              </select>
+            </fieldset>
+          </div>
+          <div class="buttons">
+            <button id="btnsave" type="button" class="btn btn-success">Save</button>
+            <button id="btnedit" type="button" class="btn btn-warning">Edit</button>
+            <button id="btndelete" type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </form>
+        <div class="container">
+          <h3 > Users: </h3>
+          <table  class="table table-hover" id="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Interests</th>
+                <th>Country</th>
+              </tr>
+            </thead>
+          </table>
+          <p id="pagin"> </p>
+        </div>
       </div>
-      <div class="buttons">
-        <button id="btnsave" type="button" class="btn btn-success">Save</button>
-        <button id="btnedit" type="button" class="btn btn-warning">Edit</button>
-        <button id="btndelete" type="button" class="btn btn-danger">Delete</button>
+      <div id="tabs-2">
+        <ul id="hobbies_list" class="hobbies_list">
+        </ul>
+        <form id="hobby_form" class="">
+          <input type="text" id ="hobby_title" placeholder="title">
+          <div class="buttons">
+            <button id="hobby_edit" type="button" class="btn btn-warning">Edit</button>
+            <button id="hobby_delete" type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </form>
       </div>
-    </form>
-    <div class="container">
-      <h3 > Users: </h3>
-      <table  class="table table-hover" id="table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Age</th>
-            <th>Gender</th>
-            <th>Interests</th>
-            <th>Country</th>
-          </tr>
-        </thead>
-      </table>
-      <p id="pagin"> </p>
+      <div id="tabs-3">
+        <ul id="countries_list" class="countries_list">
+        </ul>
+        <form id="county_form" class="">
+          <input type="text" id ="country_title" placeholder="title">
+          <div class="buttons">
+            <button id="country_edit" type="button" class="btn btn-warning">Edit</button>
+            <button id="country_delete" type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </form>
+      </div>
+      <div id="tabs-4">
+        <button id="signbtn" type="button">Sign_in</button>
+        <form id="loginform" class="">
+          <input type="text" id ="email" placeholder="email">
+          <input type="password" id ="password" placeholder="password"><br/>
+        </form>
+      </div>
     </div>
   </body>
 </html>

@@ -18,6 +18,7 @@ $(document).ready(function() {
     }
 
     $(function() {
+      $( "#tabs-min" ).tabs();
       getUsers();
       getCountry();
       getHobbies();
@@ -30,6 +31,7 @@ $(document).ready(function() {
         success:function(data) {
           data.map(function(c) {
             $('#country').append("<option id=" + c.id +">" + c.title + "</option>");
+            $('#countries_list').append("<li id =" + c.id + ">" + c.title + "</li>");
           })
         },
         error:function(result) {
@@ -51,6 +53,7 @@ $(document).ready(function() {
              +">&nbsp"
              + c.title + "</label>" );
              interestsArr.push(c.title);
+             $('#hobbies_list').append("<li id =" + c.id + ">" + c.title + "</li>");
           });
         },
         error:function(result) {
@@ -144,8 +147,6 @@ $(document).ready(function() {
     $("#signbtn").on("click", function() {
       $("#loginform").dialog( "open" )
     });
-
-
        //save function
     $('#btnsave').on('click', function() {
       setUser();
@@ -227,7 +228,37 @@ $(document).ready(function() {
         localStorage.setItem("users", JSON.stringify(sortedTab));
       }
     });
-          //Selecting row
+
+    $("#county_form").dialog( {
+      autoOpen: false,
+      modal: true,
+      close: function() {
+        $("#county_form").dialog( "close" )
+      }
+    });
+
+    $("#countries_list").on("click", 'li', function() {
+      var index = $(this).index();
+      $("#county_form").dialog( "open" );
+      $('#country_title').val(this.innerHTML);
+    });
+
+    $("#hobby_form").dialog( {
+      autoOpen: false,
+      modal: true,
+      close: function() {
+        // form[0].reset();
+          $("#hobby_form").dialog( "close" )
+      }
+    });
+
+    $("#hobbies_list").on("click", 'li',function() {
+      var index = $(this).index();
+      $("#hobby_form").dialog( "open" );
+      $('#hobby_title').val(this.innerHTML);
+    });
+
+      //Selecting row
     $(document).on('click','tr', function() {
       for(var i = 1; i < table.rows.length; i++) {
         table.rows[i].onclick = function() {
