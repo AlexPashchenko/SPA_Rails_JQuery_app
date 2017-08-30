@@ -48,7 +48,7 @@ ul {
   padding: 10px;
 }
 
-.loginform, .county_form {
+.loginform, .county_form, .hobby_form {
   display: none;
 }
 
@@ -79,7 +79,7 @@ h3, .pagin {
 }
 
 .table thead {
-  background-color: #F1FBA7;
+  background-color: #5cb85c;
 }
 
 .table tbody {
@@ -89,6 +89,49 @@ h3, .pagin {
 .pagination {
   background-color: #ddd;
 }
+
+#list {
+ width: 12em;
+ margin-bottom: 1em;
+ font-family: 'Trebuchet MS', 'Lucida Grande',
+   Verdana, Lucida, Geneva, Helvetica,
+   Arial, sans-serif;
+ background-color: #94DE90;
+ color: #333;
+ }
+
+ #list ul {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   border: none;
+   }
+
+  #list li {
+   border-bottom: 1px solid #64de7e;
+   margin: 0;
+   }
+ #list li {
+  display: block;
+  padding: 5px 5px 5px 0.5em;
+  border-left: 10px solid #049424;
+  border-right: 10px solid #37E687;
+  background-color: #5cb85c;
+  color: #fff;
+  text-decoration: none;
+  width: 100%;
+  }
+
+  html>body #list li {
+  width: auto;
+  }
+
+  #list li:hover {
+  border-left: 10px solid #1CD995;
+  border-right: 10px solid #74F1C4;
+  background-color: #3ADFA4;
+  color: #fff;
+  }
 
 .focus {
   background-color: #7ECDA9;

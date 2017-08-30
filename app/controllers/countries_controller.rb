@@ -1,6 +1,7 @@
 class CountriesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_country, only: [:show, :update, :destroy]
-  before_action :authenticate_admin!, only: [:create, :update, :destroy]
+  # before_action :authenticate_admin!, only: [:create, :update, :destroy]
   respond_to :json
 
   def index
@@ -43,6 +44,6 @@ class CountriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def country_params
-      params.require(:country).permit(:title)
+      params.permit(:title)
     end
 end

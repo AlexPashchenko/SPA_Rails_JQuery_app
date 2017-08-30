@@ -9,6 +9,8 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="javascript.js"></script>
+    <script type="text/javascript" src="country.js"></script>
+    <script type="text/javascript" src="hobby.js"></script>
     <link href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.0.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -64,10 +66,16 @@
           <p id="pagin"> </p>
         </div>
       </div>
+
       <div id="tabs-2">
-        <ul id="hobbies_list" class="hobbies_list">
-        </ul>
-        <form id="hobby_form" class="">
+        <button id="hobby_add" type="button" class="btn btn-success">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+        <div id="list">
+          <ul id="hobbies_list" class="hobbies_list">
+          </ul>
+        </div>
+        <form id="hobby_form" class="county_form">
           <input type="text" id ="hobby_title" placeholder="title">
           <div class="buttons">
             <button id="hobby_edit" type="button" class="btn btn-warning">Edit</button>
@@ -75,17 +83,25 @@
           </div>
         </form>
       </div>
+
       <div id="tabs-3">
-        <ul id="countries_list" class="countries_list">
-        </ul>
-        <form id="county_form" class="">
+        <button id="country_add" type="button" class="btn btn-success">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+        <div id="list">
+          <ul id="countries_list" class="countries_list">
+          </ul>
+        </div>
+        <form id="county_form" class="county_form">
           <input type="text" id ="country_title" placeholder="title">
           <div class="buttons">
             <button id="country_edit" type="button" class="btn btn-warning">Edit</button>
             <button id="country_delete" type="button" class="btn btn-danger">Delete</button>
+            <button id="country_save" type="button" class="btn btn-success">Save</button>
           </div>
         </form>
       </div>
+
       <div id="tabs-4">
         <button id="signbtn" type="button">Sign_in</button>
         <form id="loginform" class="">
