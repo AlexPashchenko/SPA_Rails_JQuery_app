@@ -195,7 +195,7 @@ $(document).ready(function() {
         alert("Select row for deleting");
       } else {
           $.ajax({
-            url: "/users/"+ table.rows[rIndex].cells[0].innerHTML ,
+            url: "/users/"+ table.rows[rIndex].cells[0].innerHTML,
             type: 'DELETE',
             success: function(result) {
               alert("deleted")

@@ -64,6 +64,10 @@ ul {
 .form .buttons {
   text-align: center;
 }
+.buttons {
+  margin-top: 10px;
+  
+}
 
 .form input {
   margin: 3px;
@@ -89,6 +93,19 @@ h3, .pagin {
 .pagination {
   background-color: #ddd;
 }
+.add_buttn {
+  width: 12em;
+  border-bottom: 1px solid #64de7e;
+  margin: 0;
+  display: block;
+  padding: 5px 5px 5px 0.5em;
+  border-left: 10px solid #049424;
+  border-right: 10px solid #37E687;
+  background-color: #5cb85c;
+  color: #fff;
+  text-decoration: none;
+}
+
 
 #list {
  width: 12em;
@@ -132,6 +149,17 @@ h3, .pagin {
   background-color: #3ADFA4;
   color: #fff;
   }
+
+.ui-dialog .ui-widget-header {
+  background:#459e00;
+  border:0px;
+  text-align: center;
+}
+
+.ui-dialog .ui-widget-content {
+  text-align: center;
+  background:#F3F3F2;
+}
 
 .focus {
   background-color: #7ECDA9;

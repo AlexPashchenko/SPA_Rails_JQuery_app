@@ -12,5 +12,6 @@ class Country < ApplicationRecord
   has_many :users
 
   validates :title, presence: true
+  validates :title, uniqueness: true
   alias_attribute :country_name, :title
 end

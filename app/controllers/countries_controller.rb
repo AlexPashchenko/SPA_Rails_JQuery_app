@@ -10,7 +10,7 @@ class CountriesController < ApplicationController
   end
 
   def show
-    render json: @county
+    render json: @country
   end
 
   def create
@@ -32,7 +32,7 @@ class CountriesController < ApplicationController
   end
 
   def destroy
-    @county.destroy
+    @country.destroy
     head :no_content
   end
 
@@ -44,6 +44,6 @@ class CountriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def country_params
-      params.permit(:title)
+      params.permit(:id, :title)
     end
 end

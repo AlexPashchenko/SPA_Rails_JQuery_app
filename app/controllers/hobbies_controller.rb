@@ -1,6 +1,7 @@
 class HobbiesController < ApplicationController
-  before_action :authenticate_admin!, only: [:create, :update, :destroy]
-  before_action :set_user, only: [:show, :update, :destroy]
+  # before_action :authenticate_admin!, only: [:create, :update, :destroy]
+  skip_before_action :verify_authenticity_token
+  before_action :set_hobby, only: [:show, :update, :destroy]
   respond_to :json
 
   def index
@@ -23,7 +24,7 @@ class HobbiesController < ApplicationController
   end
 
   def update
-    if @hobby.update(hobby_paramss)
+    if @hobby.update(hobby_params)
       render json: @hobby, status: :ok
     else
       render status: :unprocessable_entity
@@ -44,6 +45,6 @@ class HobbiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hobby_params
-      params.require(:hobby).permit(:title)
+      params.permit(:title)
     end
 end
