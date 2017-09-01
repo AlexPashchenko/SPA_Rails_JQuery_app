@@ -31,4 +31,5 @@ class Admin < ActiveRecord::Base
 
   validates :password, confirmation: true
 
+
 end

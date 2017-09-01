@@ -4,6 +4,7 @@ FactoryGirl.define do
     f.last_name { Faker::Name.last_name }
     f.age { Faker::Number.between(1, 100) }
     f.gender ["male", "female"].sample
-    f.country_id { Faker::Number.between(1, 10) }
-  end
+    country
+    after(:create) { |user| user.hobbies = [create(:hobby)] }
+    end
 end
