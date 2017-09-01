@@ -6,6 +6,12 @@ body {
     background: transparent;
     border: none;
 }
+#signbtn {
+  border: none;
+  font-size:18px;
+  color: #6CDA97;
+
+}
 
 #tabs-min .ui-widget-header {
     background: transparent;
@@ -66,7 +72,7 @@ ul {
 }
 .buttons {
   margin-top: 10px;
-  
+
 }
 
 .form input {

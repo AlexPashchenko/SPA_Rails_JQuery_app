@@ -95,10 +95,13 @@ $(document).ready(function() {
 
     $("#loginform").dialog( {
       autoOpen: false,
+      closeText: "",
+      resizable: false,
+      title: "Sign_in",
       modal: true,
       close: function() {
-        // form[0].reset();
-          $("#loginform").dialog( "close" )
+        $("#loginform")[0].reset();
+        $("#loginform").dialog( "close" );
       }
     });
 

@@ -11,6 +11,7 @@
     <script type="text/javascript" src="javascript.js"></script>
     <script type="text/javascript" src="country.js"></script>
     <script type="text/javascript" src="hobby.js"></script>
+    <script type="text/javascript" src="admin.js"></script>
     <link href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.0.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -23,7 +24,15 @@
         <li><a href="#tabs-2">Hobbies</a></li>
         <li><a href="#tabs-3">Countries</a></li>
         <li><a href="#tabs-4">Admins</a></li>
+        <li><button id="signbtn" type="button" class="btn">Sign_in</button></li>
       </ul>
+      <form id="loginform" class="">
+        <input type="text" id ="email" placeholder="email">
+        <input type="password" id ="password" placeholder="password"><br/>
+        <div class="buttons">
+          <button id="login_submit" type="button" class="btn btn-success">Submit</button>
+        </div>
+      </form>
       <div id="tabs-1">
 
         <form id="frm" class="form">
@@ -113,12 +122,28 @@
       </div>
 
       <div id="tabs-4">
-        <button id="signbtn" type="button">Sign_in</button>
-        <form id="loginform" class="">
-          <input type="text" id ="email" placeholder="email">
-          <input type="password" id ="password" placeholder="password"><br/>
+        <button id="admin_add" type="button" class="add_buttn">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+        <div id="list">
+          <ul id="admins_list" class="admins_list">
+          </ul>
+        </div>
+        <form id="admin_form" class="admin_form">
+          <input type="text" id ="admin_email" placeholder="email">
+          <input type="password" id ="admin_password" placeholder="password">
+          <div class="buttons">
+            <button id="admin_edit" type="button" class="btn btn-warning">Edit</button>
+            <button id="admin_delete" type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </form>
+        <form id="admin_create" class="admin_form">
+          <input type="text" id ="new_admin_email" placeholder="email">
+          <input type="password" id ="new_admin_password" placeholder="password"><br/>
+          <div class="buttons">
+            <button id="admin_save" type="button" class="btn btn-success">Save</button>
+          </div>
         </form>
       </div>
-    </div>
   </body>
 </html>
