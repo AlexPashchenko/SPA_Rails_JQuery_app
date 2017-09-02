@@ -1,6 +1,5 @@
 class HobbiesController < ApplicationController
   # before_action :authenticate_admin!, only: [:create, :update, :destroy]
-  skip_before_action :verify_authenticity_token
   before_action :set_hobby, only: [:show, :update, :destroy]
   respond_to :json
 

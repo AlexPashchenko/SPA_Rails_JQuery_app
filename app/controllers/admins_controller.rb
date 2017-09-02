@@ -1,5 +1,4 @@
 class AdminsController < ApplicationController
-  skip_before_action :verify_authenticity_token
   # before_action :authenticate_admin!, except:[:index, :show]
   before_action :set_admin, except:[:index, :create]
 
@@ -31,9 +30,10 @@ class AdminsController < ApplicationController
   end
 
   def destroy
-    @admin.destroy
-    respond_to do |format|
-      format.json { head :no_content }
+    if @admin.destroy
+      head :no_content
+    else
+      render status: :unprocessable_entity
     end
   end
 
@@ -46,6 +46,6 @@ class AdminsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_params
-      params.permit(:email, :password)
+      params.permit(:id, :email, :password)
     end
 end

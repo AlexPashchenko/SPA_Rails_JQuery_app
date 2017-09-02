@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  skip_before_action :verify_authenticity_token
   before_action :set_user, only: [:show , :update, :destroy]
   respond_to :json
 
@@ -33,8 +32,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # def update_order
-  # end
 
   # DELETE /users/1
   # DELETE /users/1.json

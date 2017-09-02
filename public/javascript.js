@@ -2,7 +2,6 @@ $(document).ready(function() {
 
     var interestsArr = [];
     var user;
-    var maxId;
     var IdArray = [];
     var table = document.getElementById('table');
     var tableUsers = new Array();
@@ -36,22 +35,20 @@ $(document).ready(function() {
                      + "<td>" + c.hobbies_attributes + "</td>"
                      + "<td>" + c.title + "</td>"
                      + "</tr></tbody>";
-            $('#table').append(eachrow);
+            $('#table').prepend(eachrow);
           });
           Pagination();
         },
         error:function(result) {
           alert("error reading users");
         },
-        dataType: 'json'
+        dataType: 'json',
       });
     }
 
     //set user object
     function setUser() {
-      setId();
       user = {
-        Id : maxId,
         FirstName : $("#firstname").val(),
         LastName : $('#lastname').val(),
         Age : $("#age").val(),
@@ -81,18 +78,6 @@ $(document).ready(function() {
       return true;
     }
 
-
-    //add new row to table
-    function addrow() {
-      $('#table').prepend("<tbody><tr><td>" + user.Id + "</td><td>"
-                                    + user.FirstName + "</td><td>"
-                                    + user.LastName +"</td><td>"
-                                    + user.Age +"</td><td>"
-                                    + user.Gender +"</td><td>"
-                                    + user.Interests +"</td><td>"
-                                    + user.Country + "</td></tr></tbody>");
-    }
-
     $("#loginform").dialog( {
       autoOpen: false,
       closeText: "",
@@ -108,11 +93,21 @@ $(document).ready(function() {
     $("#signbtn").on("click", function() {
       $("#loginform").dialog( "open" )
     });
+
+    function addrow(e) {
+      $('#table').prepend("<tbody><tr><td>" + e.id + "</td><td>"
+                                    + e.first_name + "</td><td>"
+                                    + e.last_name +"</td><td>"
+                                    + e.age +"</td><td>"
+                                    + e.gender +"</td><td>"
+                                    + e.hobbies_attributes +"</td><td>"
+                                    + e.title + "</td></tr></tbody>");
+    }
        //save function
     $('#btnsave').on('click', function() {
       setUser();
       if (validateForm()=== true) {
-        $.ajax({
+        $.ajax( {
             type: "POST",
             url: "/users",
             data: {
@@ -125,8 +120,8 @@ $(document).ready(function() {
               }).get(),
               country_id: $("#country").children(":selected").attr("id")
             },
-            success:function(result) {
-              alert("User Created");
+            success: function (result) {
+                function addrow(result);
             },
             error:function(result) {
               alert("error");
@@ -135,29 +130,11 @@ $(document).ready(function() {
         });
         tableUsers.unshift(user);
         localStorage.setItem('users', JSON.stringify(tableUsers));
-        addrow();
+        // addrow();
         $('#frm')[0].reset();
         return false;
       }
     });
-
-    function setId() {
-      $.ajax({
-        type: "GET",
-        url: "/users",
-        async: false,
-        dataType: 'json',
-        success:function (data) {
-          $.each(data, function (i) {
-            IdArray.push(data[i].id);
-          });
-        },
-        error:function(result) {
-          alert("id error");
-        },
-      });
-      maxId = Math.max.apply(null, IdArray)+1;
-    }
 
       //save sorted array
     function saveSort() {
@@ -246,7 +223,6 @@ $(document).ready(function() {
      } else if (validateForm()=== true) {
         editSelectedRow();
         editArrayItem();
-        setUser();
         $.ajax({
             type: "PUT",
             url: "/users/"+ table.rows[rIndex].cells[0].innerHTML,

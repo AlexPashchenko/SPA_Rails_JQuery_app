@@ -77,8 +77,68 @@ $(document).ready(function() {
     return false;
   });
 
+  $("#admins_list").on("click", 'li', function() {
+    liId = $(this).attr('id');
+    liIndex = $(this).index();
+    $("#admin_form").dialog( "open" );
+    $('#admin_email').val(this.innerHTML);
+    // getPassword();
+  });
 
+  $('#admin_delete').on('click', function() {
+    $.ajax({
+      url: "/admins/"+ liId,
+      type: 'DELETE',
+      success: function () {
+        $("#admins_list li").eq(liIndex).remove();
+      },
+      error:function() {
+        alert("Can\'t delete last admin");
+      },
+      dataType: 'json'
+    });
+    $('#admin_form')[0].reset();
+    $("#admin_form").dialog( "close" );
+    liId = undefined;
+    return false;
+  });
 
+  $('#admin_edit').on('click', function(){
+    setAdmin();
+    $.ajax({
+      type: "PUT",
+      url: "/admins/"+ liId,
+      data: {
+        email: admin.Email,
+        password: admin.Password
+      },
+      success: function(result) {
+        $("#admins_list li:eq("+liIndex+")").html( result.email);
+      },
+      error:function(result) {
+        alert("error");
+      },
+      dataType: 'json'
+    });
+    $('#admin_form')[0].reset();
+    $("#admin_form").dialog( "close" );
+    liId = undefined;
+    return false;
+  });
+
+  function getPassword() {
+    $.ajax({
+      type: "GET",
+      url: "/admins/" + liId,
+      success: function(result) {
+        $('#admin_email').val(result.email);
+      },
+      error: function() {
+        alert( "Can\'t get password");
+      },
+      dataType: 'json'
+    });
+  }
 
   function setNewAdmin() {
     admin = {
@@ -87,7 +147,7 @@ $(document).ready(function() {
     };
   }
 
-  function setCountry() {
+  function setAdmin() {
     admin = {
       Email: $('#admin_email').val(),
       Password: $('#admin_password').val()
