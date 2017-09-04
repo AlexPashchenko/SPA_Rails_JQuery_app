@@ -2,6 +2,7 @@ $(document).ready(function() {
 
     var interestsArr = [];
     var user;
+    var maxId;
     var IdArray = [];
     var table = document.getElementById('table');
     var tableUsers = new Array();
@@ -78,30 +79,14 @@ $(document).ready(function() {
       return true;
     }
 
-    $("#loginform").dialog( {
-      autoOpen: false,
-      closeText: "",
-      resizable: false,
-      title: "Sign_in",
-      modal: true,
-      close: function() {
-        $("#loginform")[0].reset();
-        $("#loginform").dialog( "close" );
-      }
-    });
-
-    $("#signbtn").on("click", function() {
-      $("#loginform").dialog( "open" )
-    });
-
-    function addrow(e) {
-      $('#table').prepend("<tbody><tr><td>" + e.id + "</td><td>"
-                                    + e.first_name + "</td><td>"
-                                    + e.last_name +"</td><td>"
-                                    + e.age +"</td><td>"
-                                    + e.gender +"</td><td>"
-                                    + e.hobbies_attributes +"</td><td>"
-                                    + e.title + "</td></tr></tbody>");
+    function addrow() {
+        $('#table').prepend("<tbody><tr><td>" + maxId + "</td><td>"
+                                        + user.FirstName + "</td><td>"
+                                        + user.LastName +"</td><td>"
+                                        + user.Age +"</td><td>"
+                                        + user.Gender +"</td><td>"
+                                        + user.Interests +"</td><td>"
+                                        + user.Country + "</td></tr></tbody>");
     }
        //save function
     $('#btnsave').on('click', function() {
@@ -121,7 +106,8 @@ $(document).ready(function() {
               country_id: $("#country").children(":selected").attr("id")
             },
             success: function (result) {
-                function addrow(result);
+              maxId = result.id;
+              addrow();
             },
             error:function(result) {
               alert("error");
@@ -130,7 +116,6 @@ $(document).ready(function() {
         });
         tableUsers.unshift(user);
         localStorage.setItem('users', JSON.stringify(tableUsers));
-        // addrow();
         $('#frm')[0].reset();
         return false;
       }

@@ -34,6 +34,45 @@ $(document).ready(function() {
   });
 
 
+  $("#loginform").dialog( {
+    autoOpen: false,
+    closeText: "",
+    resizable: false,
+    title: "Sign_in",
+    modal: true,
+    close: function() {
+      $("#loginform")[0].reset();
+      $("#loginform").dialog( "close" );
+    }
+  });
+
+  $("#signbtn").on("click", function() {
+    $("#loginform").dialog( "open" )
+  });
+
+  $('#login_submit').on('click', function() {
+    setAutorization();
+    $.ajax({
+      type: "POST",
+      url: "/admins/sign_in",
+      data: {
+        email: admin.Email,
+        password: admin.Password
+        },
+        success:function(result) {
+          alert("Sign_in");
+        },
+        error:function(result) {
+          alert("error");
+        },
+        dataType: 'json'
+    });
+    $('#loginform')[0].reset();
+    $("#loginform").dialog( "close" );
+    return false;
+  });
+
+
   function getAdmins() {
     $.ajax({
       type: "GET",
@@ -110,7 +149,8 @@ $(document).ready(function() {
       url: "/admins/"+ liId,
       data: {
         email: admin.Email,
-        password: admin.Password
+        password: admin.Password,
+        current_password: admin.Current_Password
       },
       success: function(result) {
         $("#admins_list li:eq("+liIndex+")").html( result.email);
@@ -150,7 +190,14 @@ $(document).ready(function() {
   function setAdmin() {
     admin = {
       Email: $('#admin_email').val(),
-      Password: $('#admin_password').val()
+      Password: $('#admin_password').val(),
+      Current_Password: $("#current_password").val()
+    };
+  }
+  function setAutorization() {
+    admin = {
+      Email: $('#email_input').val(),
+      Password: $('#password_input').val()
     };
   }
 });

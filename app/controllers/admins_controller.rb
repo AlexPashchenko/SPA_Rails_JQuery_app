@@ -22,7 +22,9 @@ class AdminsController < ApplicationController
   end
 
   def update
-    if @admin.update(admin_params)
+    enc = Devise.token_generator.generate(Admin, :reset_password_token)
+    @admin.reset_password_token = enc
+    if @admin.update_with_password(admin_params)
       render json: @admin, status: :ok
     else
       render status: :unprocessable_entity
@@ -44,8 +46,9 @@ class AdminsController < ApplicationController
       @admin = Admin.find(params[:id])
     end
 
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_params
-      params.permit(:id, :email, :password)
+      params.permit(:id, :email, :password, :current_password, :password_confirmation)
     end
 end
