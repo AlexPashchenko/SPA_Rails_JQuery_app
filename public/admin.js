@@ -61,6 +61,7 @@ $(document).ready(function() {
         },
         success:function(result) {
           alert("Sign_in");
+
         },
         error:function(result) {
           alert("error");
@@ -69,6 +70,20 @@ $(document).ready(function() {
     });
     $('#loginform')[0].reset();
     $("#loginform").dialog( "close" );
+    return false;
+  });
+
+
+  $('#signout').on('click', function() {
+    $.ajax({
+      type: "DELETE",
+      url: "/admins/sign_out",
+      success:function() {
+          $('#signout').hide();
+          alert("ok")
+      },
+      dataType: 'json'
+    });
     return false;
   });
 

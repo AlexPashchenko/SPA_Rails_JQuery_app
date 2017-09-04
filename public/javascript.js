@@ -203,6 +203,7 @@ $(document).ready(function() {
     }
        // edit function
     $("#btnedit").on("click", function() {
+      setUser();
      if(typeof rIndex == 'undefined') {
       alert("Select row for editing");
      } else if (validateForm()=== true) {

@@ -6,7 +6,7 @@ body {
     background: transparent;
     border: none;
 }
-#signbtn {
+#signbtn, #signout{
   border: none;
   font-size:18px;
   color: #6CDA97;
