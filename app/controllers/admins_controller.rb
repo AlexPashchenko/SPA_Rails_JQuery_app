@@ -1,14 +1,10 @@
 class AdminsController < ApplicationController
-  # before_action :authenticate_admin!, except:[:index, :show]
+  # before_action :authenticate_admin!, except:[:index]
   before_action :set_admin, except:[:index, :create]
 
   def index
     @admins = Admin.all
     render json: @admins
-  end
-
-  def show
-    render json: @admin
   end
 
   def create

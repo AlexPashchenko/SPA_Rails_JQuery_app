@@ -13,6 +13,7 @@
 #
 
 class User < ApplicationRecord
+  # Include default devise modules.
   extend Enumerize
 
   has_and_belongs_to_many :hobbies,  join_table: "users_hobbies"

@@ -3,6 +3,7 @@ $(document).ready(function() {
   var liId;
   var liIndex;
   var admin;
+  var sessionId;
 
   $( function() {
     getAdmins();
@@ -54,14 +55,13 @@ $(document).ready(function() {
     setAutorization();
     $.ajax({
       type: "POST",
-      url: "/admins/sign_in",
+      url: "/auth/sign_in",
       data: {
         email: admin.Email,
         password: admin.Password
         },
         success:function(result) {
-          alert("Sign_in");
-
+          alert("Dear, welcome!");
         },
         error:function(result) {
           alert("error");
@@ -77,7 +77,7 @@ $(document).ready(function() {
   $('#signout').on('click', function() {
     $.ajax({
       type: "DELETE",
-      url: "/admins/sign_out",
+      url: "/auth/sign_out",
       success:function() {
           $('#signout').hide();
           alert("ok")

@@ -1,5 +1,4 @@
-class Admins::PasswordsController < Devise::PasswordsController
-   respond_to :json
+class Admin::PasswordsController < Devise::PasswordsController
   # GET /resource/password/new
   # def new
   #   super
@@ -16,9 +15,9 @@ class Admins::PasswordsController < Devise::PasswordsController
   # end
 
   # PUT /resource/password
-  def update
-    super
-  end
+  # def update
+  #   super
+  # end
 
   # protected
 

@@ -1,6 +1,6 @@
 class CountriesController < ApplicationController
   before_action :set_country, only: [:show, :update, :destroy]
-  # before_action :authenticate_admin!, only: [:create, :update, :destroy]
+  before_action :authenticate_admin!, except:[:index]
   respond_to :json
 
   def index
@@ -8,9 +8,6 @@ class CountriesController < ApplicationController
     render json: @countries
   end
 
-  def show
-    render json: @country
-  end
 
   def create
     @country = Country.new(country_params)

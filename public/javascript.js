@@ -163,16 +163,17 @@ $(document).ready(function() {
             url: "/users/"+ table.rows[rIndex].cells[0].innerHTML,
             type: 'DELETE',
             success: function(result) {
-              alert("deleted")
+              if (!result){
+              table.rows[rIndex].remove();
+              tableUsers.splice(rIndex-1, 1);
+              localStorage.setItem("users", JSON.stringify(tableUsers))
+            }
             },
             error:function(result) {
               alert("error");
             },
             dataType: 'json'
           });
-          table.rows[rIndex].remove();
-          tableUsers.splice(rIndex-1, 1);
-          localStorage.setItem("users", JSON.stringify(tableUsers));
           $('#frm')[0].reset();
           rIndex = undefined;
         }
