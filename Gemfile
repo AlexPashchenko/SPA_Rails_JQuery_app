@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 0.18.4'
 gem 'puma', '~> 3.0'
@@ -48,7 +49,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rubocop', require: false
 gem 'validates_email_format_of'
 gem 'enumerize'
-gem 'devise'
+gem 'devise', '~> 4.1', '>= 4.1.1'
 gem 'annotate'
 gem 'omniauth'
 gem 'devise_token_auth'
+gem 'rack-cors', :require => 'rack/cors'

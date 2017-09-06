@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  # before_action :authenticate_admin!, except:[:index]
+  before_action :authenticate_admin!, only:[:create, :update, :destroy]
   before_action :set_admin, except:[:index, :create]
 
   def index
@@ -45,6 +45,6 @@ class AdminsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_params
-      params.permit(:id, :email, :password, :current_password, :password_confirmation)
+      params.permit(:id, :email, :password, :current_password, :password_confirmation, :tokens)
     end
 end

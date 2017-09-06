@@ -1,6 +1,7 @@
 class CountriesController < ApplicationController
+  # include DeviseTokenAuth::Concerns::SetUserByToken
   before_action :set_country, only: [:show, :update, :destroy]
-  before_action :authenticate_admin!, except:[:index]
+  before_action :authenticate_admin!, only:[:create, :update, :destroy]
   respond_to :json
 
   def index
@@ -10,13 +11,13 @@ class CountriesController < ApplicationController
 
 
   def create
+    byebug
     @country = Country.new(country_params)
-
     if @country.save
-        render json: @country, status: :created
-      else
-        render status: :unprocessable_entity
-      end
+      render json: @country, status: :created
+    else
+      render status: :unprocessable_entity
+    end
   end
 
   def update

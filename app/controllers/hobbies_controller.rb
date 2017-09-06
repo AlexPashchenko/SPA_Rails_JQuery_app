@@ -1,5 +1,6 @@
 class HobbiesController < ApplicationController
-  before_action :authenticate_admin!, except:[:index]
+  # include DeviseTokenAuth::Concerns::SetUserByToken
+  before_action :authenticate_admin!, only:[:create, :update, :destroy]
   before_action :set_hobby, only: [:show, :update, :destroy]
   respond_to :json
 
