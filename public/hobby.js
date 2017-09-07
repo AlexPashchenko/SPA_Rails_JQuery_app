@@ -98,18 +98,25 @@ $(document).ready(function() {
     $.ajax({
       type: "POST",
       url: "/hobbies",
+      beforeSend : function(xhr) {
+        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
+        xhr.setRequestHeader('client', $.cookie("client")),
+        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
+        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
+        xhr.setRequestHeader ('uid', $.cookie("uid"));
+      },
       data: {
         title: hobby.Title
       },
-      success:function(result) {
-        interestsArr.push(result.title);
-        $("#checkboxes").append("<label id =hobby" + result.id +"><input type = \"checkbox\" name =\"inter\" value = " + result.title
-         + " id =" + result.id
-         +">&nbsp<span id =name" + result.id+">"
-         + result.title + "</span></label>" );
-        $("#hobbies_list").append("<li id =" + result.id + ">" + result.title + "</li>")
+      success:function(output) {
+        interestsArr.push(output.title);
+        $("#checkboxes").append("<label id =hobby" + output.id +"><input type = \"checkbox\" name =\"inter\" value = " + output.title
+         + " id =" + output.id
+         +">&nbsp<span id =name" + output.id+">"
+         + output.title + "</span></label>" );
+        $("#hobbies_list").append("<li id =" + output.id + ">" + output.title + "</li>");
       },
-      error:function(result) {
+      error:function() {
         alert("error");
       },
       dataType: 'json'
@@ -123,16 +130,25 @@ $(document).ready(function() {
     $.ajax({
       url: "/hobbies/"+ liId,
       type: 'DELETE',
-      error:function(result) {
+      beforeSend : function(xhr) {
+        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
+        xhr.setRequestHeader('client', $.cookie("client")),
+        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
+        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
+        xhr.setRequestHeader ('uid', $.cookie("uid"));
+      },
+      success: function() {
+        $("#hobbies_list li").eq(liIndex).remove();
+        $("#hobby"+ liId).remove();
+
+      },
+      error:function() {
         alert("error");
       },
       dataType: 'json'
     });
-    $("#hobbies_list li").eq(liIndex).remove();
-    $("#hobby" + liId).remove();
     $('#hobby_form')[0].reset();
     $("#hobby_form").dialog( "close" );
-    liId = undefined;
     return false;
   });
 
@@ -144,11 +160,18 @@ $(document).ready(function() {
       data: {
         title: hobby.Title
       },
+      beforeSend : function(xhr) {
+        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
+        xhr.setRequestHeader('client', $.cookie("client")),
+        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
+        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
+        xhr.setRequestHeader ('uid', $.cookie("uid"));
+      },
       success: function(result) {
         $("#hobbies_list li:eq("+liIndex+")").html( result.title);
         $("#name" + result.id).html(result.title);
       },
-      error:function(result) {
+      error:function() {
         alert("error");
       },
       dataType: 'json'

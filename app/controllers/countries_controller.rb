@@ -11,7 +11,6 @@ class CountriesController < ApplicationController
 
 
   def create
-    byebug
     @country = Country.new(country_params)
     if @country.save
       render json: @country, status: :created

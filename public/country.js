@@ -37,6 +37,13 @@ $(document).ready(function() {
       data: {
         title: country.Title
       },
+      beforeSend : function(xhr) {
+        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
+        xhr.setRequestHeader('client', $.cookie("client")),
+        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
+        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
+        xhr.setRequestHeader ('uid', $.cookie("uid"));
+      },
       success:function(result) {
         alert("Country Created");
         $('#country').append("<option id=" + result.id +" class =country"+result.id+">" + result.title + "</option>");
@@ -53,20 +60,27 @@ $(document).ready(function() {
   });
 
   $('#country_delete').on('click', function() {
-    debugger;
     $.ajax({
       url: "/countries/"+ liId,
       type: 'DELETE',
+      beforeSend : function(xhr) {
+        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
+        xhr.setRequestHeader('client', $.cookie("client")),
+        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
+        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
+        xhr.setRequestHeader ('uid', $.cookie("uid"));
+      },
+      success: function() {
+        $("#countries_list li").eq(liIndex).remove();
+        $(".country"+liId).remove();
+      },
       error:function(result) {
         alert("error");
       },
       dataType: 'json'
     });
-    $("#countries_list li").eq(liIndex).remove();
-    $(".country"+liId).remove();
     $('#country_form')[0].reset();
     $("#country_form").dialog( "close" );
-    liId = undefined;
     return false;
   });
 
@@ -77,6 +91,13 @@ $(document).ready(function() {
       url: "/countries/"+ liId,
       data: {
         title: country.Title
+      },
+      beforeSend : function(xhr) {
+        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
+        xhr.setRequestHeader('client', $.cookie("client")),
+        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
+        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
+        xhr.setRequestHeader ('uid', $.cookie("uid"));
       },
       success: function(result) {
         $("#countries_list li:eq("+liIndex+")").html( result.title);

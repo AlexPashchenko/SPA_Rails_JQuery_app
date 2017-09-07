@@ -3,7 +3,7 @@ $(document).ready(function() {
   var liId;
   var liIndex;
   var admin;
-  var sessionId;
+  var token;
 
   $( function() {
     getAdmins();
@@ -59,14 +59,20 @@ $(document).ready(function() {
       data: {
         email: admin.Email,
         password: admin.Password
-        },
-        success:function(result) {
-          alert("Dear, welcome!");
-        },
-        error:function(result) {
-          alert("error");
-        },
-        dataType: 'json'
+      },
+      success:function(output, status, xhr) {
+        $.cookie("access-token", xhr.getResponseHeader('access-token'));
+        $.cookie("client", xhr.getResponseHeader('client'));
+        $.cookie("expiry", xhr.getResponseHeader('expiry'));
+        $.cookie("token-type", xhr.getResponseHeader('token-type'));
+        $.cookie("uid", xhr.getResponseHeader('uid'));
+        $('#signout').show();
+        $('#signbtn').hide();
+      },
+      error:function() {
+        alert("error");
+      },
+      dataType: 'json'
     });
     $('#loginform')[0].reset();
     $("#loginform").dialog( "close" );
@@ -78,8 +84,21 @@ $(document).ready(function() {
     $.ajax({
       type: "DELETE",
       url: "/auth/sign_out",
+      beforeSend : function(xhr) {
+        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
+        xhr.setRequestHeader('client', $.cookie("client")),
+        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
+        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
+        xhr.setRequestHeader ('uid', $.cookie("uid"));
+    },
       success:function() {
+        $.removeCookie("access-token");
+        $.removeCookie("client");
+        $.removeCookie("expiry");
+        $.removeCookie("token-type");
+        $.removeCookie("uid");
           $('#signout').hide();
+          $('#signbtn').show();
           alert("ok")
       },
       dataType: 'json'
@@ -97,7 +116,7 @@ $(document).ready(function() {
           $('#admins_list').append("<li id =" + c.id + ">" + c.email + "</li>");
         })
       },
-      error:function(result) {
+      error:function() {
         alert("error reading admins");
       },
       dataType: 'json'
@@ -117,11 +136,18 @@ $(document).ready(function() {
         email: admin.Email,
         password: admin.Password
       },
+      beforeSend : function(xhr) {
+        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
+        xhr.setRequestHeader('client', $.cookie("client")),
+        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
+        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
+        xhr.setRequestHeader ('uid', $.cookie("uid"));
+    },
       success:function(result) {
         alert("Admin Created");
         $("#admins_list").append("<li id =" +result.id +" class =admins"+result.id+">" + result.email + "</li>")
       },
-      error:function(result) {
+      error:function() {
         alert("error");
       },
       dataType: 'json'
@@ -136,13 +162,19 @@ $(document).ready(function() {
     liIndex = $(this).index();
     $("#admin_form").dialog( "open" );
     $('#admin_email').val(this.innerHTML);
-    // getPassword();
   });
 
   $('#admin_delete').on('click', function() {
     $.ajax({
       url: "/admins/"+ liId,
       type: 'DELETE',
+      beforeSend :  function(xhr) {
+        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
+        xhr.setRequestHeader('client', $.cookie("client")),
+        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
+        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
+        xhr.setRequestHeader ('uid', $.cookie("uid"));
+      },
       success: function () {
         $("#admins_list li").eq(liIndex).remove();
       },
@@ -162,6 +194,13 @@ $(document).ready(function() {
     $.ajax({
       type: "PUT",
       url: "/admins/"+ liId,
+      beforeSend : function(xhr) {
+        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
+        xhr.setRequestHeader('client', $.cookie("client")),
+        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
+        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
+        xhr.setRequestHeader ('uid', $.cookie("uid"));
+      },
       data: {
         email: admin.Email,
         password: admin.Password,
@@ -181,20 +220,6 @@ $(document).ready(function() {
     return false;
   });
 
-  function getPassword() {
-    $.ajax({
-      type: "GET",
-      url: "/admins/" + liId,
-      success: function(result) {
-        $('#admin_email').val(result.email);
-      },
-      error: function() {
-        alert( "Can\'t get password");
-      },
-      dataType: 'json'
-    });
-  }
-
   function setNewAdmin() {
     admin = {
       Email: $("#new_admin_email").val(),
@@ -209,6 +234,15 @@ $(document).ready(function() {
       Current_Password: $("#current_password").val()
     };
   }
+
+  function setHeader(xhr) {
+    xhr.setRequestHeader ('access-token', $.cookie("access-token")),
+    xhr.setRequestHeader('client', $.cookie("client")),
+    xhr.setRequestHeader ('expiry',$.cookie("expiry")),
+    xhr.setRequestHeader ('token-type',$.cookie("token-type")),
+    xhr.setRequestHeader ('uid', $.cookie("uid"));
+  }
+
   function setAutorization() {
     admin = {
       Email: $('#email_input').val(),

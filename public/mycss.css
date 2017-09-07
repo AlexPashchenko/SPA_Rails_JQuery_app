@@ -13,6 +13,10 @@ body {
 
 }
 
+#signout {
+  display: none;
+}
+
 #tabs-min .ui-widget-header {
     background: transparent;
     border: none;

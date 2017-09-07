@@ -1,6 +1,6 @@
 class AdminsController < ApplicationController
   before_action :authenticate_admin!, only:[:create, :update, :destroy]
-  before_action :set_admin, except:[:index, :create]
+  before_action :get_admin, except:[:index, :create]
 
   def index
     @admins = Admin.all
@@ -38,7 +38,7 @@ class AdminsController < ApplicationController
 
   private
 
-    def set_admin
+    def get_admin
       @admin = Admin.find(params[:id])
     end
 
