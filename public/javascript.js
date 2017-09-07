@@ -3,6 +3,8 @@ $(document).ready(function() {
     var interestsArr = ['programming', 'travels', 'music', 'painting', 'dancing', 'reading', 'driving', 'fitness',
     'cookery', 'drinking'];
     var user;
+    var country;
+    var Countries = [];
     var table = document.getElementById('table');
     var tableUsers = new Array();
     sortedTab = [];
@@ -18,8 +20,30 @@ $(document).ready(function() {
     $(function() {
       GetTable();
       Pagination();
-      HideAutorization();
+      getCountry();
+
     });
+
+    function getCountry() {
+      country = {
+        title: $('#country').val()
+      }
+      $.ajax({
+          type: "GET",
+          url: "/countries",
+          success:function(data) {
+            data.map(function(c) {
+              $('#country').append("<option id=" + c.id +">" + c.title + "</option>");
+              Countries.push(c);
+            })
+            console.log(Countries);
+          },
+          error:function(result) {
+            alert("error");
+          },
+          dataType: 'json'
+      });
+    }
 
     //get data from array into table rows
     function GetTable() {
@@ -82,11 +106,13 @@ $(document).ready(function() {
                                     + user.Country + "</td></tr></tbody>");
     }
 
+
     $("#loginform").dialog( {
       autoOpen: false,
       modal: true,
       close: function() {
-        form[ 0 ].reset();
+        // form[0].reset();
+          $("#loginform").dialog( "close" )
       }
     });
 
@@ -100,6 +126,23 @@ $(document).ready(function() {
         tableUsers.unshift(user);
         localStorage.setItem('users', JSON.stringify(tableUsers));
         addrow();
+        $.ajax({
+            type: "POST",
+            url: "/users",
+            data: {
+              first_name: user.FirstName,
+              last_name: user.LastName,
+              age: user.Age,
+              gender: user.Gender,
+              country_id: country.id },
+              success:function(result) {
+                alert("OK");
+            },
+            error:function(result) {
+              alert("error");
+            },
+            dataType: 'json'
+        });
         $('#frm')[0].reset();
         id++;
         localStorage.setItem("id", id);
