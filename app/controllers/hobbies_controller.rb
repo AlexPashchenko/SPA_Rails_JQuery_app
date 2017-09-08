@@ -5,7 +5,7 @@ class HobbiesController < ApplicationController
   respond_to :json
 
   def index
-    @hobbies = Hobby.all
+    @hobbies = Hobby.all.order(:id)
     render json: @hobbies
   end
 

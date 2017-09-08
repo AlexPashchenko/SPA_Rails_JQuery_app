@@ -13,6 +13,6 @@ class Country < ApplicationRecord
 
   validates :title, presence: true
   validates :title, uniqueness: true
-  alias_attribute :country_name, :title
+  # alias_attribute :country_name, :title
 
 end

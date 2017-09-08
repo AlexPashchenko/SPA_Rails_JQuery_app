@@ -3,18 +3,17 @@ class AdminsController < ApplicationController
   before_action :get_admin, except:[:index, :create]
 
   def index
-    @admins = Admin.all
+    @admins = Admin.all.order(:id)
     render json: @admins
   end
 
   def create
     @admin = Admin.new(admin_params)
-
     if @admin.save
-        render json: @admin, status: :created
-      else
-        render status: :unprocessable_entity
-      end
+      render json: @admin, status: :created
+    else
+      render status: :unprocessable_entity
+    end
   end
 
   def update

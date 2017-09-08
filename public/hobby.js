@@ -83,7 +83,7 @@ $(document).ready(function() {
         });
       },
       error:function(result) {
-        alert("error reading hobbies");
+        alert("Can't reading hobbies  from DB");
       },
       dataType: 'json'
     });
@@ -99,11 +99,7 @@ $(document).ready(function() {
       type: "POST",
       url: "/hobbies",
       beforeSend : function(xhr) {
-        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
-        xhr.setRequestHeader('client', $.cookie("client")),
-        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
-        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
-        xhr.setRequestHeader ('uid', $.cookie("uid"));
+        setHeader(xhr)
       },
       data: {
         title: hobby.Title
@@ -131,11 +127,7 @@ $(document).ready(function() {
       url: "/hobbies/"+ liId,
       type: 'DELETE',
       beforeSend : function(xhr) {
-        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
-        xhr.setRequestHeader('client', $.cookie("client")),
-        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
-        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
-        xhr.setRequestHeader ('uid', $.cookie("uid"));
+        setHeader(xhr)
       },
       success: function() {
         $("#hobbies_list li").eq(liIndex).remove();
@@ -160,12 +152,8 @@ $(document).ready(function() {
       data: {
         title: hobby.Title
       },
-      beforeSend : function(xhr) {
-        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
-        xhr.setRequestHeader('client', $.cookie("client")),
-        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
-        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
-        xhr.setRequestHeader ('uid', $.cookie("uid"));
+      beforeSend :function(xhr){
+        setHeader(xhr)
       },
       success: function(result) {
         $("#hobbies_list li:eq("+liIndex+")").html( result.title);
@@ -186,11 +174,20 @@ $(document).ready(function() {
     hobby = {
       Title: $('#hobby_name').val()
     };
-  }
+  };
+
   function setHobby() {
     hobby = {
       Title: $('#hobby_title').val()
     };
+  };
+
+  function setHeader(xhr) {
+    xhr.setRequestHeader ('access-token', $.cookie("access-token")),
+    xhr.setRequestHeader('client', $.cookie("client")),
+    xhr.setRequestHeader ('expiry',$.cookie("expiry")),
+    xhr.setRequestHeader ('token-type',$.cookie("token-type")),
+    xhr.setRequestHeader ('uid', $.cookie("uid"));
   }
 
 });

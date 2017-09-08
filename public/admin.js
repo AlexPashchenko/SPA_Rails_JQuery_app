@@ -9,6 +9,18 @@ $(document).ready(function() {
     getAdmins();
   });
 
+  $(function() {
+    if ( $.cookie("access-token") == undefined) {
+      $('#signbtn').show();
+      $('#signout').hide();
+    }
+    else {
+      $('#signbtn').hide();
+      $('#signout').show();
+    }
+  });
+
+
   $("#admin_create").dialog( {
     autoOpen: false,
     closeText: "",
@@ -61,11 +73,7 @@ $(document).ready(function() {
         password: admin.Password
       },
       success:function(output, status, xhr) {
-        $.cookie("access-token", xhr.getResponseHeader('access-token'));
-        $.cookie("client", xhr.getResponseHeader('client'));
-        $.cookie("expiry", xhr.getResponseHeader('expiry'));
-        $.cookie("token-type", xhr.getResponseHeader('token-type'));
-        $.cookie("uid", xhr.getResponseHeader('uid'));
+        saveTokenInCookee(xhr);
         $('#signout').show();
         $('#signbtn').hide();
       },
@@ -85,21 +93,13 @@ $(document).ready(function() {
       type: "DELETE",
       url: "/auth/sign_out",
       beforeSend : function(xhr) {
-        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
-        xhr.setRequestHeader('client', $.cookie("client")),
-        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
-        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
-        xhr.setRequestHeader ('uid', $.cookie("uid"));
-    },
+        setHeader(xhr);
+      },
       success:function() {
-        $.removeCookie("access-token");
-        $.removeCookie("client");
-        $.removeCookie("expiry");
-        $.removeCookie("token-type");
-        $.removeCookie("uid");
-          $('#signout').hide();
-          $('#signbtn').show();
-          alert("ok")
+        RemoveCookies();
+        alert("You are signed_out");
+        $('#signout').hide();
+        $('#signbtn').show();
       },
       dataType: 'json'
     });
@@ -137,12 +137,8 @@ $(document).ready(function() {
         password: admin.Password
       },
       beforeSend : function(xhr) {
-        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
-        xhr.setRequestHeader('client', $.cookie("client")),
-        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
-        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
-        xhr.setRequestHeader ('uid', $.cookie("uid"));
-    },
+        setHeader(xhr);
+      },
       success:function(result) {
         alert("Admin Created");
         $("#admins_list").append("<li id =" +result.id +" class =admins"+result.id+">" + result.email + "</li>")
@@ -169,11 +165,7 @@ $(document).ready(function() {
       url: "/admins/"+ liId,
       type: 'DELETE',
       beforeSend :  function(xhr) {
-        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
-        xhr.setRequestHeader('client', $.cookie("client")),
-        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
-        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
-        xhr.setRequestHeader ('uid', $.cookie("uid"));
+        setHeader(xhr);
       },
       success: function () {
         $("#admins_list li").eq(liIndex).remove();
@@ -195,11 +187,7 @@ $(document).ready(function() {
       type: "PUT",
       url: "/admins/"+ liId,
       beforeSend : function(xhr) {
-        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
-        xhr.setRequestHeader('client', $.cookie("client")),
-        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
-        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
-        xhr.setRequestHeader ('uid', $.cookie("uid"));
+        setHeader(xhr);
       },
       data: {
         email: admin.Email,
@@ -241,6 +229,21 @@ $(document).ready(function() {
     xhr.setRequestHeader ('expiry',$.cookie("expiry")),
     xhr.setRequestHeader ('token-type',$.cookie("token-type")),
     xhr.setRequestHeader ('uid', $.cookie("uid"));
+  }
+
+  function saveTokenInCookee(xhr) {
+    $.cookie("access-token", xhr.getResponseHeader('access-token'));
+    $.cookie("client", xhr.getResponseHeader('client'));
+    $.cookie("expiry", xhr.getResponseHeader('expiry'));
+    $.cookie("token-type", xhr.getResponseHeader('token-type'));
+    $.cookie("uid", xhr.getResponseHeader('uid'));
+  }
+  function RemoveCookies() {
+    $.removeCookie("access-token");
+    $.removeCookie("client");
+    $.removeCookie("expiry");
+    $.removeCookie("token-type");
+    $.removeCookie("uid");
   }
 
   function setAutorization() {

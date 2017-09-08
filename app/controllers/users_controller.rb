@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   respond_to :json
 
   def index
-    @users = User.joins(:country).collect { |user| user.country.attributes.merge(user.attributes).merge({hobbies_attributes: user.user_hobbies}) }
+    @users = User.joins(:country).order(:id).collect { |user| user.country.attributes.merge(user.attributes).merge({hobbies_attributes: user.user_hobbies}) }
     render json: @users
   end
 
@@ -20,6 +20,8 @@ class UsersController < ApplicationController
     # byebug
     if @user.save
       render json: @user, status: :created
+    else
+      render status: :unprocessable_entity
     end
   end
 

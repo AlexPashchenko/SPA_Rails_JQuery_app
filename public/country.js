@@ -38,11 +38,7 @@ $(document).ready(function() {
         title: country.Title
       },
       beforeSend : function(xhr) {
-        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
-        xhr.setRequestHeader('client', $.cookie("client")),
-        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
-        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
-        xhr.setRequestHeader ('uid', $.cookie("uid"));
+        setHeader(xhr);
       },
       success:function(result) {
         alert("Country Created");
@@ -64,11 +60,7 @@ $(document).ready(function() {
       url: "/countries/"+ liId,
       type: 'DELETE',
       beforeSend : function(xhr) {
-        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
-        xhr.setRequestHeader('client', $.cookie("client")),
-        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
-        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
-        xhr.setRequestHeader ('uid', $.cookie("uid"));
+        setHeader(xhr);
       },
       success: function() {
         $("#countries_list li").eq(liIndex).remove();
@@ -93,11 +85,7 @@ $(document).ready(function() {
         title: country.Title
       },
       beforeSend : function(xhr) {
-        xhr.setRequestHeader ('access-token', $.cookie("access-token")),
-        xhr.setRequestHeader('client', $.cookie("client")),
-        xhr.setRequestHeader ('expiry',$.cookie("expiry")),
-        xhr.setRequestHeader ('token-type',$.cookie("token-type")),
-        xhr.setRequestHeader ('uid', $.cookie("uid"));
+        setHeader(xhr);
       },
       success: function(result) {
         $("#countries_list li:eq("+liIndex+")").html( result.title);
@@ -156,5 +144,13 @@ $(document).ready(function() {
     country = {
       Title: $('#country_title').val()
     };
+  }
+
+  function setHeader(xhr) {
+    xhr.setRequestHeader ('access-token', $.cookie("access-token")),
+    xhr.setRequestHeader('client', $.cookie("client")),
+    xhr.setRequestHeader ('expiry',$.cookie("expiry")),
+    xhr.setRequestHeader ('token-type',$.cookie("token-type")),
+    xhr.setRequestHeader ('uid', $.cookie("uid"));
   }
 });

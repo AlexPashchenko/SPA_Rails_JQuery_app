@@ -13,7 +13,6 @@
 #
 
 class User < ApplicationRecord
-  # Include default devise modules.
   extend Enumerize
 
   has_and_belongs_to_many :hobbies,  join_table: "users_hobbies"
@@ -24,8 +23,8 @@ class User < ApplicationRecord
   validates_numericality_of :age,  only_integer: true
   enumerize :gender, in: [:male, :female]
 
-  delegate :country_name, to: :country
-  attr_accessor :country_name
+  # delegate :country_name, to: :country
+  # attr_accessor :country_name
 
   def user_hobbies
     hobby_titles=[]
