@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # before_action :authenticate_admin!, only:[:destroy]
+  before_action :authenticate_admin!, except:[:index]
   before_action :set_user, only: [:show , :update, :destroy]
   respond_to :json
 
@@ -23,6 +23,11 @@ class UsersController < ApplicationController
     else
       render status: :unprocessable_entity
     end
+  end
+
+  def update_order
+      @users = User.all
+      @users.save
   end
 
   # PATCH/PUT /users/1

@@ -20,6 +20,16 @@ $(document).ready(function() {
     }
   });
 
+  $("#dialog").dialog({
+    autoOpen: false,
+    closeText: "",
+    resizable: false,
+    modal: true,
+    close: function() {
+      $("#dialog").dialog( "close" );
+    }
+  })
+
   $("#hobby_create").dialog( {
     autoOpen: false,
     closeText: "",
@@ -32,11 +42,29 @@ $(document).ready(function() {
     }
   });
 
+  $("#hobbies_list").on("click", 'button', function(event) {
+    liId = $(this).parent().attr('id');
+    liIndex = $(this).index();
+    $.ajax({
+      url: "/hobbies/"+ liId,
+      type: 'GET',
+      success: function (result) {
+        $("#dialog").dialog( "open" );
+        $("#dialog").html('Hobby name:  '+ result.title + "<br> ID: " +result.id);
+      },
+      error:function() {
+        alert("Can't show this hobby");
+      },
+      dataType: 'json'
+    });
+    event.stopPropagation();
+  });
+
   $("#hobbies_list").on("click", 'li',function() {
     liId = $(this).attr('id');
     liIndex = $(this).index();
     $("#hobby_form").dialog( "open" );
-    $('#hobby_title').val(this.innerHTML);
+    $('#hobby_title').val($(this).text());
   });
 
 
@@ -79,7 +107,9 @@ $(document).ready(function() {
            +">&nbsp<span id =name" + c.id+">"
            + c.title + "</span></label>" );
            interestsArr.push(c.title);
-           $('#hobbies_list').append("<li id =" + c.id + ">" + c.title + "</li>");
+           $('#hobbies_list').append("<li id =" + c.id + ">" + c.title
+            + "<button type=\"button\" class=\"info_btn\">"
+            + "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span></button></li>");
         });
       },
       error:function(result) {
@@ -110,7 +140,9 @@ $(document).ready(function() {
          + " id =" + output.id
          +">&nbsp<span id =name" + output.id+">"
          + output.title + "</span></label>" );
-        $("#hobbies_list").append("<li id =" + output.id + ">" + output.title + "</li>");
+        $("#hobbies_list").append("<li id =" + output.id + ">" + output.title
+         + "<button type=\"button\" class=\"info_btn\">"
+         + "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span></button></li>");
       },
       error:function() {
         alert("error");

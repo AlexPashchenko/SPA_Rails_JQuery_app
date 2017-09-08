@@ -113,7 +113,9 @@ $(document).ready(function() {
       url: "/admins",
       success:function(data) {
         data.map(function(c) {
-          $('#admins_list').append("<li id =" + c.id + ">" + c.email + "</li>");
+          $('#admins_list').append("<li id =" + c.id + ">" + c.email
+           + "<button type=\"button\" class=\"info_btn\">"
+           + "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span></button></li>");
         })
       },
       error:function() {
@@ -141,7 +143,9 @@ $(document).ready(function() {
       },
       success:function(result) {
         alert("Admin Created");
-        $("#admins_list").append("<li id =" +result.id +" class =admins"+result.id+">" + result.email + "</li>")
+        $("#admins_list").append("<li id =" +result.id +" class =admins"+result.id+">" + result.email
+         + "<button type=\"button\" class=\"info_btn\">"
+         + "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span></button></li>");
       },
       error:function() {
         alert("error");
@@ -153,11 +157,29 @@ $(document).ready(function() {
     return false;
   });
 
+  $("#admins_list").on("click", 'button', function(event) {
+    liId = $(this).parent().attr('id');
+    liIndex = $(this).index();
+    $.ajax({
+      url: "/admins/"+ liId,
+      type: 'GET',
+      success: function (result) {
+        $("#dialog").dialog( "open" );
+        $("#dialog").html('Admin email:  '+ result.email + "<br> ID: " +result.id);
+      },
+      error:function() {
+        alert("Can't show this admin");
+      },
+      dataType: 'json'
+    });
+    event.stopPropagation();
+  });
+
   $("#admins_list").on("click", 'li', function() {
     liId = $(this).attr('id');
     liIndex = $(this).index();
     $("#admin_form").dialog( "open" );
-    $('#admin_email').val(this.innerHTML);
+    $('#admin_email').val($(this).text());
   });
 
   $('#admin_delete').on('click', function() {

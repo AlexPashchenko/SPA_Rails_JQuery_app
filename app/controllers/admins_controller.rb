@@ -1,10 +1,14 @@
 class AdminsController < ApplicationController
   before_action :authenticate_admin!, only:[:create, :update, :destroy]
-  before_action :get_admin, except:[:index, :create]
+  before_action :get_admin, only: [:show , :update, :destroy]
 
   def index
     @admins = Admin.all.order(:id)
     render json: @admins
+  end
+
+  def show
+      render json: @admin
   end
 
   def create
@@ -27,10 +31,10 @@ class AdminsController < ApplicationController
   end
 
   def destroy
-    if @admin.destroy
+    if @admin != @current_admin && @admin.destroy
       head :no_content
     else
-      render status: :unprocessable_entity
+      render status: :unprocessable_entity, message: "Can't delete this admin"
     end
   end
 

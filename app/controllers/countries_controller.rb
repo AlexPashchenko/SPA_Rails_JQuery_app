@@ -1,6 +1,6 @@
 class CountriesController < ApplicationController
   # include DeviseTokenAuth::Concerns::SetUserByToken
-  before_action :set_country, only: [:show, :update, :destroy]
+  before_action :set_country, only: [:show , :update, :destroy]
   before_action :authenticate_admin!, only:[:create, :update, :destroy]
   respond_to :json
 
@@ -9,6 +9,9 @@ class CountriesController < ApplicationController
     render json: @countries
   end
 
+  def show
+    render json: @country
+  end
 
   def create
     @country = Country.new(country_params)

@@ -10,9 +10,7 @@ body {
   border: none;
   font-size:18px;
   color: #6CDA97;
-
 }
-
 
 #tabs-min .ui-widget-header {
     background: transparent;
@@ -101,7 +99,7 @@ h3, .pagin {
   background-color: #ddd;
 }
 .add_buttn {
-  width: 12em;
+  width: 14em;
   border-bottom: 1px solid #64de7e;
   margin: 0;
   display: block;
@@ -113,16 +111,27 @@ h3, .pagin {
   text-decoration: none;
 }
 
+.info_btn {
+  background-color: #5cb85c;
+  color: #fff;
+  border: none;
+  border-radius: 100%;
+}
+.info_btn:hover {
+  background-color: #3ADFA4;
+  color: #fff;
+}
 
 #list {
- width: 12em;
+ width: 14em;
  margin-bottom: 1em;
  font-family: 'Trebuchet MS', 'Lucida Grande',
    Verdana, Lucida, Geneva, Helvetica,
    Arial, sans-serif;
  background-color: #94DE90;
  color: #333;
- }
+ text-align: center;
+}
 
  #list ul {
    list-style: none;

@@ -1,7 +1,7 @@
 class HobbiesController < ApplicationController
   # include DeviseTokenAuth::Concerns::SetUserByToken
-  before_action :authenticate_admin!, only:[:create, :update, :destroy]
-  before_action :set_hobby, only: [:show, :update, :destroy]
+  before_action :authenticate_admin!, except:[:index, :show]
+  before_action :set_hobby, only: [:show , :update, :destroy]
   respond_to :json
 
   def index
@@ -9,6 +9,9 @@ class HobbiesController < ApplicationController
     render json: @hobbies
   end
 
+  def show
+    render json: @hobby
+  end
 
   def create
     @hobby = Hobby.new(hobby_params)
