@@ -3,10 +3,8 @@ $(document).ready(function() {
     var interestsArr = [];
     var user;
     var maxId;
-    var IdArray = [];
     var table = document.getElementById('table');
     var tableUsers = new Array();
-    sortedTab = [];
     tableUsers = JSON.parse(localStorage.getItem("users"));
     if (tableUsers === null) {
       tableUsers =[];
@@ -105,40 +103,27 @@ $(document).ready(function() {
               }).get(),
               country_id: $("#country").children(":selected").attr("id")
             },
+            beforeSend :  function(xhr) {
+              setHeader(xhr);
+            },
             success: function (result) {
               maxId = result.id;
               addrow();
+              tableUsers.unshift(user);
             },
             error:function(result) {
               alert("error");
             },
             dataType: 'json'
         });
-        tableUsers.unshift(user);
         localStorage.setItem('users', JSON.stringify(tableUsers));
         $('#frm')[0].reset();
         return false;
       }
     });
 
-      //save sorted array
-    function saveSort() {
-      sortedTab = [];
-      for ( var i = 1; i < table.rows.length; i++ ) {
-       sortedTab.push({
-         Id: table.rows[i].cells[0].innerHTML,
-         FirstName: table.rows[i].cells[1].innerHTML,
-         LastName: table.rows[i].cells[2].innerHTML,
-         Age: table.rows[i].cells[3].innerHTML,
-         Gender: table.rows[i].cells[4].innerHTML,
-         Interests: table.rows[i].cells[5].innerHTML,
-         Country: table.rows[i].cells[6].innerHTML
-       });
-      }
-    }
-
     // sortable function
-   $('#table').sortable( {
+    $('#table').sortable( {
       nested: true,
       containerPath: "td",
       containerSelector: '.table',
@@ -147,10 +132,28 @@ $(document).ready(function() {
       itemSelector: 'tr',
       placeholder: '',
       revert: true,
-      update: function() {
-        localStorage.setItem("users", JSON.stringify(sortedTab));
+      stop: function() {
+        $.map($(this).find('tbody tr'), function(element){
+          var itemID = element.cells[0].innerHTML;
+          var itemIndex = $(element).parent('tbody').index();
+          $.ajax({
+            url: "/users/" + itemID,
+            type: 'PUT',
+            data: {
+              order_num: itemIndex
+            },
+            beforeSend :  function(xhr) {
+              setHeader(xhr);
+            },
+            error:function(result) {
+            alert("error");
+            },
+            dataType: 'json'
+          });
+        });
       }
     });
+
 
       //Selecting row
 
@@ -158,22 +161,28 @@ $(document).ready(function() {
     $('#btndelete').click(function() {
       if(typeof rIndex == 'undefined') {
         alert("Select row for deleting");
+        return false
       } else {
-          $.ajax({
-            url: "/users/"+ table.rows[rIndex].cells[0].innerHTML,
-            type: 'DELETE',
-            success: function(result) {
-              if (!result){
-              table.rows[rIndex].remove();
-              tableUsers.splice(rIndex-1, 1);
-              localStorage.setItem("users", JSON.stringify(tableUsers))
-            }
-            },
-            error:function(result) {
-              alert("error");
-            },
-            dataType: 'json'
+        console.log(rIndex)
+        $.ajax({
+          url: "/users/"+ table.rows[rIndex].cells[0].innerHTML,
+          type: 'DELETE',
+          async:false,
+          beforeSend :  function(xhr) {
+            setHeader(xhr);
+          },
+          success: function() {
+            table.rows[rIndex].remove();
+            tableUsers.splice(rIndex-1, 1);
+          },
+          error:function(result) {
+            alert("error");
+          },
+          dataType: 'json'
           });
+          // tableUsers.splice(rIndex-1, 1);
+          localStorage.setItem("users", JSON.stringify(tableUsers))
+          // table.rows[rIndex].remove();
           $('#frm')[0].reset();
           rIndex = undefined;
         }
@@ -208,7 +217,6 @@ $(document).ready(function() {
      if(typeof rIndex == 'undefined') {
       alert("Select row for editing");
      } else if (validateForm()=== true) {
-        editSelectedRow();
         editArrayItem();
         $.ajax({
             type: "PUT",
@@ -223,8 +231,12 @@ $(document).ready(function() {
               }).get(),
               country_id: $("#country").children(":selected").attr("id")
             },
-              success:function(result) {
-                alert("Updated");
+            beforeSend :  function(xhr) {
+              setHeader(xhr);
+            },
+            success:function(result) {
+              editSelectedRow();
+              alert("Updated");
             },
             error:function(result) {
               alert("error");
@@ -265,4 +277,12 @@ $(document).ready(function() {
        }
      });
     };
+
+    function setHeader(xhr) {
+      xhr.setRequestHeader ('access-token', $.cookie("access-token")),
+      xhr.setRequestHeader('client', $.cookie("client")),
+      xhr.setRequestHeader ('expiry',$.cookie("expiry")),
+      xhr.setRequestHeader ('token-type',$.cookie("token-type")),
+      xhr.setRequestHeader ('uid', $.cookie("uid"));
+    }
 });

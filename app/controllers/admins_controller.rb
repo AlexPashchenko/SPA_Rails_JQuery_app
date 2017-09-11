@@ -8,7 +8,7 @@ class AdminsController < ApplicationController
   end
 
   def show
-      render json: @admin
+    render json: @admin
   end
 
   def create
@@ -45,8 +45,6 @@ class AdminsController < ApplicationController
       @admin = Admin.find(params[:id])
     end
 
-
-    # Never trust parameters from the scary internet, only allow the white list through.
     def admin_params
       params.permit(:id, :email, :password, :current_password, :password_confirmation, :tokens)
     end

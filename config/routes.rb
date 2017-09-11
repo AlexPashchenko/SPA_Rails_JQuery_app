@@ -5,11 +5,10 @@ Rails.application.routes.draw do
   defaults: { format: :json }
 
   get '/index', :to => redirect('/index.html')
-
-# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
+  put '/users', to: 'users#sorting'
   resources :countries, except: [:edit, :new]
   resources :users, except: [:edit, :new]
   resources :hobbies, except: [:edit, :new]
   resources :admins, except: [:edit, :new]
+
 end

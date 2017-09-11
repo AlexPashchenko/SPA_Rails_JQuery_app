@@ -5,9 +5,11 @@ $(document).ready(function() {
   var liId;
   var liIndex;
 
+
   $(function() {
     getHobbies();
   });
+
 
   $("#hobby_form").dialog( {
     autoOpen: false,
@@ -20,15 +22,16 @@ $(document).ready(function() {
     }
   });
 
+
   $("#dialog").dialog({
     autoOpen: false,
     closeText: "",
     resizable: false,
     modal: true,
     close: function() {
-      $("#dialog").dialog( "close" );
+      $("#dialog").dialog( "close" )
     }
-  })
+  });
 
   $("#hobby_create").dialog( {
     autoOpen: false,
@@ -66,8 +69,6 @@ $(document).ready(function() {
     $("#hobby_form").dialog( "open" );
     $('#hobby_title').val($(this).text());
   });
-
-
   $(document).on('click','tr', function() {
     for(var i = 1; i < table.rows.length; i++) {
       table.rows[i].onclick = function() {
@@ -81,20 +82,20 @@ $(document).ready(function() {
         if(this.cells[4].innerText == 'male') {
           $("#maleGender").prop("checked", true)
         } else {
-            $("#femaleGender").prop("checked", true)
+           $("#femaleGender").prop("checked", true)
           }
-        let checkboxValues = this.cells[5].innerText.split(',');
-        for(interest of interestsArr) {
-          for(item of checkboxValues) {
-            if(interest == item) {
-              $('input[value='+ item+']').prop('checked', true);
+          let checkboxValues = this.cells[5].innerText.split(',');
+          for(interest of interestsArr) {
+            for(item of checkboxValues) {
+              if(interest == item) {
+                $('input[value='+ item+']').prop('checked', true);
+              }
             }
           }
-        }
-        $("#country").val(this.cells[6].innerHTML);
-      };
-    }
-  });
+          $("#country").val(this.cells[6].innerHTML);
+        };
+      }
+    });
 
   function getHobbies() {
     $.ajax({
@@ -107,8 +108,8 @@ $(document).ready(function() {
            +">&nbsp<span id =name" + c.id+">"
            + c.title + "</span></label>" );
            interestsArr.push(c.title);
-           $('#hobbies_list').append("<li id =" + c.id + ">" + c.title
-            + "<button type=\"button\" class=\"info_btn\">"
+           $('#hobbies_list').append("<li id =" + c.id + "><span>" + c.title
+            + "</span><button type=\"button\" class=\"info_btn\">"
             + "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span></button></li>");
         });
       },
@@ -140,8 +141,8 @@ $(document).ready(function() {
          + " id =" + output.id
          +">&nbsp<span id =name" + output.id+">"
          + output.title + "</span></label>" );
-        $("#hobbies_list").append("<li id =" + output.id + ">" + output.title
-         + "<button type=\"button\" class=\"info_btn\">"
+        $("#hobbies_list").append("<li id =" + output.id + "><span>" + output.title
+         + "</span><button type=\"button\" class=\"info_btn\">"
          + "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span></button></li>");
       },
       error:function() {
@@ -188,7 +189,7 @@ $(document).ready(function() {
         setHeader(xhr)
       },
       success: function(result) {
-        $("#hobbies_list li:eq("+liIndex+")").html( result.title);
+        $("#hobbies_list li:eq("+liIndex+") > span").html(result.title);
         $("#name" + result.id).html(result.title);
       },
       error:function() {

@@ -22,10 +22,6 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :age, :country_id, :gender, presence: true
   validates_numericality_of :age,  only_integer: true
   enumerize :gender, in: [:male, :female]
-
-  # delegate :country_name, to: :country
-  # attr_accessor :country_name
-
   def user_hobbies
     hobby_titles=[]
     self.hobbies.map  do |hobby|
@@ -33,4 +29,5 @@ class User < ApplicationRecord
     end
     hobby_titles
   end
+
 end

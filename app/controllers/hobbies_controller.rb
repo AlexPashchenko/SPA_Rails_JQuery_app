@@ -1,5 +1,4 @@
 class HobbiesController < ApplicationController
-  # include DeviseTokenAuth::Concerns::SetUserByToken
   before_action :authenticate_admin!, except:[:index, :show]
   before_action :set_hobby, only: [:show , :update, :destroy]
   respond_to :json
@@ -15,11 +14,10 @@ class HobbiesController < ApplicationController
 
   def create
     @hobby = Hobby.new(hobby_params)
-
     if @hobby.save
-     render json: @hobby, status: :created
+      render json: @hobby, status: :created
     else
-     render status: :unprocessable_entity
+      render status: :unprocessable_entity
     end
   end
 
@@ -38,12 +36,11 @@ class HobbiesController < ApplicationController
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_hobby
       @hobby = Hobby.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def hobby_params
       params.permit(:title)
     end
