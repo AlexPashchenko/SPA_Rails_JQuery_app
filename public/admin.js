@@ -71,6 +71,7 @@ $(document).ready(function() {
     $.ajax({
       type: "POST",
       url: "/auth/sign_in",
+      dataType: 'json',
       data: {
         email: admin.Email,
         password: admin.Password
@@ -81,9 +82,8 @@ $(document).ready(function() {
         $('#signbtn').hide();
       },
       error:function() {
-        alert("error");
-      },
-      dataType: 'json'
+        alert("Invalid data");
+      }
     });
     $('#loginform')[0].reset();
     $("#loginform").dialog( "close" );
@@ -95,6 +95,7 @@ $(document).ready(function() {
     $.ajax({
       type: "DELETE",
       url: "/auth/sign_out",
+      dataType: 'json',
       beforeSend : function(xhr) {
         setHeader(xhr);
       },
@@ -103,8 +104,7 @@ $(document).ready(function() {
         alert("You are signed_out");
         $('#signout').hide();
         $('#signbtn').show();
-      },
-      dataType: 'json'
+      }
     });
     return false;
   });
@@ -114,6 +114,7 @@ $(document).ready(function() {
     $.ajax({
       type: "GET",
       url: "/admins",
+      dataType: 'json',
       success:function(data) {
         data.map(function(c) {
           $('#admins_list').append("<li id =" + c.id + "><span>" + c.email
@@ -123,8 +124,7 @@ $(document).ready(function() {
       },
       error:function() {
         alert("error reading admins");
-      },
-      dataType: 'json'
+      }
     });
   }
 
@@ -139,6 +139,7 @@ $(document).ready(function() {
     $.ajax({
       type: "POST",
       url: "/admins",
+      dataType: 'json',
       data: {
         email: admin.Email,
         password: admin.Password
@@ -153,9 +154,8 @@ $(document).ready(function() {
          + "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span></button></li>");
       },
       error:function() {
-        alert("error");
-      },
-      dataType: 'json'
+        alert("Invalid data or unauthorized");
+      }
     });
     $('#admin_create')[0].reset();
     $("#admin_create").dialog( "close" );
@@ -169,14 +169,14 @@ $(document).ready(function() {
     $.ajax({
       url: "/admins/"+ liId,
       type: 'GET',
+      dataType: 'json',
       success: function (result) {
         $("#dialog").dialog( "open" );
         $("#dialog").html('Admin email:  '+ result.email + "<br> ID: " +result.id);
       },
       error:function() {
         alert("Can't show this admin");
-      },
-      dataType: 'json'
+      }
     });
     event.stopPropagation();
   });
@@ -194,6 +194,7 @@ $(document).ready(function() {
     $.ajax({
       url: "/admins/"+ liId,
       type: 'DELETE',
+      dataType: 'json',
       beforeSend :  function(xhr) {
         setHeader(xhr);
       },
@@ -201,9 +202,8 @@ $(document).ready(function() {
         $("#admins_list li").eq(liIndex).remove();
       },
       error:function() {
-        alert("Can\'t delete last admin");
-      },
-      dataType: 'json'
+        alert("Can\'t delete last admin or unauthorized");
+      }
     });
     $('#admin_form')[0].reset();
     $("#admin_form").dialog( "close" );
@@ -216,7 +216,8 @@ $(document).ready(function() {
     setAdmin();
     $.ajax({
       type: "PUT",
-      url: "/admins/"+ liId,
+      url: "/admins/"+ liId
+      dataType: 'json',
       beforeSend : function(xhr) {
         setHeader(xhr);
       },
@@ -229,9 +230,8 @@ $(document).ready(function() {
         $("#admins_list li:eq("+liIndex+") > span").html(result.email);
       },
       error:function(result) {
-        alert("error");
-      },
-      dataType: 'json'
+        alert("Invalid data or unauthorized");
+      }
     });
     $('#admin_form')[0].reset();
     $("#admin_form").dialog( "close" );

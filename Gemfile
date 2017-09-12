@@ -35,6 +35,10 @@ group :development, :test do
   gem 'byebug', platform: :mri
 end
 
+group :test do
+  gem 'annotate'
+end
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
@@ -50,7 +54,6 @@ gem 'rubocop', require: false
 gem 'validates_email_format_of'
 gem 'enumerize'
 gem 'devise', '~> 4.1', '>= 4.1.1'
-gem 'annotate'
 gem 'omniauth'
 gem 'devise_token_auth'
 gem 'rack-cors', :require => 'rack/cors'

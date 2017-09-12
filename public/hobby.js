@@ -51,14 +51,14 @@ $(document).ready(function() {
     $.ajax({
       url: "/hobbies/"+ liId,
       type: 'GET',
+      dataType: 'json',
       success: function (result) {
         $("#dialog").dialog( "open" );
         $("#dialog").html('Hobby name:  '+ result.title + "<br> ID: " +result.id);
       },
       error:function() {
         alert("Can't show this hobby");
-      },
-      dataType: 'json'
+      }
     });
     event.stopPropagation();
   });
@@ -101,22 +101,22 @@ $(document).ready(function() {
     $.ajax({
       type: "GET",
       url: "/hobbies",
+      dataType: 'json',
       success:function(data) {
-        data.map(function(c) {
-          $('#checkboxes').append("<label id =hobby" + c.id+"><input type = \"checkbox\" name =\"inter\" value = " + c.title
-           + " id =" + c.id
-           +">&nbsp<span id =name" + c.id+">"
-           + c.title + "</span></label>" );
-           interestsArr.push(c.title);
-           $('#hobbies_list').append("<li id =" + c.id + "><span>" + c.title
+        data.map(function(result) {
+          $('#checkboxes').append("<label id =hobby" + result.id+"><input type = \"checkbox\" name =\"inter\" value = " + result.title
+           + " id =" + result.id
+           +">&nbsp<span id =name" + result.id+">"
+           + result.title + "</span></label>" );
+           interestsArr.push(result.title);
+           $('#hobbies_list').append("<li id =" + result.id + "><span>" + result.title
             + "</span><button type=\"button\" class=\"info_btn\">"
             + "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span></button></li>");
         });
       },
-      error:function(result) {
+      error:function() {
         alert("Can't reading hobbies  from DB");
-      },
-      dataType: 'json'
+      }
     });
   }
 
@@ -129,6 +129,7 @@ $(document).ready(function() {
     $.ajax({
       type: "POST",
       url: "/hobbies",
+      dataType: 'json',
       beforeSend : function(xhr) {
         setHeader(xhr)
       },
@@ -146,9 +147,8 @@ $(document).ready(function() {
          + "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span></button></li>");
       },
       error:function() {
-        alert("error");
-      },
-      dataType: 'json'
+        alert("Invalid data or unauthorized");
+      }
     });
     $('#hobby_create')[0].reset();
     $("#hobby_create").dialog( "close" );
@@ -159,6 +159,7 @@ $(document).ready(function() {
     $.ajax({
       url: "/hobbies/"+ liId,
       type: 'DELETE',
+      dataType: 'json',
       beforeSend : function(xhr) {
         setHeader(xhr)
       },
@@ -168,9 +169,8 @@ $(document).ready(function() {
 
       },
       error:function() {
-        alert("error");
-      },
-      dataType: 'json'
+        alert("Unauthorized");
+      }
     });
     $('#hobby_form')[0].reset();
     $("#hobby_form").dialog( "close" );
@@ -182,6 +182,7 @@ $(document).ready(function() {
     $.ajax({
       type: "PUT",
       url: "/hobbies/"+ liId,
+      dataType: 'json',
       data: {
         title: hobby.Title
       },
@@ -193,9 +194,8 @@ $(document).ready(function() {
         $("#name" + result.id).html(result.title);
       },
       error:function() {
-        alert("error");
-      },
-      dataType: 'json'
+        alert("Invalid data or unauthorized");
+      }
     });
     $('#hobby_form')[0].reset();
     $("#hobby_form").dialog( "close" );

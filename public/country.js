@@ -14,6 +14,7 @@ $(document).ready(function() {
     $.ajax ({
       type: "GET",
       url: "/countries",
+      dataType: 'json',
       success:function(data) {
         data.map(function(c) {
           $('#country').append("<option id=" + c.id +" class=country"+c.id+">" + c.title + "</option>");
@@ -24,8 +25,7 @@ $(document).ready(function() {
       },
       error:function(result) {
         alert("error reading countries");
-      },
-      dataType: 'json'
+      }
     });
   }
 
@@ -40,6 +40,7 @@ $(document).ready(function() {
     $.ajax({
       type: "POST",
       url: "/countries",
+      dataType: 'json',
       data: {
         title: country.Title
       },
@@ -53,9 +54,8 @@ $(document).ready(function() {
          + result.title+"</span><button type=\"button\" class=\"info_btn\">"
          + "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span></button></li>")},
       error:function(result) {
-        alert("error");
-      },
-      dataType: 'json'
+        alert("Invalid data or unauthorized");
+      }
     });
     $('#country_create')[0].reset();
     $("#country_create").dialog( "close" );
@@ -68,6 +68,7 @@ $(document).ready(function() {
       url: "/countries/"+ liId,
       type: 'DELETE',
       async:false,
+      dataType: 'json',
       beforeSend : function(xhr) {
         setHeader(xhr);
       },
@@ -77,9 +78,8 @@ $(document).ready(function() {
         $(".country"+liId).remove();
       },
       error:function(result) {
-        alert("error");
-      },
-      dataType: 'json'
+        alert("Unauthorized");
+      }
     });
     $('#country_form')[0].reset();
     $("#country_form").dialog( "close" );
@@ -92,6 +92,7 @@ $(document).ready(function() {
     $.ajax({
       type: "PUT",
       url: "/countries/"+ liId,
+      dataType: 'json',
       data: {
         title: country.Title
       },
@@ -103,9 +104,8 @@ $(document).ready(function() {
         $(".country"+result.id).html( result.title);
       },
       error:function(result) {
-        alert("error");
-      },
-      dataType: 'json'
+        alert("Invalid data or unauthorized");
+      }
     });
     $('#country_form')[0].reset();
     $("#country_form").dialog( "close" );
@@ -147,14 +147,14 @@ $(document).ready(function() {
     $.ajax({
       url: "/countries/"+ liId,
       type: 'GET',
+      dataType: 'json',
       success: function (result) {
         $("#dialog").dialog( "open" );
         $("#dialog").html('Country name:  '+ result.title + "<br> ID: " +result.id);
       },
       error:function() {
         alert("Can't show this country");
-      },
-      dataType: 'json'
+      }
     });
     event.stopPropagation();
   });

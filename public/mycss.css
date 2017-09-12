@@ -155,7 +155,7 @@ h3, .pagin {
   width: 100%;
   }
 
-  html>body #list li {
+  body #list li {
   width: auto;
   }
 

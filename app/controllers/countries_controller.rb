@@ -4,7 +4,7 @@ class CountriesController < ApplicationController
   respond_to :json
 
   def index
-    @countries = Country.all.order(:id)
+    @countries = Country.order(:id)
     render json: @countries
   end
 
@@ -33,7 +33,6 @@ class CountriesController < ApplicationController
     @country.destroy
     head :no_content
   end
-
 
   private
 

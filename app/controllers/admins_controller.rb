@@ -3,7 +3,7 @@ class AdminsController < ApplicationController
   before_action :get_admin, only: [:show , :update, :destroy]
 
   def index
-    @admins = Admin.all.order(:id)
+    @admins = Admin.order(:id)
     render json: @admins
   end
 
@@ -37,7 +37,6 @@ class AdminsController < ApplicationController
       render status: :unprocessable_entity, message: "Can't delete this admin"
     end
   end
-
 
   private
 

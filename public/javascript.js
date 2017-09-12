@@ -23,25 +23,25 @@ $(document).ready(function() {
       $.ajax({
         type: "GET",
         url: "/users",
+        dataType: 'json',
         success:function(data) {
-          data.map(function(c) {
+          data.map(function(result) {
             var eachrow = "<tbody><tr>"
-                     + "<td>" + c.id + "</td>"
-                     + "<td>" + c.first_name + "</td>"
-                     + "<td>" + c.last_name + "</td>"
-                     + "<td>" + c.age + "</td>"
-                     + "<td>" + c.gender + "</td>"
-                     + "<td>" + c.hobbies_attributes + "</td>"
-                     + "<td>" + c.title + "</td>"
+                     + "<td>" + result.id + "</td>"
+                     + "<td>" + result.first_name + "</td>"
+                     + "<td>" + result.last_name + "</td>"
+                     + "<td>" + result.age + "</td>"
+                     + "<td>" + result.gender + "</td>"
+                     + "<td>" + result.hobbies_attributes + "</td>"
+                     + "<td>" + result.title + "</td>"
                      + "</tr></tbody>";
             $('#table').prepend(eachrow);
           });
           Pagination();
         },
-        error:function(result) {
+        error:function() {
           alert("error reading users");
-        },
-        dataType: 'json',
+        }
       });
     }
 
@@ -93,6 +93,7 @@ $(document).ready(function() {
         $.ajax( {
             type: "POST",
             url: "/users",
+            dataType: 'json',
             data: {
               first_name: user.FirstName,
               last_name: user.LastName,
@@ -111,10 +112,9 @@ $(document).ready(function() {
               addrow();
               tableUsers.unshift(user);
             },
-            error:function(result) {
-              alert("error");
-            },
-            dataType: 'json'
+            error:function() {
+              alert("Invalid data or unauthorized");
+            }
         });
         localStorage.setItem('users', JSON.stringify(tableUsers));
         $('#frm')[0].reset();
@@ -139,23 +139,20 @@ $(document).ready(function() {
           $.ajax({
             url: "/users/" + itemID,
             type: 'PUT',
+            dataType: 'json',
             data: {
               order_num: itemIndex
             },
             beforeSend :  function(xhr) {
               setHeader(xhr);
             },
-            error:function(result) {
+            error:function() {
             alert("error");
-            },
-            dataType: 'json'
+            }
           });
         });
       }
     });
-
-
-      //Selecting row
 
         //deleting function
     $('#btndelete').click(function() {
@@ -163,10 +160,10 @@ $(document).ready(function() {
         alert("Select row for deleting");
         return false
       } else {
-        console.log(rIndex)
         $.ajax({
           url: "/users/"+ table.rows[rIndex].cells[0].innerHTML,
           type: 'DELETE',
+          dataType: 'json',
           async:false,
           beforeSend :  function(xhr) {
             setHeader(xhr);
@@ -175,10 +172,9 @@ $(document).ready(function() {
             table.rows[rIndex].remove();
             tableUsers.splice(rIndex-1, 1);
           },
-          error:function(result) {
-            alert("error");
-          },
-          dataType: 'json'
+          error:function() {
+            alert("Unauthorized");
+          }
           });
           // tableUsers.splice(rIndex-1, 1);
           localStorage.setItem("users", JSON.stringify(tableUsers))
@@ -221,6 +217,7 @@ $(document).ready(function() {
         $.ajax({
             type: "PUT",
             url: "/users/"+ table.rows[rIndex].cells[0].innerHTML,
+            dataType: 'json',
             data: {
               first_name: user.FirstName,
               last_name: user.LastName,
@@ -234,14 +231,12 @@ $(document).ready(function() {
             beforeSend :  function(xhr) {
               setHeader(xhr);
             },
-            success:function(result) {
+            success:function() {
               editSelectedRow();
-              alert("Updated");
             },
-            error:function(result) {
-              alert("error");
-            },
-            dataType: 'json'
+            error:function() {
+              alert("Invalid data or unauthorized");
+            }
         });
         $('#frm')[0].reset();
         rIndex = undefined;

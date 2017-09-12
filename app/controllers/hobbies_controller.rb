@@ -4,7 +4,7 @@ class HobbiesController < ApplicationController
   respond_to :json
 
   def index
-    @hobbies = Hobby.all.order(:id)
+    @hobbies = Hobby.order(:id)
     render json: @hobbies
   end
 
@@ -33,7 +33,6 @@ class HobbiesController < ApplicationController
     @hobby.destroy
     head :no_content
   end
-
 
   private
 
