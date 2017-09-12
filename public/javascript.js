@@ -4,29 +4,46 @@ $(document).ready(function() {
     var user;
     var maxId;
     var table = document.getElementById('table');
-    var tableUsers = new Array();
-    tableUsers = JSON.parse(localStorage.getItem("users"));
-    if (tableUsers === null) {
-      tableUsers =[];
-    }
-    var id = localStorage.getItem("id");
-    if (id === null) {
-      id = 1;
-    }
 
     $(function() {
       $("#tabs-min").tabs();
       getUsers();
     });
 
+    $('#users_tab').on('click', function(){
+      getUsers();
+    });
+
+    $("#btncreate").on("click", function() {
+      $("#frm").dialog( "open" );
+      $("#btnupdate").hide();
+      $("#btnsave").show();
+    });
+
+    $("#frm").dialog( {
+      autoOpen: false,
+      closeText: "",
+      title: "Create new user",
+      resizable: false,
+      modal: true,
+      close: function() {
+        $("#frm")[0].reset();
+        $("#frm").dialog( "close" )
+      }
+    });
+
     function getUsers() {
+      $('#table tbody').remove();
       $.ajax({
         type: "GET",
         url: "/users",
         dataType: 'json',
+        beforeSend :  function(xhr) {
+          setHeader(xhr);
+        },
         success:function(data) {
           data.map(function(result) {
-            var eachrow = "<tbody><tr>"
+            var eachrow = "<tbody id="+result.id +"><tr>"
                      + "<td>" + result.id + "</td>"
                      + "<td>" + result.first_name + "</td>"
                      + "<td>" + result.last_name + "</td>"
@@ -34,10 +51,10 @@ $(document).ready(function() {
                      + "<td>" + result.gender + "</td>"
                      + "<td>" + result.hobbies_attributes + "</td>"
                      + "<td>" + result.title + "</td>"
+                     + "<td><a class=editing>Edit</a>   <a class=deleting>Delete</a></td>"
                      + "</tr></tbody>";
             $('#table').prepend(eachrow);
           });
-          Pagination();
         },
         error:function() {
           alert("error reading users");
@@ -78,17 +95,20 @@ $(document).ready(function() {
     }
 
     function addrow() {
-        $('#table').prepend("<tbody><tr><td>" + maxId + "</td><td>"
+        $('#table').prepend("<tbody id ="+ maxId +"><tr><td>" + maxId + "</td><td>"
                                         + user.FirstName + "</td><td>"
                                         + user.LastName +"</td><td>"
                                         + user.Age +"</td><td>"
                                         + user.Gender +"</td><td>"
                                         + user.Interests +"</td><td>"
-                                        + user.Country + "</td></tr></tbody>");
+                                        + user.Country + "</td>"
+                                        + "<td><a class=editing>Edit</a>  <a class=deleting>Delete</a></td>"
+                                        + "</tr></tbody>");
     }
        //save function
     $('#btnsave').on('click', function() {
       setUser();
+      $("#frm").dialog( "open" );
       if (validateForm()=== true) {
         $.ajax( {
             type: "POST",
@@ -110,14 +130,13 @@ $(document).ready(function() {
             success: function (result) {
               maxId = result.id;
               addrow();
-              tableUsers.unshift(user);
             },
             error:function() {
               alert("Invalid data or unauthorized");
             }
         });
-        localStorage.setItem('users', JSON.stringify(tableUsers));
         $('#frm')[0].reset();
+        $("#frm").dialog( "close" )
         return false;
       }
     });
@@ -155,46 +174,33 @@ $(document).ready(function() {
     });
 
         //deleting function
-    $('#btndelete').click(function() {
-      if(typeof rIndex == 'undefined') {
-        alert("Select row for deleting");
-        return false
-      } else {
-        $.ajax({
-          url: "/users/"+ table.rows[rIndex].cells[0].innerHTML,
-          type: 'DELETE',
-          dataType: 'json',
-          async:false,
-          beforeSend :  function(xhr) {
-            setHeader(xhr);
-          },
-          success: function() {
-            table.rows[rIndex].remove();
-            tableUsers.splice(rIndex-1, 1);
-          },
-          error:function() {
-            alert("Unauthorized");
-          }
-          });
-          // tableUsers.splice(rIndex-1, 1);
-          localStorage.setItem("users", JSON.stringify(tableUsers))
-          // table.rows[rIndex].remove();
-          $('#frm')[0].reset();
-          rIndex = undefined;
+    $('#table').on('click', 'a.deleting', function (e)  {
+      e.preventDefault();
+      var rowId = $(this).closest('tbody').attr('id');
+      var current_row = $(this).closest('tbody');
+      $.ajax({
+        url: "/users/"+ rowId,
+        type: 'DELETE',
+        dataType: 'json',
+        beforeSend :  function(xhr) {
+          setHeader(xhr);
+        },
+        success: function() {
+          current_row.remove();
+        },
+        error:function() {
+          alert("Unauthorized");
         }
+      });
     });
 
-        //editing of selected array item
-    function editArrayItem() {
-     tableUsers[rIndex-1] = {
-       FirstName: table.rows[rIndex].cells[1].innerHTML,
-       LastName: table.rows[rIndex].cells[2].innerHTML,
-       Age: table.rows[rIndex].cells[3].innerHTML,
-       Gender: table.rows[rIndex].cells[4].innerHTML,
-       Interests: table.rows[rIndex].cells[5].innerHTML,
-       Country: table.rows[rIndex].cells[6].innerHTML
-     };
-    }
+    $('#table').on('click', 'a.editing', function (e)  {
+      e.preventDefault();
+      $("#frm").dialog( "open" );
+      $("#btnupdate").show();
+      $("#btnsave").hide();
+    });
+
 
         //editing of selected table row
     function editSelectedRow() {
@@ -207,41 +213,40 @@ $(document).ready(function() {
       }).get();
      table.rows[rIndex].cells[6].innerHTML = $("#country").val();
     }
-       // edit function
-    $("#btnedit").on("click", function() {
+
+    // edit function
+    $("#btnupdate").on('click', function() {
       setUser();
-     if(typeof rIndex == 'undefined') {
-      alert("Select row for editing");
-     } else if (validateForm()=== true) {
-        editArrayItem();
+      if (validateForm()=== true) {
         $.ajax({
-            type: "PUT",
-            url: "/users/"+ table.rows[rIndex].cells[0].innerHTML,
-            dataType: 'json',
-            data: {
-              first_name: user.FirstName,
-              last_name: user.LastName,
-              age: user.Age,
-              gender: user.Gender,
-               hobby_ids: $(':checkbox:checked').map(function() {
-               return $(this).attr("id");
-              }).get(),
-              country_id: $("#country").children(":selected").attr("id")
-            },
-            beforeSend :  function(xhr) {
-              setHeader(xhr);
-            },
-            success:function() {
-              editSelectedRow();
-            },
-            error:function() {
-              alert("Invalid data or unauthorized");
-            }
+          type: "PUT",
+          url: "/users/"+ table.rows[rIndex].cells[0].innerHTML,
+          dataType: 'json',
+          async: false,
+          data: {
+            first_name: user.FirstName,
+            last_name: user.LastName,
+            age: user.Age,
+            gender: user.Gender,
+             hobby_ids: $(':checkbox:checked').map(function() {
+             return $(this).attr("id");
+            }).get(),
+            country_id: $("#country").children(":selected").attr("id")
+          },
+          beforeSend :  function(xhr) {
+            setHeader(xhr);
+          },
+          success:function() {
+            editSelectedRow();
+          },
+          error:function() {
+            alert("Invalid data or unauthorized");
+          }
         });
         $('#frm')[0].reset();
+        $("#frm").dialog( "close" )
         rIndex = undefined;
-       }
-     localStorage.setItem('users', JSON.stringify(tableUsers));
+      }
     });
 
       //Pagination function

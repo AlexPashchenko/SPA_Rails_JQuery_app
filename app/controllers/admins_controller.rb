@@ -1,7 +1,7 @@
 class AdminsController < ApplicationController
-  before_action :authenticate_admin!, only:[:create, :update, :destroy]
   before_action :get_admin, only: [:show , :update, :destroy]
-
+  before_action :authenticate_admin!
+  
   def index
     @admins = Admin.order(:id)
     render json: @admins

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_admin!, except:[:index]
+  before_action :authenticate_admin!
   before_action :set_user, only: [:show , :update, :destroy]
   respond_to :json
 

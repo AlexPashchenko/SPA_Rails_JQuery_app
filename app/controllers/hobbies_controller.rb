@@ -1,5 +1,5 @@
 class HobbiesController < ApplicationController
-  before_action :authenticate_admin!, except:[:index, :show]
+  before_action :authenticate_admin!
   before_action :set_hobby, only: [:show , :update, :destroy]
   respond_to :json
 

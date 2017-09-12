@@ -1,6 +1,6 @@
 class CountriesController < ApplicationController
+  before_action :authenticate_admin!
   before_action :set_country, only: [:show , :update, :destroy]
-  before_action :authenticate_admin!, only:[:create, :update, :destroy]
   respond_to :json
 
   def index

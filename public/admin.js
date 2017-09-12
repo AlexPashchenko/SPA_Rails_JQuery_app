@@ -10,6 +10,9 @@ $(document).ready(function() {
     getAdmins();
   });
 
+  $('#admins_tab').on('click', function(){
+    getAdmins()
+  });
 
   $(function() {
     if ( $.cookie("access-token") == undefined) {
@@ -111,13 +114,17 @@ $(document).ready(function() {
 
 
   function getAdmins() {
+    $('#admins_list li').remove();
     $.ajax({
       type: "GET",
       url: "/admins",
       dataType: 'json',
+      beforeSend :  function(xhr) {
+        setHeader(xhr);
+      },
       success:function(data) {
-        data.map(function(c) {
-          $('#admins_list').append("<li id =" + c.id + "><span>" + c.email
+        data.map(function(result) {
+          $('#admins_list').append("<li id =" + result.id + "><span>" + result.email
            + "</span><button type=\"button\" class=\"info_btn\">"
            + "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span></button></li>");
         })
@@ -142,7 +149,8 @@ $(document).ready(function() {
       dataType: 'json',
       data: {
         email: admin.Email,
-        password: admin.Password
+        password: admin.Password,
+        password_confirmation: admin.Password_Confirm
       },
       beforeSend : function(xhr) {
         setHeader(xhr);
@@ -216,7 +224,7 @@ $(document).ready(function() {
     setAdmin();
     $.ajax({
       type: "PUT",
-      url: "/admins/"+ liId
+      url: "/admins/"+ liId,
       dataType: 'json',
       beforeSend : function(xhr) {
         setHeader(xhr);
@@ -224,6 +232,7 @@ $(document).ready(function() {
       data: {
         email: admin.Email,
         password: admin.Password,
+        password_confirmation: admin.Password_Confirm,
         current_password: admin.Current_Password
       },
       success: function(result) {
@@ -243,7 +252,8 @@ $(document).ready(function() {
   function setNewAdmin() {
     admin = {
       Email: $("#new_admin_email").val(),
-      Password: $("#new_admin_password").val()
+      Password: $("#new_admin_password").val(),
+      Password_Confirm: $("#new_admin_password_confirm").val()
     };
   };
 
@@ -251,6 +261,7 @@ $(document).ready(function() {
     admin = {
       Email: $('#admin_email').val(),
       Password: $('#admin_password').val(),
+      Password_Confirm: $('#admin_password_confirm').val(),
       Current_Password: $("#current_password").val()
     };
   };

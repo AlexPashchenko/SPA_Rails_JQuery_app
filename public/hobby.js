@@ -10,6 +10,11 @@ $(document).ready(function() {
     getHobbies();
   });
 
+  $('#hobbies_tab').on('click', function(){
+    getHobbies();
+  });
+
+
 
   $("#hobby_form").dialog( {
     autoOpen: false,
@@ -69,22 +74,24 @@ $(document).ready(function() {
     $("#hobby_form").dialog( "open" );
     $('#hobby_title').val($(this).text());
   });
-  $(document).on('click','tr', function() {
-    for(var i = 1; i < table.rows.length; i++) {
-      table.rows[i].onclick = function() {
-        rIndex = this.rowIndex;
-        $(':checkbox').each(function() {
+
+
+    $(document).on('click', 'tr', function ()  {
+      for(var i = 1; i < table.rows.length; i++) {
+          rIndex = this.rowIndex;
+          rId = this.cells[0].innerHTML
+          $(':checkbox').each(function() {
           $(this).prop("checked", false)
-        });
-        $("#firstname").val(this.cells[1].innerHTML);
-        $("#lastname").val(this.cells[2].innerHTML);
-        $("#age").val(this.cells[3].innerHTML);
-        if(this.cells[4].innerText == 'male') {
+          });
+        $("#firstname").val($(this).closest('tr').find('td').eq(1).text());
+        $("#lastname").val($(this).closest('tr').find('td').eq(2).text());
+        $("#age").val($(this).closest('tr').find('td').eq(3).text());
+        if($(this).closest('tr').find('td').eq(4).text() == 'male') {
           $("#maleGender").prop("checked", true)
         } else {
            $("#femaleGender").prop("checked", true)
           }
-          let checkboxValues = this.cells[5].innerText.split(',');
+          let checkboxValues = $(this).closest('tr').find('td').eq(5).text().split(',');
           for(interest of interestsArr) {
             for(item of checkboxValues) {
               if(interest == item) {
@@ -92,16 +99,21 @@ $(document).ready(function() {
               }
             }
           }
-          $("#country").val(this.cells[6].innerHTML);
+          $("#country").val($(this).closest('tr').find('td').eq(6).text());
         };
-      }
     });
 
+
   function getHobbies() {
+    $('#hobbies_list li').remove();
+    $('#checkboxes label').remove();
     $.ajax({
       type: "GET",
       url: "/hobbies",
       dataType: 'json',
+      beforeSend :  function(xhr) {
+        setHeader(xhr);
+      },
       success:function(data) {
         data.map(function(result) {
           $('#checkboxes').append("<label id =hobby" + result.id+"><input type = \"checkbox\" name =\"inter\" value = " + result.title

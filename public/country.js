@@ -9,12 +9,20 @@ $(document).ready(function() {
     getCountry();
   });
 
+  $('#countries_tab').on('click', function(){
+    getCountry();
+  });
 
   function getCountry() {
+    $('#country option').remove();
+    $('#countries_list li').remove();
     $.ajax ({
       type: "GET",
       url: "/countries",
       dataType: 'json',
+      beforeSend :  function(xhr) {
+        setHeader(xhr);
+      },
       success:function(data) {
         data.map(function(c) {
           $('#country').append("<option id=" + c.id +" class=country"+c.id+">" + c.title + "</option>");

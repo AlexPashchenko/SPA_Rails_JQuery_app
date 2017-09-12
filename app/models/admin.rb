@@ -29,4 +29,6 @@ class Admin < ActiveRecord::Base
           :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  validates :password, confirmation: true
+
 end
