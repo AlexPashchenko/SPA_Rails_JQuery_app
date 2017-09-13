@@ -30,6 +30,4 @@ class Admin < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   validates :password, confirmation: true
-
-
 end
