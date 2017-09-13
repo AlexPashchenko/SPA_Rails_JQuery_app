@@ -1,13 +1,12 @@
 $(document).ready(function() {
-
+    window.getUsers = getUsers;
     var interestsArr = [];
     var user;
     var maxId;
     var table = document.getElementById('table');
 
     $(function() {
-      $("#tabs-min").tabs();
-      getUsers();
+      checkAuthorize();
     });
 
     $('#users_tab').on('click', function(){
@@ -57,7 +56,7 @@ $(document).ready(function() {
           });
         },
         error:function() {
-          alert("error reading users");
+          console.log("error reading users");
         }
       });
     }
@@ -278,11 +277,18 @@ $(document).ready(function() {
      });
     };
 
-    function setHeader(xhr) {
-      xhr.setRequestHeader ('access-token', $.cookie("access-token")),
-      xhr.setRequestHeader('client', $.cookie("client")),
-      xhr.setRequestHeader ('expiry',$.cookie("expiry")),
-      xhr.setRequestHeader ('token-type',$.cookie("token-type")),
-      xhr.setRequestHeader ('uid', $.cookie("uid"));
+    function checkAuthorize() {
+      if ($.cookie("access-token") == undefined) {
+        $("#loginform").dialog( "open" );
+      } else {
+        $('#table').show();
+        $("#tabs-min").show();
+        $("#tabs-min").tabs();
+        getUsers();
+        getAdmins();
+        getCountry();
+        getHobbies();
+      }
     }
+
 });

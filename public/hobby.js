@@ -1,19 +1,14 @@
 $(document).ready(function() {
-
+  window.getHobbies = getHobbies;
   var interestsArr = [];
   var hobby;
   var liId;
   var liIndex;
 
 
-  $(function() {
-    getHobbies();
-  });
-
   $('#hobbies_tab').on('click', function(){
     getHobbies();
   });
-
 
 
   $("#hobby_form").dialog( {
@@ -57,6 +52,9 @@ $(document).ready(function() {
       url: "/hobbies/"+ liId,
       type: 'GET',
       dataType: 'json',
+      beforeSend :  function(xhr) {
+        setHeader(xhr);
+      },
       success: function (result) {
         $("#dialog").dialog( "open" );
         $("#dialog").html('Hobby name:  '+ result.title + "<br> ID: " +result.id);
@@ -127,7 +125,7 @@ $(document).ready(function() {
         });
       },
       error:function() {
-        alert("Can't reading hobbies  from DB");
+        console.log("Can't reading hobbies  from DB");
       }
     });
   }
@@ -226,13 +224,5 @@ $(document).ready(function() {
       Title: $('#hobby_title').val()
     };
   };
-
-  function setHeader(xhr) {
-    xhr.setRequestHeader ('access-token', $.cookie("access-token")),
-    xhr.setRequestHeader('client', $.cookie("client")),
-    xhr.setRequestHeader ('expiry',$.cookie("expiry")),
-    xhr.setRequestHeader ('token-type',$.cookie("token-type")),
-    xhr.setRequestHeader ('uid', $.cookie("uid"));
-  }
 
 });

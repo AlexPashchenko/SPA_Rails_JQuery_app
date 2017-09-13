@@ -1,13 +1,9 @@
 $(document).ready(function() {
-
+  window.getCountry = getCountry;
   var country;
   var liId;
   var liIndex;
 
-
-  $(function() {
-    getCountry();
-  });
 
   $('#countries_tab').on('click', function(){
     getCountry();
@@ -32,7 +28,7 @@ $(document).ready(function() {
         })
       },
       error:function(result) {
-        alert("error reading countries");
+        console.log("error reading countries");
       }
     });
   }
@@ -156,6 +152,9 @@ $(document).ready(function() {
       url: "/countries/"+ liId,
       type: 'GET',
       dataType: 'json',
+      beforeSend :  function(xhr) {
+        setHeader(xhr);
+      },
       success: function (result) {
         $("#dialog").dialog( "open" );
         $("#dialog").html('Country name:  '+ result.title + "<br> ID: " +result.id);
@@ -188,14 +187,5 @@ $(document).ready(function() {
       Title: $('#country_title').val()
     };
   };
-
-
-  function setHeader(xhr) {
-    xhr.setRequestHeader ('access-token', $.cookie("access-token")),
-    xhr.setRequestHeader('client', $.cookie("client")),
-    xhr.setRequestHeader ('expiry',$.cookie("expiry")),
-    xhr.setRequestHeader ('token-type',$.cookie("token-type")),
-    xhr.setRequestHeader ('uid', $.cookie("uid"));
-  }
 
 });

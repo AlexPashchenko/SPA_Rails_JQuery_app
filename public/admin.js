@@ -1,14 +1,11 @@
 $(document).ready(function() {
+  window.getAdmins = getAdmins;
+  window.setHeader = setHeader;
 
   var liId;
   var liIndex;
   var admin;
   var token;
-
-
-  $( function() {
-    getAdmins();
-  });
 
   $('#admins_tab').on('click', function(){
     getAdmins()
@@ -83,13 +80,21 @@ $(document).ready(function() {
         saveTokenInCookee(xhr);
         $('#signout').show();
         $('#signbtn').hide();
+        $('#table').show();
+        $("#tabs-min").show();
+        $("#tabs-min").tabs();
+        $("#loginform").dialog( "close" );
+        $('#loginform')[0].reset();
+        getUsers();
+        getAdmins();
+        getCountry();
+        getHobbies();
       },
       error:function() {
         alert("Invalid data");
       }
     });
     $('#loginform')[0].reset();
-    $("#loginform").dialog( "close" );
     return false;
   });
 
@@ -104,9 +109,9 @@ $(document).ready(function() {
       },
       success:function() {
         RemoveCookies();
-        alert("You are signed_out");
-        $('#signout').hide();
-        $('#signbtn').show();
+        $('#table').hide();
+        $("#tabs-min").hide();
+        $("#loginform").dialog( "open" );
       }
     });
     return false;
@@ -130,7 +135,7 @@ $(document).ready(function() {
         })
       },
       error:function() {
-        alert("error reading admins");
+        console.log("error reading admins");
       }
     });
   }
@@ -174,10 +179,14 @@ $(document).ready(function() {
   $("#admins_list").on("click", 'button', function(event) {
     liId = $(this).parent().attr('id');
     liIndex = $(this).index();
+    console.log(liId);
     $.ajax({
       url: "/admins/"+ liId,
       type: 'GET',
       dataType: 'json',
+      beforeSend :  function(xhr) {
+        setHeader(xhr);
+      },
       success: function (result) {
         $("#dialog").dialog( "open" );
         $("#dialog").html('Admin email:  '+ result.email + "<br> ID: " +result.id);
