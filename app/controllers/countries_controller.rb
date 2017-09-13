@@ -1,25 +1,24 @@
 class CountriesController < ApplicationController
-  before_action :set_country, only: [:show, :update, :destroy]
-  before_action :authenticate_admin!, only: [:create, :update, :destroy]
+  before_action :authenticate_admin!
+  before_action :set_country, only: [:show , :update, :destroy]
   respond_to :json
 
   def index
-    @countries = Country.all
+    @countries = Country.order(:id)
     render json: @countries
   end
 
   def show
-    render json: @county
+    render json: @country
   end
 
   def create
     @country = Country.new(country_params)
-
     if @country.save
-        render json: @country, status: :created
-      else
-        render status: :unprocessable_entity
-      end
+      render json: @country, status: :created
+    else
+      render status: :unprocessable_entity
+    end
   end
 
   def update
@@ -31,7 +30,7 @@ class CountriesController < ApplicationController
   end
 
   def destroy
-    @county.destroy
+    @country.destroy
     head :no_content
   end
 
@@ -41,8 +40,7 @@ class CountriesController < ApplicationController
       @country = Country.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def country_params
-      params.require(:country).permit(:title)
+      params.permit(:id, :title)
     end
 end

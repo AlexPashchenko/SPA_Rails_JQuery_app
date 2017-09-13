@@ -9,7 +9,9 @@
 #
 
 class Hobby < ApplicationRecord
-   has_and_belongs_to_many :users
+   has_and_belongs_to_many :users,  join_table: "users_hobbies"
 
    validates :title, presence: true
+   validates :title, uniqueness: true
+   
 end

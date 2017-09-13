@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-  skip_before_filter :verify_authenticity_token
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :authenticate_admin!
+  before_action :set_user, only: [:show , :update, :destroy]
   respond_to :json
 
   def index
-    @users = User.all
+    @users = User.joins(:country).order(order_num: :desc).collect { |user| user.country.attributes.merge(user.attributes).merge({hobbies_attributes: user.user_hobbies}) }
     render json: @users
   end
 
@@ -12,18 +12,15 @@ class UsersController < ApplicationController
     render json: @user
   end
 
-  # POST /users
-  # POST /users.json
-
   def create
     @user = User.new(user_params)
     if @user.save
       render json: @user, status: :created
+    else
+      render status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
     if @user.update(user_params)
       render json: @user, status: :ok
@@ -32,21 +29,31 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
+  def sorting
+    @users = User.all
+    if @users.update(sort_params)
+      render json: @users, status: :ok
+    else
+      render status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @user.destroy
     head :no_content
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_user
       @user = User.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    def sort_params
+      params.permit(:id, :order_num)
+    end
+
     def user_params
-      params.permit(:first_name, :last_name, :age, :gender, :country_id)
+      params.permit(:id, :first_name, :last_name, :age, :gender, :country_id, :order_num, hobby_ids:[])
     end
 end

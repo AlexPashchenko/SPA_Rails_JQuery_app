@@ -1,10 +1,10 @@
 class HobbiesController < ApplicationController
-  before_action :authenticate_admin!, only: [:create, :update, :destroy]
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :authenticate_admin!
+  before_action :set_hobby, only: [:show , :update, :destroy]
   respond_to :json
 
   def index
-    @hobbies = Hobby.all
+    @hobbies = Hobby.order(:id)
     render json: @hobbies
   end
 
@@ -14,16 +14,15 @@ class HobbiesController < ApplicationController
 
   def create
     @hobby = Hobby.new(hobby_params)
-
     if @hobby.save
-     render json: @hobby, status: :created
+      render json: @hobby, status: :created
     else
-     render status: :unprocessable_entity
+      render status: :unprocessable_entity
     end
   end
 
   def update
-    if @hobby.update(hobby_paramss)
+    if @hobby.update(hobby_params)
       render json: @hobby, status: :ok
     else
       render status: :unprocessable_entity
@@ -35,15 +34,13 @@ class HobbiesController < ApplicationController
     head :no_content
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_hobby
       @hobby = Hobby.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def hobby_params
-      params.require(:hobby).permit(:title)
+      params.permit(:title)
     end
 end

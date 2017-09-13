@@ -1,9 +1,9 @@
 class AdminsController < ApplicationController
-  before_action :authenticate_admin!, except:[:index, :show]
-  before_action :set_admin, except:[:index, :create]
-
+  before_action :get_admin, only: [:show , :update, :destroy]
+  before_action :authenticate_admin!
+  
   def index
-    @admins = Admin.all
+    @admins = Admin.order(:id)
     render json: @admins
   end
 
@@ -13,16 +13,17 @@ class AdminsController < ApplicationController
 
   def create
     @admin = Admin.new(admin_params)
-
     if @admin.save
-        render json: @admin, status: :created
-      else
-        render status: :unprocessable_entity
-      end
+      render json: @admin, status: :created
+    else
+      render status: :unprocessable_entity
+    end
   end
 
   def update
-    if @admin.update(admin_params)
+    enc = Devise.token_generator.generate(Admin, :reset_password_token)
+    @admin.reset_password_token = enc
+    if @admin.update_with_password(admin_params)
       render json: @admin, status: :ok
     else
       render status: :unprocessable_entity
@@ -30,21 +31,20 @@ class AdminsController < ApplicationController
   end
 
   def destroy
-    @admin.destroy
-    respond_to do |format|
-      format.json { head :no_content }
+    if @admin != @current_admin && @admin.destroy
+      head :no_content
+    else
+      render status: :unprocessable_entity, message: "Can't delete this admin"
     end
   end
 
-
   private
 
-    def set_admin
+    def get_admin
       @admin = Admin.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def admin_params
-      params.require(:admin).permit(:email, :password)
+      params.permit(:id, :email, :password, :current_password, :password_confirmation, :tokens)
     end
 end

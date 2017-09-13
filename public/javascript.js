@@ -1,79 +1,78 @@
 $(document).ready(function() {
-
-    var interestsArr = ['programming', 'travels', 'music', 'painting', 'dancing', 'reading', 'driving', 'fitness',
-    'cookery', 'drinking'];
+    window.getUsers = getUsers;
+    var interestsArr = [];
     var user;
-    var country;
-    var Countries = [];
+    var maxId;
     var table = document.getElementById('table');
-    var tableUsers = new Array();
-    sortedTab = [];
-    tableUsers = JSON.parse(localStorage.getItem("users"));
-    if (tableUsers === null) {
-      tableUsers =[];
-    }
-    var id = localStorage.getItem("id");
-    if (id === null) {
-      id = 1;
-    }
 
     $(function() {
-      GetTable();
-      Pagination();
-      getCountry();
-
+      checkAuthorize();
     });
 
-    function getCountry() {
-      country = {
-        title: $('#country').val()
+    $('#users_tab').on('click', function(){
+      getUsers();
+    });
+
+    $("#btncreate").on("click", function() {
+      $("#frm").dialog( "open" );
+      $("#btnupdate").hide();
+      $("#btnsave").show();
+    });
+
+    $("#frm").dialog( {
+      autoOpen: false,
+      closeText: "",
+      title: "Create new user",
+      resizable: false,
+      modal: true,
+      close: function() {
+        $("#frm")[0].reset();
+        $("#frm").dialog( "close" )
       }
+    });
+
+    function getUsers() {
+      $('#table tbody').remove();
       $.ajax({
-          type: "GET",
-          url: "/countries",
-          success:function(data) {
-            data.map(function(c) {
-              $('#country').append("<option id=" + c.id +">" + c.title + "</option>");
-              Countries.push(c);
-            })
-            console.log(Countries);
-          },
-          error:function(result) {
-            alert("error");
-          },
-          dataType: 'json'
+        type: "GET",
+        url: "/users",
+        dataType: 'json',
+        beforeSend :  function(xhr) {
+          setHeader(xhr);
+        },
+        success:function(data) {
+          data.map(function(result) {
+            var eachrow = "<tbody id="+result.id +"><tr>"
+                     + "<td>" + result.id + "</td>"
+                     + "<td>" + result.first_name + "</td>"
+                     + "<td>" + result.last_name + "</td>"
+                     + "<td>" + result.age + "</td>"
+                     + "<td>" + result.gender + "</td>"
+                     + "<td>" + result.hobbies_attributes + "</td>"
+                     + "<td>" + result.title + "</td>"
+                     + "<td><a class=editing>Edit</a>   <a class=deleting>Delete</a></td>"
+                     + "</tr></tbody>";
+            $('#table').prepend(eachrow);
+          });
+        },
+        error:function() {
+          console.log("error reading users");
+        }
       });
     }
-
-    //get data from array into table rows
-    function GetTable() {
-      $.each(tableUsers, function (index, data) {
-        var eachrow = "<tbody><tr>"
-                 + "<td>" + data.Id + "</td>"
-                 + "<td>" + data.FirstName + "</td>"
-                 + "<td>" + data.LastName + "</td>"
-                 + "<td>" + data.Age + "</td>"
-                 + "<td>" + data.Gender + "</td>"
-                 + "<td>" + data.Interests + "</td>"
-                 + "<td>" + data.Country + "</td>"
-                 + "</tr></tbody>";
-        $('#table').append(eachrow);
-      });
-    };
 
     //set user object
     function setUser() {
-        user = {
-          Id : id,
-          FirstName : $("#firstname").val(),
-          LastName : $('#lastname').val(),
-          Age : $("#age").val(),
-          Gender : $(':radio[name=gender]:checked').val(),
-          Interests : $(':checkbox[name=inter]:checked').map(function() {
-            return $(this).val();
-          }).get(),
-          Country :  $("#country").val()
-        };
+      user = {
+        FirstName : $("#firstname").val(),
+        LastName : $('#lastname').val(),
+        Age : $("#age").val(),
+        Gender : $(':radio[name=gender]:checked').val(),
+        Interests : $(':checkbox[name=inter]:checked').map(function() {
+          return $(this).val();
+        }).get(),
+        Country :  $("#country").val()
+      };
     }
 
 
@@ -94,80 +93,55 @@ $(document).ready(function() {
       return true;
     }
 
-
-    //add new row to table
     function addrow() {
-      $('#table').prepend("<tbody><tr><td>" + user.Id + "</td><td>"
-                                    + user.FirstName + "</td><td>"
-                                    + user.LastName +"</td><td>"
-                                    + user.Age +"</td><td>"
-                                    + user.Gender +"</td><td>"
-                                    + user.Interests +"</td><td>"
-                                    + user.Country + "</td></tr></tbody>");
+        $('#table').prepend("<tbody id ="+ maxId +"><tr><td>" + maxId + "</td><td>"
+                                        + user.FirstName + "</td><td>"
+                                        + user.LastName +"</td><td>"
+                                        + user.Age +"</td><td>"
+                                        + user.Gender +"</td><td>"
+                                        + user.Interests +"</td><td>"
+                                        + user.Country + "</td>"
+                                        + "<td><a class=editing>Edit</a>  <a class=deleting>Delete</a></td>"
+                                        + "</tr></tbody>");
     }
-
-
-    $("#loginform").dialog( {
-      autoOpen: false,
-      modal: true,
-      close: function() {
-        // form[0].reset();
-          $("#loginform").dialog( "close" )
-      }
-    });
-
-    $("#signbtn").on("click", function() {
-      $("#loginform").dialog( "open" )
-    });
        //save function
     $('#btnsave').on('click', function() {
       setUser();
+      $("#frm").dialog( "open" );
       if (validateForm()=== true) {
-        tableUsers.unshift(user);
-        localStorage.setItem('users', JSON.stringify(tableUsers));
-        addrow();
-        $.ajax({
+        $.ajax( {
             type: "POST",
             url: "/users",
+            dataType: 'json',
             data: {
               first_name: user.FirstName,
               last_name: user.LastName,
               age: user.Age,
               gender: user.Gender,
-              country_id: country.id },
-              success:function(result) {
-                alert("OK");
+              hobby_ids: $(':checkbox:checked').map(function() {
+               return $(this).attr('id');
+              }).get(),
+              country_id: $("#country").children(":selected").attr("id")
             },
-            error:function(result) {
-              alert("error");
+            beforeSend :  function(xhr) {
+              setHeader(xhr);
             },
-            dataType: 'json'
+            success: function (result) {
+              maxId = result.id;
+              addrow();
+            },
+            error:function() {
+              alert("Invalid data or unauthorized");
+            }
         });
         $('#frm')[0].reset();
-        id++;
-        localStorage.setItem("id", id);
+        $("#frm").dialog( "close" )
         return false;
       }
     });
 
-      //save sorted array
-    function saveSort() {
-      sortedTab = [];
-      for ( var i = 1; i < table.rows.length; i++ ) {
-       sortedTab.push({
-         Id: table.rows[i].cells[0].innerHTML,
-         FirstName: table.rows[i].cells[1].innerHTML,
-         LastName: table.rows[i].cells[2].innerHTML,
-         Age: table.rows[i].cells[3].innerHTML,
-         Gender: table.rows[i].cells[4].innerHTML,
-         Interests: table.rows[i].cells[5].innerHTML,
-         Country: table.rows[i].cells[6].innerHTML
-       });
-      }
-    }
-
-        // sortable function
-   $('#table').sortable( {
+    // sortable function
+    $('#table').sortable( {
       nested: true,
       containerPath: "td",
       containerSelector: '.table',
@@ -176,65 +150,56 @@ $(document).ready(function() {
       itemSelector: 'tr',
       placeholder: '',
       revert: true,
-      update: function() {
-        saveSort();
-        localStorage.setItem("users", JSON.stringify(sortedTab));
-      }
-    });
-          //Selecting row
-    $(document).on('click','tr', function() {
-      for(var i = 1; i < table.rows.length; i++) {
-        table.rows[i].onclick = function() {
-          rIndex = this.rowIndex;
-          for(interest of interestsArr) {
-            $("#"+interest).prop('checked', false);
-          }
-          $("#firstname").val(this.cells[1].innerHTML);
-          $("#lastname").val(this.cells[2].innerHTML);
-          $("#age").val(this.cells[3].innerHTML);
-          if(this.cells[4].innerText == 'male') {
-            $("#maleGender").prop("checked", true)
-          } else {
-              $("#femaleGender").prop("checked", true)
+      stop: function() {
+        $.map($(this).find('tbody tr'), function(element){
+          var itemID = element.cells[0].innerHTML;
+          var itemIndex = $(element).parent('tbody').index();
+          $.ajax({
+            url: "/users/" + itemID,
+            type: 'PUT',
+            dataType: 'json',
+            data: {
+              order_num: itemIndex
+            },
+            beforeSend :  function(xhr) {
+              setHeader(xhr);
+            },
+            error:function() {
+            alert("error");
             }
-          let checkboxValues = this.cells[5].innerText.split(',');
-          for(interest of interestsArr) {
-            for(item of checkboxValues) {
-              if(interest == item) {
-                $("#"+item).prop('checked', true);
-              }
-            }
-          }
-          $("#country").val(this.cells[6].innerHTML);
-        };
+          });
+        });
       }
     });
 
         //deleting function
-    $('#btndelete').click(function() {
-      if(typeof rIndex == 'undefined') {
-        alert("Select row for deleting");
-      } else {
-          table.rows[rIndex].remove();
-          tableUsers.splice(rIndex-1, 1);
-          localStorage.setItem("users", JSON.stringify(tableUsers));
-          $('#frm')[0].reset();
-          rIndex = undefined;
+    $('#table').on('click', 'a.deleting', function (e)  {
+      e.preventDefault();
+      var rowId = $(this).closest('tbody').attr('id');
+      var current_row = $(this).closest('tbody');
+      $.ajax({
+        url: "/users/"+ rowId,
+        type: 'DELETE',
+        dataType: 'json',
+        beforeSend :  function(xhr) {
+          setHeader(xhr);
+        },
+        success: function() {
+          current_row.remove();
+        },
+        error:function() {
+          alert("Unauthorized");
         }
+      });
     });
 
-        //editing of selected array item
-    function editArrayItem() {
-     tableUsers[rIndex-1] = {
-       Id: table.rows[rIndex].cells[0].innerHTML,
-       FirstName: table.rows[rIndex].cells[1].innerHTML,
-       LastName: table.rows[rIndex].cells[2].innerHTML,
-       Age: table.rows[rIndex].cells[3].innerHTML,
-       Gender: table.rows[rIndex].cells[4].innerHTML,
-       Interests: table.rows[rIndex].cells[5].innerHTML,
-       Country: table.rows[rIndex].cells[6].innerHTML
-     };
-    }
+    $('#table').on('click', 'a.editing', function (e)  {
+      e.preventDefault();
+      $("#frm").dialog( "open" );
+      $("#btnupdate").show();
+      $("#btnsave").hide();
+    });
+
 
         //editing of selected table row
     function editSelectedRow() {
@@ -247,17 +212,40 @@ $(document).ready(function() {
       }).get();
      table.rows[rIndex].cells[6].innerHTML = $("#country").val();
     }
-       // edit function
-    $("#btnedit").on("click", function() {
-     if(typeof rIndex == 'undefined') {
-      alert("Select row for editing");
-     } else if (validateForm()=== true) {
-        editSelectedRow();
-        editArrayItem();
+
+    // edit function
+    $("#btnupdate").on('click', function() {
+      setUser();
+      if (validateForm()=== true) {
+        $.ajax({
+          type: "PUT",
+          url: "/users/"+ table.rows[rIndex].cells[0].innerHTML,
+          dataType: 'json',
+          async: false,
+          data: {
+            first_name: user.FirstName,
+            last_name: user.LastName,
+            age: user.Age,
+            gender: user.Gender,
+             hobby_ids: $(':checkbox:checked').map(function() {
+             return $(this).attr("id");
+            }).get(),
+            country_id: $("#country").children(":selected").attr("id")
+          },
+          beforeSend :  function(xhr) {
+            setHeader(xhr);
+          },
+          success:function() {
+            editSelectedRow();
+          },
+          error:function() {
+            alert("Invalid data or unauthorized");
+          }
+        });
         $('#frm')[0].reset();
+        $("#frm").dialog( "close" )
         rIndex = undefined;
-       }
-     localStorage.setItem('users', JSON.stringify(tableUsers));
+      }
     });
 
       //Pagination function
@@ -288,4 +276,19 @@ $(document).ready(function() {
        }
      });
     };
+
+    function checkAuthorize() {
+      if ($.cookie("access-token") == undefined) {
+        $("#loginform").dialog( "open" );
+      } else {
+        $('#table').show();
+        $("#tabs-min").show();
+        $("#tabs-min").tabs();
+        getUsers();
+        getAdmins();
+        getCountry();
+        getHobbies();
+      }
+    }
+
 });
