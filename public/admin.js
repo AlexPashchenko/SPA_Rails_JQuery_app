@@ -22,7 +22,6 @@ $(document).ready(function() {
     }
   });
 
-
   $("#admin_create").dialog( {
     autoOpen: false,
     closeText: "",
@@ -34,7 +33,6 @@ $(document).ready(function() {
       $("#admin_create").dialog( "close" )
     }
   });
-
 
   $("#admin_form").dialog( {
     autoOpen: false,
@@ -48,7 +46,6 @@ $(document).ready(function() {
       liId = undefined;
     }
   });
-
 
   $("#loginform").dialog( {
     autoOpen: false,
@@ -98,7 +95,6 @@ $(document).ready(function() {
     return false;
   });
 
-
   $('#signout').on('click', function() {
     $.ajax({
       type: "DELETE",
@@ -116,7 +112,6 @@ $(document).ready(function() {
     });
     return false;
   });
-
 
   function getAdmins() {
     $('#admins_list li').remove();
@@ -140,11 +135,9 @@ $(document).ready(function() {
     });
   }
 
-
   $("#admin_add").on("click", function() {
     $("#admin_create").dialog( "open" )
   });
-
 
   $('#admin_save').on('click', function() {
     setNewAdmin();
@@ -175,7 +168,6 @@ $(document).ready(function() {
     return false;
   });
 
-
   $("#admins_list").on("click", 'button', function(event) {
     liId = $(this).parent().attr('id');
     liIndex = $(this).index();
@@ -198,14 +190,12 @@ $(document).ready(function() {
     event.stopPropagation();
   });
 
-
   $("#admins_list").on("click", 'li', function() {
     liId = $(this).attr('id');
     liIndex = $(this).index();
     $("#admin_form").dialog( "open" );
     $('#admin_email').val($(this).text());
   });
-
 
   $('#admin_delete').on('click', function() {
     $.ajax({
@@ -227,7 +217,6 @@ $(document).ready(function() {
     liId = undefined;
     return false;
   });
-
 
   $('#admin_edit').on('click', function(){
     setAdmin();
@@ -257,7 +246,6 @@ $(document).ready(function() {
     return false;
   });
 
-
   function setNewAdmin() {
     admin = {
       Email: $("#new_admin_email").val(),
@@ -275,7 +263,6 @@ $(document).ready(function() {
     };
   };
 
-
   function setHeader(xhr) {
     xhr.setRequestHeader ('access-token', $.cookie("access-token")),
     xhr.setRequestHeader('client', $.cookie("client")),
@@ -283,7 +270,6 @@ $(document).ready(function() {
     xhr.setRequestHeader ('token-type',$.cookie("token-type")),
     xhr.setRequestHeader ('uid', $.cookie("uid"));
   };
-
 
   function saveTokenInCookee(xhr) {
     $.cookie("access-token", xhr.getResponseHeader('access-token'));
@@ -293,7 +279,6 @@ $(document).ready(function() {
     $.cookie("uid", xhr.getResponseHeader('uid'));
   };
 
-
   function RemoveCookies() {
     $.removeCookie("access-token");
     $.removeCookie("client");
@@ -301,7 +286,6 @@ $(document).ready(function() {
     $.removeCookie("token-type");
     $.removeCookie("uid");
   };
-
 
   function setAutorization() {
     admin = {

@@ -4,7 +4,6 @@ $(document).ready(function() {
   var liId;
   var liIndex;
 
-
   $('#countries_tab').on('click', function(){
     getCountry();
   });
@@ -20,24 +19,22 @@ $(document).ready(function() {
         setHeader(xhr);
       },
       success:function(data) {
-        data.map(function(c) {
-          $('#country').append("<option id=" + c.id +" class=country"+c.id+">" + c.title + "</option>");
-          $('#countries_list').append("<li id =" + c.id + " class = \"countries"+c.id+"\"><span>" + c.title
+        data.map(function(result) {
+          $('#country').append("<option id=" + result.id +" class=country"+ result.id+">" + result.title + "</option>");
+          $('#countries_list').append("<li id =" + result.id + " class = \"countries"+c.id+"\"><span>" + result.title
            + "</span><button type=\"button\" class=\"info_btn\">"
            + "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span></button></li>");
         })
       },
-      error:function(result) {
+      error:function() {
         console.log("error reading countries");
       }
     });
   }
 
-
   $("#country_add").on("click", function() {
     $("#country_create").dialog( "open" )
   });
-
 
   $('#country_save').on('click', function() {
     setNewCountry();
@@ -66,7 +63,6 @@ $(document).ready(function() {
     return false;
   });
 
-
   $('#country_delete').on('click', function() {
     $.ajax({
       url: "/countries/"+ liId,
@@ -89,7 +85,6 @@ $(document).ready(function() {
     $("#country_form").dialog( "close" );
     return false;
   });
-
 
   $('#country_edit').on('click', function() {
     setCountry();
@@ -117,7 +112,6 @@ $(document).ready(function() {
     return false;
   });
 
-
   $("#country_create").dialog( {
     autoOpen: false,
     closeText: "",
@@ -129,7 +123,6 @@ $(document).ready(function() {
       $("#country_create").dialog( "close" )
     }
   });
-
 
   $("#country_form").dialog( {
     autoOpen: false,
@@ -143,7 +136,6 @@ $(document).ready(function() {
       liId = undefined;
     }
   });
-
 
   $("#countries_list").on("click", 'button', function(event) {
     liId = $(this).parent().attr('id');
@@ -166,7 +158,6 @@ $(document).ready(function() {
     event.stopPropagation();
   });
 
-
   $("#countries_list").on("click", 'li', function() {
     liId = $(this).attr('id');
     liIndex = $(this).index();
@@ -174,18 +165,15 @@ $(document).ready(function() {
     $('#country_title').val($(this).text());
   });
 
-
   function setNewCountry() {
     country = {
       Title: $('#country_name').val()
     };
   };
 
-
   function setCountry() {
     country = {
       Title: $('#country_title').val()
     };
   };
-
 });

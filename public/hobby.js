@@ -5,11 +5,9 @@ $(document).ready(function() {
   var liId;
   var liIndex;
 
-
   $('#hobbies_tab').on('click', function(){
     getHobbies();
   });
-
 
   $("#hobby_form").dialog( {
     autoOpen: false,
@@ -21,7 +19,6 @@ $(document).ready(function() {
       $("#hobby_form").dialog( "close" )
     }
   });
-
 
   $("#dialog").dialog({
     autoOpen: false,
@@ -73,34 +70,32 @@ $(document).ready(function() {
     $('#hobby_title').val($(this).text());
   });
 
-
-    $(document).on('click', 'tr', function ()  {
-      for(var i = 1; i < table.rows.length; i++) {
-          rIndex = this.rowIndex;
-          rId = this.cells[0].innerHTML
-          $(':checkbox').each(function() {
-          $(this).prop("checked", false)
-          });
-        $("#firstname").val($(this).closest('tr').find('td').eq(1).text());
-        $("#lastname").val($(this).closest('tr').find('td').eq(2).text());
-        $("#age").val($(this).closest('tr').find('td').eq(3).text());
-        if($(this).closest('tr').find('td').eq(4).text() == 'male') {
-          $("#maleGender").prop("checked", true)
-        } else {
-           $("#femaleGender").prop("checked", true)
+  $(document).on('click', 'tr', function ()  {
+    for(var i = 1; i < table.rows.length; i++) {
+      rIndex = this.rowIndex;
+      rId = this.cells[0].innerHTML
+      $(':checkbox').each(function() {
+        $(this).prop("checked", false)
+      });
+      $("#firstname").val($(this).closest('tr').find('td').eq(1).text());
+      $("#lastname").val($(this).closest('tr').find('td').eq(2).text());
+      $("#age").val($(this).closest('tr').find('td').eq(3).text());
+      if($(this).closest('tr').find('td').eq(4).text() == 'male') {
+        $("#maleGender").prop("checked", true)
+      } else {
+         $("#femaleGender").prop("checked", true)
+      }
+      let checkboxValues = $(this).closest('tr').find('td').eq(5).text().split(',');
+      for(interest of interestsArr) {
+        for(item of checkboxValues) {
+          if(interest == item) {
+            $('input[value='+ item+']').prop('checked', true);
           }
-          let checkboxValues = $(this).closest('tr').find('td').eq(5).text().split(',');
-          for(interest of interestsArr) {
-            for(item of checkboxValues) {
-              if(interest == item) {
-                $('input[value='+ item+']').prop('checked', true);
-              }
-            }
-          }
-          $("#country").val($(this).closest('tr').find('td').eq(6).text());
-        };
-    });
-
+        }
+      }
+      $("#country").val($(this).closest('tr').find('td').eq(6).text());
+    };
+  });
 
   function getHobbies() {
     $('#hobbies_list li').remove();
@@ -176,7 +171,6 @@ $(document).ready(function() {
       success: function() {
         $("#hobbies_list li").eq(liIndex).remove();
         $("#hobby"+ liId).remove();
-
       },
       error:function() {
         alert("Unauthorized");
@@ -224,5 +218,4 @@ $(document).ready(function() {
       Title: $('#hobby_title').val()
     };
   };
-
 });
