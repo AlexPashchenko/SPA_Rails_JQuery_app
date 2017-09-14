@@ -5,7 +5,7 @@ require 'devise'
 RSpec.describe HobbiesController, type: :controller do
   Devise::Test::ControllerHelpers
 
-  let(:hobby) { FactoryGirl.create :hobby }
+  let!(:hobby) { FactoryGirl.create :hobby }
   let(:hobby_last) { Hobby.last }
   let(:admin) { FactoryGirl.create :admin }
 
@@ -29,12 +29,12 @@ RSpec.describe HobbiesController, type: :controller do
         get :index, format: :json
         expect(response).to have_http_status(:success)
       end
-    end
 
-    it "render array of json objects hobby" do
-      sign_in admin
-      get :index, format: :json
-      expect(assigns(:hobbies)).to exist(hobby_last.id)
+      it "render array of json objects hobby" do
+        sign_in admin
+        get :index, format: :json
+        expect(assigns(:hobbies)).to exist(hobby_last.id)
+      end
     end
 
     context '#show' do
@@ -48,6 +48,11 @@ RSpec.describe HobbiesController, type: :controller do
         sign_in admin
         get :show, params: { id: hobby.id }, format: :json
         expect(response).to have_http_status(:success)
+      end
+      it "render json object hobby" do
+        sign_in admin
+        get :show, params: { id: hobby_last.id }, format: :json
+        expect(response.body).to eq(hobby_last.to_json)
       end
     end
   end
@@ -68,7 +73,7 @@ RSpec.describe HobbiesController, type: :controller do
     it "render json object hobby" do
       sign_in admin
       post :create, params: FactoryGirl.attributes_for(:hobby), format: :json
-      expect(response.body).to eq(Hobby.last.to_json)
+      expect(response.body).to eq(hobby_last.to_json)
     end
 
     it "creates a new hobby" do
@@ -128,5 +133,4 @@ RSpec.describe HobbiesController, type: :controller do
       }.to change(Hobby,:count).by(-1)
     end
   end
-
 end

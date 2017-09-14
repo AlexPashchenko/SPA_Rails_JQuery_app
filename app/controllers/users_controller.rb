@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.joins(:country).order(order_num: :desc).collect { |user| user.country.attributes.merge(user.attributes).merge({hobbies_attributes: user.user_hobbies}) }
-    render json: @users
+    render json: @users,   status: :ok
   end
 
   def show
