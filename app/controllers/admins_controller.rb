@@ -1,7 +1,7 @@
 class AdminsController < ApplicationController
   before_action :get_admin, only: [:show , :update, :destroy]
   before_action :authenticate_admin!
-  
+
   def index
     @admins = Admin.order(:id)
     render json: @admins
@@ -16,7 +16,7 @@ class AdminsController < ApplicationController
     if @admin.save
       render json: @admin, status: :created
     else
-      render status: :unprocessable_entity
+      head :unprocessable_entity
     end
   end
 
@@ -26,7 +26,7 @@ class AdminsController < ApplicationController
     if @admin.update_with_password(admin_params)
       render json: @admin, status: :ok
     else
-      render status: :unprocessable_entity
+      head :unprocessable_entity
     end
   end
 
@@ -34,7 +34,7 @@ class AdminsController < ApplicationController
     if @admin != @current_admin && @admin.destroy
       head :no_content
     else
-      render status: :unprocessable_entity, message: "Can't delete this admin"
+      head :unprocessable_entity
     end
   end
 

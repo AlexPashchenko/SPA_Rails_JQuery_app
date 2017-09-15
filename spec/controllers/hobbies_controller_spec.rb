@@ -49,10 +49,18 @@ RSpec.describe HobbiesController, type: :controller do
         get :show, params: { id: hobby.id }, format: :json
         expect(response).to have_http_status(:success)
       end
+
       it "render json object hobby" do
         sign_in admin
         get :show, params: { id: hobby_last.id }, format: :json
         expect(response.body).to eq(hobby_last.to_json)
+      end
+
+      it "can't return object with invalid ID" do
+        sign_in admin
+        expect {
+          get :show, params: { id: '100и000' }, format: :json
+        }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end
@@ -74,6 +82,12 @@ RSpec.describe HobbiesController, type: :controller do
       sign_in admin
       post :create, params: FactoryGirl.attributes_for(:hobby), format: :json
       expect(response.body).to eq(hobby_last.to_json)
+    end
+
+    it "can't create hobby without title " do
+      sign_in admin
+      post :create, params: FactoryGirl.attributes_for(:hobby, title: " "), format: :json
+      expect(response).to  have_http_status(:unprocessable_entity)
     end
 
     it "creates a new hobby" do
@@ -104,6 +118,19 @@ RSpec.describe HobbiesController, type: :controller do
       expect(hobby_last.title).to eq('new title')
     end
 
+    it "can't update hobby with blanck title" do
+      sign_in admin
+      put :update, params: {id: hobby.id, title: " "}, format: :json
+      expect(response).to  have_http_status(:unprocessable_entity)
+    end
+
+    it "can't update object with invalid ID" do
+      sign_in admin
+      expect {
+        put :update,  params: { id: '100и000' }, format: :json
+      }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+
     it "Doesn't a create new record in database" do
       sign_in admin
       expect {
@@ -124,6 +151,13 @@ RSpec.describe HobbiesController, type: :controller do
       sign_in admin
       delete :destroy, params: { id: hobby_last.id }, format: :json
       expect(response).to  have_http_status(:no_content)
+    end
+
+    it "can't delete object with invalid ID" do
+      sign_in admin
+      expect {
+        delete :destroy,  params: { id: '100и000' }, format: :json
+      }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it "Delete one record from database" do

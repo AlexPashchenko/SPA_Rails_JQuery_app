@@ -18,9 +18,14 @@ let(:hobby) { FactoryGirl.create :hobby }
     it { should validate_presence_of(:last_name) }
     it { should validate_presence_of(:age) }
     it { should validate_presence_of(:country_id) }
+    it { should validate_presence_of(:hobbies) }
     it { should validate_presence_of(:gender) }
     it { should validate_presence_of(:order_num) }
-    it { should validate_numericality_of(:age).only_integer  }
+    it do
+      should validate_numericality_of(:age)
+      .only_integer
+      .is_less_than(112)
+    end
     it { expect(build(:user)).to be_valid }
   end
 end

@@ -17,7 +17,7 @@ class CountriesController < ApplicationController
     if @country.save
       render json: @country, status: :created
     else
-      render status: :unprocessable_entity
+      head :unprocessable_entity
     end
   end
 
@@ -25,7 +25,7 @@ class CountriesController < ApplicationController
     if @country.update(country_params)
       render json: @country, status: :ok
     else
-      render status: :unprocessable_entity
+      head :unprocessable_entity
     end
   end
 

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.joins(:country).order(order_num: :desc).collect { |user| user.country.attributes.merge(user.attributes).merge({hobbies_attributes: user.user_hobbies}) }
-    render json: @users,   status: :ok
+    render json: @users, status: :ok
   end
 
   def show
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if @user.save
       render json: @user, status: :created
     else
-      render status: :unprocessable_entity
+      head :unprocessable_entity
     end
   end
 
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       render json: @user, status: :ok
     else
-      render status: :unprocessable_entity
+      head :unprocessable_entity
     end
   end
 
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     if @users.update(sort_params)
       render json: @users, status: :ok
     else
-      render status: :unprocessable_entity
+      head :unprocessable_entity
     end
   end
 

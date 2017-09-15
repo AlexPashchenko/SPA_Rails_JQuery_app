@@ -54,6 +54,13 @@ RSpec.describe CountriesController, type: :controller do
         get :show, params: { id: country_last.id }, format: :json
         expect(response.body).to eq(country_last.to_json)
       end
+
+      it "can't return object with invalid ID" do
+        sign_in admin
+        expect {
+          get :show, params: { id: '100и000' }, format: :json
+        }.to raise_error(ActiveRecord::RecordNotFound)
+      end
     end
   end
 
@@ -74,6 +81,12 @@ RSpec.describe CountriesController, type: :controller do
       sign_in admin
       post :create, params: FactoryGirl.attributes_for(:country), format: :json
       expect(response.body).to eq(country_last.to_json)
+    end
+
+    it "can't create country without title " do
+      sign_in admin
+      post :create, params: FactoryGirl.attributes_for(:country, title: " "), format: :json
+      expect(response).to  have_http_status(:unprocessable_entity)
     end
 
     it "creates a new country" do
@@ -104,6 +117,19 @@ RSpec.describe CountriesController, type: :controller do
       expect(country.title).to eq('new title')
     end
 
+    it "can't update country with blanck title" do
+      sign_in admin
+      put :update, params: {id: country.id, title: " "}, format: :json
+      expect(response).to  have_http_status(:unprocessable_entity)
+    end
+
+    it "can't update object with invalid ID" do
+      sign_in admin
+      expect {
+        put :update,  params: { id: '100и000' }, format: :json
+      }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+
     it "Doesn't a create new record in database" do
       sign_in admin
       expect {
@@ -124,6 +150,13 @@ RSpec.describe CountriesController, type: :controller do
       sign_in admin
       delete :destroy, params: { id: country.id }, format: :json
       expect(response).to  have_http_status(:no_content)
+    end
+
+    it "can't delete object with invalid ID" do
+      sign_in admin
+      expect {
+        delete :destroy,  params: { id: '100и000' }, format: :json
+      }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it "Delete one record from database" do
