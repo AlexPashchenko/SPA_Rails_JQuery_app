@@ -283,10 +283,9 @@ $(document).ready(function() {
       $('#table').show();
       $("#tabs-min").show();
       $("#tabs-min").tabs();
+      $('#signbtn').hide();
+      $('#signout').show();
       getUsers();
-      getAdmins();
-      getCountry();
-      getHobbies();
     }
   }
 });

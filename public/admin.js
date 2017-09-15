@@ -11,17 +11,6 @@ $(document).ready(function() {
     getAdmins()
   });
 
-  $(function() {
-    if ( $.cookie("access-token") == undefined) {
-      $('#signbtn').show();
-      $('#signout').hide();
-    }
-    else {
-      $('#signbtn').hide();
-      $('#signout').show();
-    }
-  });
-
   $("#admin_create").dialog( {
     autoOpen: false,
     closeText: "",
@@ -83,9 +72,6 @@ $(document).ready(function() {
         $("#loginform").dialog( "close" );
         $('#loginform')[0].reset();
         getUsers();
-        getAdmins();
-        getCountry();
-        getHobbies();
       },
       error:function() {
         alert("Invalid data");
@@ -125,8 +111,8 @@ $(document).ready(function() {
       success:function(data) {
         data.map(function(result) {
           $('#admins_list').append("<li id =" + result.id + "><span>" + result.email
-           + "</span><button type=\"button\" class=\"info_btn\">"
-           + "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span></button></li>");
+           + "</span><a class=admin_edit> Edit </a>"
+           +"<a class=admin_delete> Delete </a></li>");
         })
       },
       error:function() {
@@ -155,9 +141,9 @@ $(document).ready(function() {
       },
       success:function(result) {
         alert("Admin Created");
-        $("#admins_list").append("<li id =" +result.id +" class =admins"+result.id+">" + result.email
-         + "<button type=\"button\" class=\"info_btn\">"
-         + "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span></button></li>");
+        $("#admins_list").append("<li id =" +result.id +" class =admins"+result.id+"><span>" + result.email
+         + "</span><a class=admin_edit> Edit </a>"
+         +"<a class=admin_delete> Delete </a></li>");
       },
       error:function() {
         alert("Invalid data or unauthorized");
@@ -168,10 +154,8 @@ $(document).ready(function() {
     return false;
   });
 
-  $("#admins_list").on("click", 'button', function(event) {
-    liId = $(this).parent().attr('id');
-    liIndex = $(this).index();
-    console.log(liId);
+  $("#admins_list").on("click", 'li', function(event) {
+    liId = $(this).attr('id');
     $.ajax({
       url: "/admins/"+ liId,
       type: 'GET',
@@ -190,14 +174,20 @@ $(document).ready(function() {
     event.stopPropagation();
   });
 
-  $("#admins_list").on("click", 'li', function() {
-    liId = $(this).attr('id');
-    liIndex = $(this).index();
+  $("#admins_list").on("click", 'a.admin_edit', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    liId = $(this).parent().attr('id');
+    liIndex = $(this).parent().index();
     $("#admin_form").dialog( "open" );
-    $('#admin_email').val($(this).text());
+    $('#admin_email').val($(this).closest('li').find('span').text());
   });
 
-  $('#admin_delete').on('click', function() {
+  $("#admins_list").on("click", 'a.admin_delete', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    liId = $(this).closest('li').attr('id');
+    var current_li = $(this).closest('li');
     $.ajax({
       url: "/admins/"+ liId,
       type: 'DELETE',
@@ -212,13 +202,9 @@ $(document).ready(function() {
         alert("Can\'t delete last admin or unauthorized");
       }
     });
-    $('#admin_form')[0].reset();
-    $("#admin_form").dialog( "close" );
-    liId = undefined;
-    return false;
   });
 
-  $('#admin_edit').on('click', function(){
+  $('#admin_update').on('click', function(){
     setAdmin();
     $.ajax({
       type: "PUT",
@@ -234,6 +220,7 @@ $(document).ready(function() {
         current_password: admin.Current_Password
       },
       success: function(result) {
+        $.cookie("uid", result.email);
         $("#admins_list li:eq("+liIndex+") > span").html(result.email);
       },
       error:function(result) {

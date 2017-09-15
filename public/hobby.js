@@ -42,9 +42,8 @@ $(document).ready(function() {
     }
   });
 
-  $("#hobbies_list").on("click", 'button', function(event) {
-    liId = $(this).parent().attr('id');
-    liIndex = $(this).index();
+  $("#hobbies_list").on("click", 'li', function(event) {
+    liId = $(this).attr('id');
     $.ajax({
       url: "/hobbies/"+ liId,
       type: 'GET',
@@ -61,13 +60,6 @@ $(document).ready(function() {
       }
     });
     event.stopPropagation();
-  });
-
-  $("#hobbies_list").on("click", 'li',function() {
-    liId = $(this).attr('id');
-    liIndex = $(this).index();
-    $("#hobby_form").dialog( "open" );
-    $('#hobby_title').val($(this).text());
   });
 
   $(document).on('click', 'tr', function ()  {
@@ -115,8 +107,8 @@ $(document).ready(function() {
            + result.title + "</span></label>" );
            interestsArr.push(result.title);
            $('#hobbies_list').append("<li id =" + result.id + "><span>" + result.title
-            + "</span><button type=\"button\" class=\"info_btn\">"
-            + "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span></button></li>");
+            + "</span><a class=hobby_edit> Edit </a>"
+            +"<a class=hobby_delete> Delete </a></li>");
         });
       },
       error:function() {
@@ -148,8 +140,8 @@ $(document).ready(function() {
          +">&nbsp<span id =name" + output.id+">"
          + output.title + "</span></label>" );
         $("#hobbies_list").append("<li id =" + output.id + "><span>" + output.title
-         + "</span><button type=\"button\" class=\"info_btn\">"
-         + "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span></button></li>");
+         + "</span><a class=hobby_edit> Edit </a>"
+         + "<a class=hobby_delete> Delete </a></li>");
       },
       error:function() {
         alert("Invalid data or unauthorized");
@@ -160,7 +152,11 @@ $(document).ready(function() {
     return false;
   });
 
-  $('#hobby_delete').on('click', function() {
+  $('#hobbies_list').on('click', 'a.hobby_delete', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    liId = $(this).closest('li').attr('id');
+    var current_li = $(this).closest('li');
     $.ajax({
       url: "/hobbies/"+ liId,
       type: 'DELETE',
@@ -169,19 +165,25 @@ $(document).ready(function() {
         setHeader(xhr)
       },
       success: function() {
-        $("#hobbies_list li").eq(liIndex).remove();
-        $("#hobby"+ liId).remove();
+        $("#hobby" + liId).remove();
+        current_li.remove();
       },
       error:function() {
         alert("Unauthorized");
       }
     });
-    $('#hobby_form')[0].reset();
-    $("#hobby_form").dialog( "close" );
-    return false;
   });
 
-  $('#hobby_edit').on('click', function(){
+  $('#hobbies_list').on('click', 'a.hobby_edit', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    liId = $(this).parent().attr('id');
+    liIndex = $(this).parent().index();
+    $('#hobby_form').dialog( "open" );
+    $('#hobby_title').val($(this).closest('li').find('span').text());
+  });
+
+  $('#hobby_update').on('click', function(){
     setHobby();
     $.ajax({
       type: "PUT",
