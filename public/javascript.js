@@ -286,6 +286,8 @@ $(document).ready(function() {
       $('#signbtn').hide();
       $('#signout').show();
       getUsers();
+      getCountry();
+      getHobbies();
     }
   }
 });
