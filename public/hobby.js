@@ -9,17 +9,6 @@ $(document).ready(function() {
     getHobbies();
   });
 
-  $("#hobby_form").dialog( {
-    autoOpen: false,
-    closeText: "",
-    resizable: false,
-    title: "Edit current hobby",
-    modal: true,
-    close: function() {
-      $("#hobby_form").dialog( "close" )
-    }
-  });
-
   $("#dialog").dialog({
     autoOpen: false,
     closeText: "",
@@ -30,16 +19,16 @@ $(document).ready(function() {
     }
   });
 
-  $("#hobby_create").dialog( {
-    autoOpen: false,
-    closeText: "",
-    title: "Create new hobby",
-    resizable: false,
-    modal: true,
-    close: function() {
-      $('#hobby_create')[0].reset();
-      $("#hobby_create").dialog( "close" )
-    }
+  $("#hobbyclose").on('click', function() {
+    $(this).closest('form').hide();
+    $("#hobbies_container").show();
+    $(this).closest('form')[0].reset();
+  });
+
+  $("#newhobbyclose").on('click', function() {
+    $(this).closest('form').hide();
+    $("#hobbies_container").show();
+    $(this).closest('form')[0].reset();
   });
 
   $("#hobbies_list").on("click", 'li', function(event) {
@@ -107,8 +96,8 @@ $(document).ready(function() {
            + result.title + "</span></label>" );
            interestsArr.push(result.title);
            $('#hobbies_list').append("<li id =" + result.id + "><span>" + result.title
-            + "</span><a class=hobby_edit> Edit </a>"
-            +"<a class=hobby_delete> Delete </a></li>");
+            + "</span><a class=hobby_edit><span class=\" glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></a>"
+            +"<a class=hobby_delete>  <span class=\" glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></a></li>");
         });
       },
       error:function() {
@@ -118,7 +107,8 @@ $(document).ready(function() {
   }
 
   $("#hobby_add").on("click", function() {
-    $("#hobby_create").dialog( "open" )
+    $("#hobby_create").show();
+    $("#hobbies_container").hide();
   });
 
   $('#hobby_save').on('click', function() {
@@ -140,16 +130,18 @@ $(document).ready(function() {
          +">&nbsp<span id =name" + output.id+">"
          + output.title + "</span></label>" );
         $("#hobbies_list").append("<li id =" + output.id + "><span>" + output.title
-         + "</span><a class=hobby_edit> Edit </a>"
-         + "<a class=hobby_delete> Delete </a></li>");
+        + " </span><a class=hobby_edit> <span class=\" glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></a>"
+        +"<a class=hobby_delete>  <span class=\" glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></a></li>");
+        $('#hobby_create')[0].reset();
+        $("#hobby_create").hide();
+        $("#hobbies_container").show();
+        return false;
+
       },
       error:function() {
         alert("Invalid data or unauthorized");
       }
     });
-    $('#hobby_create')[0].reset();
-    $("#hobby_create").dialog( "close" );
-    return false;
   });
 
   $('#hobbies_list').on('click', 'a.hobby_delete', function(e) {
@@ -179,7 +171,8 @@ $(document).ready(function() {
     e.stopPropagation();
     liId = $(this).parent().attr('id');
     liIndex = $(this).parent().index();
-    $('#hobby_form').dialog( "open" );
+    $("#hobbies_container").hide();
+    $('#hobby_form').show();
     $('#hobby_title').val($(this).closest('li').find('span').text());
   });
 
@@ -198,13 +191,14 @@ $(document).ready(function() {
       success: function(result) {
         $("#hobbies_list li:eq("+liIndex+") > span").html(result.title);
         $("#name" + result.id).html(result.title);
+        $('#hobby_form')[0].reset();
+        $("#hobbies_container").show();
+        $('#hobby_form').hide();
       },
       error:function() {
         alert("Invalid data or unauthorized");
       }
     });
-    $('#hobby_form')[0].reset();
-    $("#hobby_form").dialog( "close" );
     liId = undefined;
     return false;
   });
