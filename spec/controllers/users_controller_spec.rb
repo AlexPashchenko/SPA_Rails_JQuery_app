@@ -1,18 +1,21 @@
 require 'rails_helper'
 require 'rspec/rails'
 require 'devise'
+
 RSpec.describe UsersController, type: :controller do
   Devise::Test::ControllerHelpers
 
   let!(:user) { FactoryGirl.create :user }
   let!(:admin) { FactoryGirl.create :admin }
   let(:user_last) { User.last }
+  let(:updated_user) { FactoryGirl.build :user }
+  invalid_gender = Faker::Book.genre
+  invalid_age = Faker::Number.decimal(2)
 
   context 'callbacks' do
     it { should use_before_action(:authenticate_admin!) }
     it { should use_before_action(:set_user) }
   end
-
 
   describe 'GET' do
 
@@ -20,7 +23,7 @@ RSpec.describe UsersController, type: :controller do
 
       it "has an unauthorized status" do
         get :index, format: :json
-        expect(response).to  have_http_status(:unauthorized)
+        expect(response).to have_http_status(:unauthorized)
       end
 
       it "has a success status" do
@@ -40,7 +43,7 @@ RSpec.describe UsersController, type: :controller do
 
       it "has an unauthorized status" do
         get :show, params: { id: user.id }, format: :json
-        expect(response).to  have_http_status(:unauthorized)
+        expect(response).to have_http_status(:unauthorized)
       end
 
       it "has a success status" do
@@ -52,7 +55,7 @@ RSpec.describe UsersController, type: :controller do
       it "can't return user with invalid ID" do
         sign_in admin
         expect {
-          get :show, params: { id: '100и000' }, format: :json
+          get :show, params: { id: user_last.id+1 }, format: :json
         }.to raise_error(ActiveRecord::RecordNotFound)
       end
 
@@ -68,61 +71,55 @@ RSpec.describe UsersController, type: :controller do
 
     it "has a unauthorized status" do
       post :create, params: FactoryGirl.attributes_for(:user), format: :json
-      expect(response).to  have_http_status(:unauthorized)
+      expect(response).to have_http_status(:unauthorized)
     end
 
     it "has a created status" do
       sign_in admin
       post :create, params: FactoryGirl.attributes_for(:user), format: :json
-      expect(response).to  have_http_status(:created)
-    end
-
-    it "can't create user without hobby" do
-      sign_in admin
-      post :create, params: FactoryGirl.attributes_for(:user, hobby_ids: []), format: :json
-      expect(response).to  have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:created)
     end
 
     it "can't create user without country" do
       sign_in admin
       post :create, params: FactoryGirl.attributes_for(:user, country_id: ''), format: :json
-      expect(response).to  have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_entity)
     end
 
     it "can't create user with_invalid age" do
       sign_in admin
-      post :create, params: FactoryGirl.attributes_for(:user, age: 'sdg'), format: :json
-      expect(response).to  have_http_status(:unprocessable_entity)
+      post :create, params: FactoryGirl.attributes_for(:user, age: invalid_age), format: :json
+      expect(response).to have_http_status(:unprocessable_entity)
     end
 
     it "can't create user without age" do
       sign_in admin
       post :create, params: FactoryGirl.attributes_for(:user, age: ''), format: :json
-      expect(response).to  have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_entity)
     end
 
     it "can't create user without first_name" do
       sign_in admin
       post :create, params: FactoryGirl.attributes_for(:user, first_name: ''), format: :json
-      expect(response).to  have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_entity)
     end
 
     it "can't create user without last_name" do
       sign_in admin
       post :create, params: FactoryGirl.attributes_for(:user, last_name: ''), format: :json
-      expect(response).to  have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_entity)
     end
 
     it "can't create user without gender" do
       sign_in admin
       post :create, params: FactoryGirl.attributes_for(:user, gender: ''), format: :json
-      expect(response).to  have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_entity)
     end
 
     it "can't create user with not male/female gender" do
       sign_in admin
-      post :create, params: FactoryGirl.attributes_for(:user, gender: 'undefound'), format: :json
-      expect(response).to  have_http_status(:unprocessable_entity)
+      post :create, params: FactoryGirl.attributes_for(:user, gender: invalid_gender), format: :json
+      expect(response).to have_http_status(:unprocessable_entity)
     end
 
     it "render json object user" do
@@ -143,19 +140,18 @@ RSpec.describe UsersController, type: :controller do
 
     it "has an ok status" do
       sign_in admin
-      put :update, params: {id: user.id, country_id: Country.first.id},
-      format: :json
-      expect(response).to  have_http_status(:ok)
+      put :update, params: { id: user.id, country_id: Country.first.id }, format: :json
+      expect(response).to have_http_status(:ok)
     end
 
     it "has an unauthorized status" do
       put :update, params: user.attributes, format: :json
-      expect(response).to  have_http_status(:unauthorized)
+      expect(response).to have_http_status(:unauthorized)
     end
 
     it "render updated json object user" do
       sign_in admin
-      put :update, params: {id: user.id, country_id: Country.first.id },
+      put :update, params: { id: user.id, country_id: Country.first.id },
       format: :json
       user.reload
       expect(user.country.title).to eq(Country.first.title)
@@ -163,45 +159,39 @@ RSpec.describe UsersController, type: :controller do
 
     it "can't update user with invalid age" do
       sign_in admin
-      put :update, params: {id: user.id, age: 11000 }, format: :json
-      expect(response).to  have_http_status(:unprocessable_entity)
+      put :update, params: { id: user.id, age: 11000 }, format: :json
+      expect(response).to have_http_status(:unprocessable_entity)
     end
 
     it "can't update user with invalid first_name" do
       sign_in admin
-      put :update, params: {id: user.id, first_name: " " }, format: :json
-      expect(response).to  have_http_status(:unprocessable_entity)
+      put :update, params: { id: user.id, first_name: " " }, format: :json
+      expect(response).to have_http_status(:unprocessable_entity)
     end
 
     it "can't update user with invalid last_name" do
       sign_in admin
-      put :update, params: {id: user.id, last_name: " " }, format: :json
-      expect(response).to  have_http_status(:unprocessable_entity)
-    end
-
-    it "can't update user without hobby" do
-      sign_in admin
-      put :update, params: {id: user.id, hobby_ids:[""]}, format: :json
-      expect(response).to  have_http_status(:unprocessable_entity)
+      put :update, params: { id: user.id, last_name: " " }, format: :json
+      expect(response).to have_http_status(:unprocessable_entity)
     end
 
     it "can't update user without country" do
       sign_in admin
-      put :update, params: {id: user.id, country_id: ''}, format: :json
-      expect(response).to  have_http_status(:unprocessable_entity)
+      put :update, params: { id: user.id, country_id: '' }, format: :json
+      expect(response).to have_http_status(:unprocessable_entity)
     end
 
-    it "can't update user with  invalid ID" do
+    it "can't update user with invalid ID" do
       sign_in admin
       expect {
-        put :update, params: { id: '100и000' }, format: :json
+        put :update, params: { id: user_last.id+1 }, format: :json
       }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it "Doesn't a create new record in database" do
       sign_in admin
       expect {
-        put :update, params: {id: user.id},
+        put :update, params: { id: user.id },
         format: :json
         user.reload
       }.to_not change(User,:count)
@@ -212,19 +202,19 @@ RSpec.describe UsersController, type: :controller do
 
     it "has an unauthorized status" do
       delete :destroy, params: { id: user.id }, format: :json
-      expect(response).to  have_http_status(:unauthorized)
+      expect(response).to have_http_status(:unauthorized)
     end
 
     it "has a no_content status" do
       sign_in admin
       delete :destroy, params: { id: user.id }, format: :json
-      expect(response).to  have_http_status(:no_content)
+      expect(response).to have_http_status(:no_content)
     end
 
     it "can't delete user with invalid ID" do
       sign_in admin
       expect {
-        delete :destroy, params: { id: '100и000' }, format: :json
+        delete :destroy, params: { id: user_last.id+1 }, format: :json
       }.to raise_error(ActiveRecord::RecordNotFound)
     end
 

@@ -8,6 +8,8 @@ RSpec.describe CountriesController, type: :controller do
   let!(:country) { FactoryGirl.create :country }
   let(:country_last) { Country.last }
   let(:admin) { FactoryGirl.create :admin }
+  undef_id = Country.last.id + 1
+  let(:updated_country) { FactoryGirl.build(:country) }
 
   context 'callbacks' do
     it { should use_before_action(:authenticate_admin!) }
@@ -20,7 +22,7 @@ RSpec.describe CountriesController, type: :controller do
 
       it "has an unauthorized status" do
         get :index, format: :json
-        expect(response).to  have_http_status(:unauthorized)
+        expect(response).to have_http_status(:unauthorized)
       end
 
       it "has a success status" do
@@ -40,7 +42,7 @@ RSpec.describe CountriesController, type: :controller do
 
       it "has an unauthorized status" do
         get :show, params: { id: country.id }, format: :json
-        expect(response).to  have_http_status(:unauthorized)
+        expect(response).to have_http_status(:unauthorized)
       end
 
       it "has a success status" do
@@ -58,7 +60,7 @@ RSpec.describe CountriesController, type: :controller do
       it "can't return object with invalid ID" do
         sign_in admin
         expect {
-          get :show, params: { id: '100и000' }, format: :json
+          get :show, params: { id: undef_id }, format: :json
         }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
@@ -68,13 +70,13 @@ RSpec.describe CountriesController, type: :controller do
 
     it "has a unauthorized status" do
       post :create, params: FactoryGirl.attributes_for(:country), format: :json
-      expect(response).to  have_http_status(:unauthorized)
+      expect(response).to have_http_status(:unauthorized)
     end
 
     it "has a created status" do
       sign_in admin
       post :create, params: FactoryGirl.attributes_for(:country), format: :json
-      expect(response).to  have_http_status(:created)
+      expect(response).to have_http_status(:created)
     end
 
     it "render json object country" do
@@ -86,7 +88,7 @@ RSpec.describe CountriesController, type: :controller do
     it "can't create country without title " do
       sign_in admin
       post :create, params: FactoryGirl.attributes_for(:country, title: " "), format: :json
-      expect(response).to  have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_entity)
     end
 
     it "creates a new country" do
@@ -102,38 +104,38 @@ RSpec.describe CountriesController, type: :controller do
     it "has an ok status" do
       sign_in admin
       put :update, params: country_last.attributes, format: :json
-      expect(response).to  have_http_status(:ok)
+      expect(response).to have_http_status(:ok)
     end
 
     it "has an unauthorized status" do
       put :update, params: country.attributes, format: :json
-      expect(response).to  have_http_status(:unauthorized)
+      expect(response).to have_http_status(:unauthorized)
     end
 
-    it "render json object hobby" do
+    it "render json object country" do
       sign_in admin
-      put :update, params: {id: country.id, title: "new title"}, format: :json
+      put :update, params: { id: country.id, title: updated_country.title }, format: :json
       country.reload
-      expect(country.title).to eq('new title')
+      expect(country.title).to eq(updated_country.title)
     end
 
     it "can't update country with blanck title" do
       sign_in admin
-      put :update, params: {id: country.id, title: " "}, format: :json
-      expect(response).to  have_http_status(:unprocessable_entity)
+      put :update, params: { id: country.id, title: " " }, format: :json
+      expect(response).to have_http_status(:unprocessable_entity)
     end
 
     it "can't update object with invalid ID" do
       sign_in admin
       expect {
-        put :update,  params: { id: '100и000' }, format: :json
+        put :update, params: { id: undef_id }, format: :json
       }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it "Doesn't a create new record in database" do
       sign_in admin
       expect {
-        put :update, params: {id: country.id, title: "sdgd"}, format: :json
+        put :update, params: { id: country.id, title: updated_country.title }, format: :json
         country.reload
       }.to_not change(Country,:count)
     end
@@ -143,19 +145,19 @@ RSpec.describe CountriesController, type: :controller do
 
     it "has an unauthorized status" do
       delete :destroy, params: { id: country.id }, format: :json
-      expect(response).to  have_http_status(:unauthorized)
+      expect(response).to have_http_status(:unauthorized)
     end
 
     it "has a no_content status" do
       sign_in admin
       delete :destroy, params: { id: country.id }, format: :json
-      expect(response).to  have_http_status(:no_content)
+      expect(response).to have_http_status(:no_content)
     end
 
     it "can't delete object with invalid ID" do
       sign_in admin
       expect {
-        delete :destroy,  params: { id: '100и000' }, format: :json
+        delete :destroy, params: { id: undef_id }, format: :json
       }.to raise_error(ActiveRecord::RecordNotFound)
     end
 

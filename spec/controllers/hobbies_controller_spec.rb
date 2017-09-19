@@ -6,9 +6,10 @@ RSpec.describe HobbiesController, type: :controller do
   Devise::Test::ControllerHelpers
 
   let!(:hobby) { FactoryGirl.create :hobby }
+  let(:updated_hobby) { FactoryGirl.build :hobby }
   let(:hobby_last) { Hobby.last }
   let(:admin) { FactoryGirl.create :admin }
-
+  undef_id = Hobby.last.id + 1
 
   context 'callbacks' do
     it { should use_before_action(:authenticate_admin!) }
@@ -21,7 +22,7 @@ RSpec.describe HobbiesController, type: :controller do
 
       it "has an unauthorized status" do
         get :index, format: :json
-        expect(response).to  have_http_status(:unauthorized)
+        expect(response).to have_http_status(:unauthorized)
       end
 
       it "has a success status" do
@@ -41,7 +42,7 @@ RSpec.describe HobbiesController, type: :controller do
 
       it "has an unauthorized status" do
         get :show, params: { id: hobby.id }, format: :json
-        expect(response).to  have_http_status(:unauthorized)
+        expect(response).to have_http_status(:unauthorized)
       end
 
       it "has a success status" do
@@ -59,7 +60,7 @@ RSpec.describe HobbiesController, type: :controller do
       it "can't return object with invalid ID" do
         sign_in admin
         expect {
-          get :show, params: { id: '100и000' }, format: :json
+          get :show, params: { id: undef_id }, format: :json
         }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
@@ -69,13 +70,13 @@ RSpec.describe HobbiesController, type: :controller do
 
     it "has a unauthorized status" do
       post :create, params: FactoryGirl.attributes_for(:hobby), format: :json
-      expect(response).to  have_http_status(:unauthorized)
+      expect(response).to have_http_status(:unauthorized)
     end
 
     it "has a created status" do
       sign_in admin
       post :create, params: FactoryGirl.attributes_for(:hobby), format: :json
-      expect(response).to  have_http_status(:created)
+      expect(response).to have_http_status(:created)
     end
 
     it "render json object hobby" do
@@ -87,7 +88,7 @@ RSpec.describe HobbiesController, type: :controller do
     it "can't create hobby without title " do
       sign_in admin
       post :create, params: FactoryGirl.attributes_for(:hobby, title: " "), format: :json
-      expect(response).to  have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_entity)
     end
 
     it "creates a new hobby" do
@@ -103,38 +104,38 @@ RSpec.describe HobbiesController, type: :controller do
     it "has an ok status" do
       sign_in admin
       put :update, params: hobby_last.attributes, format: :json
-      expect(response).to  have_http_status(:ok)
+      expect(response).to have_http_status(:ok)
     end
 
     it "has an unauthorized status" do
       put :update, params: hobby_last.attributes, format: :json
-      expect(response).to  have_http_status(:unauthorized)
+      expect(response).to have_http_status(:unauthorized)
     end
 
     it "render json object hobby" do
       sign_in admin
-      put :update, params: {id: hobby_last.id, title: "new title"}, format: :json
+      put :update, params: { id: hobby_last.id, title: updated_hobby.title }, format: :json
       hobby_last.reload
-      expect(hobby_last.title).to eq('new title')
+      expect(hobby_last.title).to eq(updated_hobby.title)
     end
 
     it "can't update hobby with blanck title" do
       sign_in admin
-      put :update, params: {id: hobby.id, title: " "}, format: :json
-      expect(response).to  have_http_status(:unprocessable_entity)
+      put :update, params: { id: hobby.id, title: " " }, format: :json
+      expect(response).to have_http_status(:unprocessable_entity)
     end
 
     it "can't update object with invalid ID" do
       sign_in admin
       expect {
-        put :update,  params: { id: '100и000' }, format: :json
+        put :update, params: { id: undef_id }, format: :json
       }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it "Doesn't a create new record in database" do
       sign_in admin
       expect {
-        put :update, params: {id: hobby_last.id, title: "sdgd"}, format: :json
+        put :update, params: { id: hobby_last.id, title: updated_hobby.title }, format: :json
         hobby_last.reload
       }.to_not change(Hobby,:count)
     end
@@ -144,19 +145,19 @@ RSpec.describe HobbiesController, type: :controller do
 
     it "has an unauthorized status" do
       delete :destroy, params: { id: hobby_last.id }, format: :json
-      expect(response).to  have_http_status(:unauthorized)
+      expect(response).to have_http_status(:unauthorized)
     end
 
     it "has a no_content status" do
       sign_in admin
       delete :destroy, params: { id: hobby_last.id }, format: :json
-      expect(response).to  have_http_status(:no_content)
+      expect(response).to have_http_status(:no_content)
     end
 
     it "can't delete object with invalid ID" do
       sign_in admin
       expect {
-        delete :destroy,  params: { id: '100и000' }, format: :json
+        delete :destroy, params: { id: undef_id }, format: :json
       }.to raise_error(ActiveRecord::RecordNotFound)
     end
 

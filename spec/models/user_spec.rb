@@ -18,7 +18,6 @@ let(:hobby) { FactoryGirl.create :hobby }
     it { should validate_presence_of(:last_name) }
     it { should validate_presence_of(:age) }
     it { should validate_presence_of(:country_id) }
-    it { should validate_presence_of(:hobbies) }
     it { should validate_presence_of(:gender) }
     it { should validate_presence_of(:order_num) }
     it do
