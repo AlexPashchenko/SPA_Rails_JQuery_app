@@ -9,7 +9,7 @@ RSpec.describe AdminsController, type: :controller do
   let!(:admin2) { FactoryGirl.create :admin }
   let(:admin_last) { Admin.last }
   let(:updated_admin) { FactoryGirl.build :admin }
-  invalid_password = Faker::Internet.password(3)
+  invalid_password = Faker::Internet.password(1,5)
 
   context 'callbacks' do
     it { should use_before_action(:authenticate_admin!) }
@@ -93,6 +93,7 @@ RSpec.describe AdminsController, type: :controller do
 
     it "can't create account with invalid password" do
       sign_in admin
+      puts invalid_password
       post :create, params: FactoryGirl.attributes_for(:admin, password: invalid_password ), format: :json
       expect(response).to have_http_status(:unprocessable_entity)
     end
