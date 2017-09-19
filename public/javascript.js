@@ -85,10 +85,6 @@ $(document).ready(function() {
       alert(":Select your gender");
       return false;
     }
-    else if (!$('input[name=inter]:checked').val()) {
-      alert(":Select your interests");
-      return false;
-    }
     return true;
   }
 

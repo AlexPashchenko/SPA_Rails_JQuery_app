@@ -17,7 +17,7 @@ class HobbiesController < ApplicationController
     if @hobby.save
       render json: @hobby, status: :created
     else
-      render status: :unprocessable_entity
+      head :unprocessable_entity
     end
   end
 
@@ -25,7 +25,7 @@ class HobbiesController < ApplicationController
     if @hobby.update(hobby_params)
       render json: @hobby, status: :ok
     else
-      render status: :unprocessable_entity
+      head :unprocessable_entity
     end
   end
 

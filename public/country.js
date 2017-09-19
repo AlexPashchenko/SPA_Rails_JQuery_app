@@ -21,7 +21,7 @@ $(document).ready(function() {
       success:function(data) {
         data.map(function(result) {
           $('#country').append("<option id=" + result.id +" class=country"+ result.id+">" + result.title + "</option>");
-          $('#countries_list').append("<li id =" + result.id + " class = \"countries"+c.id+"\"><span>" + result.title
+          $('#countries_list').append("<li id =" + result.id + " class = \"countries"+result.id+"\"><span>" + result.title
            + "</span><button type=\"button\" class=\"info_btn\">"
            + "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span></button></li>");
         })

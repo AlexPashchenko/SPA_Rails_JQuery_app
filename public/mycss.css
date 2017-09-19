@@ -4,6 +4,7 @@ body {
 
 #tabs-min {
     background: transparent;
+    white-space: nowrap;
     border: none;
 }
 #signbtn, #signout {
