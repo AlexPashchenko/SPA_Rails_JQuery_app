@@ -13,6 +13,7 @@ $(document).ready(function() {
     autoOpen: false,
     closeText: "",
     resizable: false,
+    draggable: false,
     modal: true,
     close: function() {
       $("#dialog").dialog( "close" )

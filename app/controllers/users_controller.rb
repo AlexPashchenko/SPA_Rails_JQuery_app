@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   respond_to :json
 
   def index
-    @users = User.joins(:country).order(order_num: :desc).collect { |user| user.country.attributes.merge(user.attributes).merge({hobbies_attributes: user.user_hobbies}) }
+    @users = User.joins(:country).order(order_num: :desc, id: :asc).collect { |user| user.country.attributes.merge(user.attributes).merge({hobbies_attributes: user.user_hobbies}) }
     render json: @users
   end
 

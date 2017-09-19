@@ -17,6 +17,7 @@ $(document).ready(function() {
     resizable: false,
     title: "Sign_in",
     modal: true,
+    draggable: false,
     close: function() {
       $("#loginform")[0].reset();
       $("#loginform").dialog( "close" );
