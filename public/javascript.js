@@ -1,5 +1,6 @@
 $(document).ready(function() {
   window.getUsers = getUsers;
+
   var interestsArr = [];
   var user;
   var maxId;
@@ -14,21 +15,17 @@ $(document).ready(function() {
   });
 
   $("#btncreate").on("click", function() {
-    $("#frm").dialog( "open" );
+    $("#frm")[0].reset();
+    $("#frm").show()
+    $("#users_container").hide();
     $("#btnupdate").hide();
     $("#btnsave").show();
   });
 
-  $("#frm").dialog( {
-    autoOpen: false,
-    closeText: "",
-    title: "Create new user",
-    resizable: false,
-    modal: true,
-    close: function() {
-      $("#frm")[0].reset();
-      $("#frm").dialog( "close" )
-    }
+  $("#usersclose").on('click', function() {
+    $(this).closest('form').hide();
+    $("#users_container").show();
+    $(this).closest('form')[0].reset();
   });
 
   function getUsers() {
@@ -50,10 +47,12 @@ $(document).ready(function() {
                    + "<td>" + result.gender + "</td>"
                    + "<td>" + result.hobbies_attributes + "</td>"
                    + "<td>" + result.title + "</td>"
-                   + "<td><a class=editing>Edit</a>   <a class=deleting>Delete</a></td>"
+                   + "<td><a class=editing><span class=\" glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></a> "
+                   + " <a class=deleting> <span class=\" glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></a></td>"
                    + "</tr></tbody>";
           $('#table').prepend(eachrow);
         });
+        Pagination();
       },
       error:function() {
         console.log("error reading users");
@@ -96,14 +95,14 @@ $(document).ready(function() {
                                      + user.Gender +"</td><td>"
                                      + user.Interests +"</td><td>"
                                      + user.Country + "</td>"
-                                     + "<td><a class=editing>Edit</a>  <a class=deleting>Delete</a></td>"
+                                     + "<td><a class=editing><span class=\" glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></a>"
+                                     +" <a class=deleting> <span class=\" glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></a></td>"
                                      + "</tr></tbody>");
   }
 
        //save function
   $('#btnsave').on('click', function() {
     setUser();
-    $("#frm").dialog( "open" );
     if (validateForm()=== true) {
       $.ajax( {
         type: "POST",
@@ -125,13 +124,15 @@ $(document).ready(function() {
         success: function (result) {
           maxId = result.id;
           addrow();
+          Pagination();
         },
         error:function() {
           alert("Invalid data or unauthorized");
         }
       });
       $('#frm')[0].reset();
-      $("#frm").dialog( "close" )
+      $("#frm").hide()
+      $("#users_container").show();
       return false;
     }
   });
@@ -146,11 +147,11 @@ $(document).ready(function() {
     itemSelector: 'tr',
     placeholder: '',
     revert: true,
-    stop: function() {
-      $.map($(this).find('tbody tr'), function(element){
+    stop:function() {
+      $.map($(this).find('tbody tr'), function(element) {
         var itemID = element.cells[0].innerHTML;
         var itemIndex = $(element).parent('tbody').index();
-        $.ajax({
+        $.ajax( {
           url: "/users/" + itemID,
           type: 'PUT',
           dataType: 'json',
@@ -182,6 +183,7 @@ $(document).ready(function() {
       },
       success: function() {
         current_row.remove();
+        Pagination();
       },
       error:function() {
         alert("Unauthorized");
@@ -191,7 +193,8 @@ $(document).ready(function() {
 
   $('#table').on('click', 'a.editing', function (e)  {
     e.preventDefault();
-    $("#frm").dialog( "open" );
+    $("#frm").show()
+    $("#users_container").hide();
     $("#btnupdate").show();
     $("#btnsave").hide();
   });
@@ -238,13 +241,15 @@ $(document).ready(function() {
         }
       });
       $('#frm')[0].reset();
-      $("#frm").dialog( "close" )
+      $("#frm").hide()
+      $("#users_container").show();
       rIndex = undefined;
     }
   });
 
       //Pagination function
   function Pagination() {
+    $('#pages').remove();
     var totalRows = $('#table').find('tbody tr:has(td)').length;
     var recordPerPage = 10;
     var totalPages = Math.ceil(totalRows / recordPerPage);
@@ -279,8 +284,9 @@ $(document).ready(function() {
       $('#table').show();
       $("#tabs-min").show();
       $("#tabs-min").tabs();
+      $('#signbtn').hide();
+      $('#signout').show();
       getUsers();
-      getAdmins();
       getCountry();
       getHobbies();
     }
