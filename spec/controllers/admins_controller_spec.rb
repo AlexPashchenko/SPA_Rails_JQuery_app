@@ -93,7 +93,6 @@ RSpec.describe AdminsController, type: :controller do
 
     it "can't create account with invalid password" do
       sign_in admin
-      puts invalid_password
       post :create, params: FactoryGirl.attributes_for(:admin, password: invalid_password ), format: :json
       expect(response).to have_http_status(:unprocessable_entity)
     end
