@@ -1,0 +1,81 @@
+<body>
+  <div id="tabs-min">
+    <ul>
+      <li id="users_tab"><a href="#tabs-1">Users</a></li>
+      <li id="hobbies_tab"><a href="#tabs-2">Hobbies</a></li>
+      <li id="countries_tab"><a href="#tabs-3">Countries</a></li>
+      <li id="admins_tab"><a href="#tabs-4">Admins</a></li>
+      <li><button id="signbtn" type="button" class="btn">Sign_in</button></li>
+      <li><button id="signout" type="button" class="btn">Sign_out</button></li>
+    </ul>
+    <div id="formlogin">
+      <form id="loginform" class="">
+        <input type="text" id ="email_input" placeholder="email"/>
+        <input type="password" id ="password_input" placeholder="password"/><br/>
+        <div class="buttons">
+          <button id="login_submit" type="button" class="btn btn-success">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div id="dialog" title="Show detal information">
+    </div>
+    <div id="tabs-1">
+        <form id="frm" class="form">
+          <input type="text" id ="firstname" name="FirstName" placeholder="FirstName"/>
+          <input type="text" id ="lastname" name="LastName" placeholder="LastName"/><br/>
+          <input type="number" class="age" id ="age" min="1" max = "111" name="Age" placeholder="Age"/><br />
+          <label><input type="radio" id="maleGender" name="gender" value="male"/> Male </label>
+          <label><input type="radio" id="femaleGender" name="gender" value="female"/> Female </label> <br />
+          <fieldset id="checkboxes">
+            <legend>Choose your interests:</legend>
+            <label id = "hobby1"><input type = "checkbox" name = "inter1"><span id ="hobbyname">reading</span></label>
+            <label id = "hobby2"><input type = "checkbox" name = "inter2"><span id ="hobbyname">programming</span></label>
+          </fieldset>
+          <div class="form-group">
+            <fieldset>
+              <legend>Choose your country:</legend>
+              <select class="form-control" id="country">
+                <option value="Ukraine">Ukraine</option>
+              </select>
+            </fieldset>
+          </div>
+          <div class="buttons">
+            <button id="btnsave" type="button" class="btn btn-success">Save</button>
+            <button id="btnupdate" type="button" class="btn btn-warning">Update</button>
+            <button id="usersclose" type="button" class="btn btn-primary">Back</button>
+          </div>
+        </form>
+      <div id="users_container">
+        <h3 > Users: </h3>
+        <button id="btncreate" type="button" class="btn btn-success"><span class=" glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+        <table  class="table" id="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Firstname</th>
+              <th>Lastname</th>
+              <th>Age</th>
+              <th>Gender</th>
+              <th>Interests</th>
+              <th>Country</th>
+              <th>Ections</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Alex</td>
+              <td>Pashchenko</td>
+              <td>21</td>
+              <td>male</td>
+              <td>programming</td>
+              <td>Ukraine</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <p id="pagin"> </p>
+      </div>
+    </div>
+  </div>
+</body>

@@ -1,4 +1,3 @@
-$(document).ready(function() {
   window.getCountry = getCountry;
   var country;
   var liId;
@@ -169,4 +168,3 @@ $(document).ready(function() {
       Title: $('#country_title').val()
     };
   };
-});

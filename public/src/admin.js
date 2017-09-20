@@ -1,4 +1,3 @@
-$(document).ready(function() {
   window.getAdmins = getAdmins;
   window.setHeader = setHeader;
 
@@ -272,4 +271,3 @@ $(document).ready(function() {
       Password: $('#password_input').val()
     };
   };
-});

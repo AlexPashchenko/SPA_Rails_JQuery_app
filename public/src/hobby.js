@@ -1,4 +1,3 @@
-$(document).ready(function() {
   window.getHobbies = getHobbies;
   var interestsArr = [];
   var hobby;
@@ -215,4 +214,3 @@ $(document).ready(function() {
       Title: $('#hobby_title').val()
     };
   };
-});

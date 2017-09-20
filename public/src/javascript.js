@@ -1,4 +1,3 @@
-$(document).ready(function() {
   window.getUsers = getUsers;
 
   var interestsArr = [];
@@ -28,7 +27,7 @@ $(document).ready(function() {
     $(this).closest('form')[0].reset();
   });
 
-  function getUsers() {
+  var getUsers = function() {
     $('#table tbody').remove();
     $.ajax({
       type: "GET",
@@ -58,7 +57,7 @@ $(document).ready(function() {
         console.log("error reading users");
       }
     });
-  }
+  };
 
     //set user object
   function setUser() {
@@ -72,24 +71,23 @@ $(document).ready(function() {
       }).get(),
       Country :  $("#country").val()
     };
+    return user;
   }
 
     //validation of form data
   function validateForm() {
     if( $("#firstname").val() == '' | $('#lastname').val() == '' | $("#age").val() == '' | $("#age").val() >111) {
-      alert(":Incorrect Name or Age");
+      // alert(":Incorrect Name or Age");
       return false;
     }
     else if (!$('input[name=gender]:checked').val()) {
-      alert(":Select your gender");
+      // alert(":Select your gender");
       return false;
     }
-    else if (!$('input[name=inter]:checked').val()) {
-      alert(":Select your interests");
-      return false;
+    else {
+      return true;
     }
-    return true;
-  }
+  };
 
   function addrow() {
     $('#table').prepend("<tbody id ="+ maxId +"><tr><td>" + maxId + "</td><td>"
@@ -295,4 +293,3 @@ $(document).ready(function() {
       getHobbies();
     }
   }
-});
