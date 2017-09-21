@@ -19,6 +19,14 @@
   </head>
 
   <body>
+    <form id="loginform" class="loginform">
+      <span>Please, sign in to continue</span>
+      <input type="text" id ="email_input" placeholder="email">
+      <input type="password" id ="password_input" placeholder="password"><br/>
+      <div class="buttons">
+        <button id="login_submit" type="button" class="btn btn-success">Submit</button>
+      </div>
+    </form>
     <div id="tabs-min">
       <ul>
         <li id="users_tab"><a href="#tabs-1">Users</a></li>
@@ -27,15 +35,6 @@
         <li id="admins_tab"><a href="#tabs-4">Admins</a></li>
         <li><button id="signout" type="button" class="btn">Sign_out</button></li>
       </ul>
-      <div id="formlogin">
-        <form id="loginform" class="">
-          <input type="text" id ="email_input" placeholder="email">
-          <input type="password" id ="password_input" placeholder="password"><br/>
-          <div class="buttons">
-            <button id="login_submit" type="button" class="btn btn-success">Submit</button>
-          </div>
-        </form>
-      </div>
       <div id="dialog" title="Show detal information">
       </div>
       <div id="tabs-1">
@@ -169,5 +168,6 @@
           </div>
         </form>
       </div>
+    </div>
   </body>
 </html>

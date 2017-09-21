@@ -279,7 +279,8 @@ $(document).ready(function() {
 
   function checkAuthorize() {
     if ($.cookie("access-token") == undefined) {
-      $("#loginform").dialog( "open" );
+      $("#loginform").show( );
+      $("#tabs-min").hide();
     } else {
       $('#table').show();
       $("#tabs-min").show();

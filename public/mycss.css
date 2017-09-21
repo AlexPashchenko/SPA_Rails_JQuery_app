@@ -63,7 +63,7 @@ ul {
   background-color: #F3F3F2;
   padding: 10px
 }
-.hobby_form, .country_form, .admin_form {
+.hobby_form, .country_form, .admin_form, .loginform {
   margin-left: 40%;
   margin-right: 40%;
   border: 2px solid #ccc;

@@ -11,19 +11,6 @@ $(document).ready(function() {
     getAdmins()
   });
 
-  $("#loginform").dialog( {
-    autoOpen: false,
-    closeText: "",
-    resizable: false,
-    draggable: false,
-    title: "Sign_in",
-    modal: true,
-    close: function() {
-      $("#loginform").dialog( "close" );
-      $("#loginform")[0].reset();
-    }
-  });
-
   $("#adminclose").on('click', function() {
     $(this).closest('form').hide();
     $("#admins_container").show();
@@ -52,7 +39,7 @@ $(document).ready(function() {
         $('#table').show();
         $("#tabs-min").show();
         $("#tabs-min").tabs();
-        $("#loginform").dialog( "close" );
+        $("#loginform").hide( );
         $('#loginform')[0].reset();
         getUsers();
       },
@@ -76,7 +63,7 @@ $(document).ready(function() {
         RemoveCookies();
         $('#table').hide();
         $("#tabs-min").hide();
-        $("#loginform").dialog( "open" );
+        $("#loginform").show();
       }
     });
     return false;
