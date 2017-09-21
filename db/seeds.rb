@@ -30,4 +30,6 @@
   Hobby.create!(title: 'tourism')
   Hobby.create!(title: 'programming')
   Hobby.create!(title: 'cookery')
-  User.create!(first_name: 'Alex', last_name: 'pashchenko', age: '21', gender: 'male', hobby_ids:[1,2,3], country_id: 1)
+  User.create!(first_name: 'Alex', last_name: 'pashchenko', age: '21', gender: 'male', hobby_ids:[1,2,3], country_id: 3)
+  User.create!(first_name: 'Dima', last_name: 'Sergienya', age: '25', gender: 'male', hobby_ids:[6,2,3], country_id: 5)
+  User.create!(first_name: 'Ann', last_name: 'Pashchenko', age: '40', gender: 'male', hobby_ids:[1,4,3], country_id: 1)

@@ -45,6 +45,7 @@ $(document).ready(function() {
   });
 
   $("#country_add").on("click", function() {
+    $("#country_create")[0].reset();
     $("#country_create").show();
     $("#countries_container").hide();
   });
@@ -73,7 +74,7 @@ $(document).ready(function() {
         return false;
        },
       error:function(result) {
-        alert("Invalid data or unauthorized");
+        alert("Invalid data");
       }
     });
   });
@@ -133,7 +134,7 @@ $(document).ready(function() {
         return false;
       },
       error:function(result) {
-        alert("Invalid data or unauthorized");
+        alert("Invalid data");
       }
     });
   });

@@ -9,7 +9,7 @@
 #
 
 class Country < ApplicationRecord
-  has_many :users
+  has_many :users, dependent: :destroy
 
   validates :title, presence: true
   validates :title, uniqueness: true

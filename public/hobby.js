@@ -107,6 +107,7 @@ $(document).ready(function() {
   }
 
   $("#hobby_add").on("click", function() {
+    $("#hobby_create")[0].reset();
     $("#hobby_create").show();
     $("#hobbies_container").hide();
   });
@@ -139,7 +140,7 @@ $(document).ready(function() {
 
       },
       error:function() {
-        alert("Invalid data or unauthorized");
+        alert("Invalid data");
       }
     });
   });
@@ -196,7 +197,7 @@ $(document).ready(function() {
         $('#hobby_form').hide();
       },
       error:function() {
-        alert("Invalid data or unauthorized");
+        alert("Invalid data");
       }
     });
     liId = undefined;

@@ -15,11 +15,12 @@ $(document).ready(function() {
     autoOpen: false,
     closeText: "",
     resizable: false,
+    draggable: false,
     title: "Sign_in",
     modal: true,
     close: function() {
-      $("#loginform")[0].reset();
       $("#loginform").dialog( "close" );
+      $("#loginform")[0].reset();
     }
   });
 
@@ -35,10 +36,6 @@ $(document).ready(function() {
     $(this).closest('form')[0].reset();
   });
 
-  $("#signbtn").on("click", function() {
-    $("#loginform").dialog( "open" );
-  });
-
   $('#login_submit').on('click', function() {
     setAutorization();
     $.ajax({
@@ -52,7 +49,6 @@ $(document).ready(function() {
       success:function(output, status, xhr) {
         saveTokenInCookee(xhr);
         $('#signout').show();
-        $('#signbtn').hide();
         $('#table').show();
         $("#tabs-min").show();
         $("#tabs-min").tabs();
@@ -62,9 +58,9 @@ $(document).ready(function() {
       },
       error:function() {
         alert("Invalid data");
+        $('#password_input').val('')
       }
     });
-    $('#loginform')[0].reset();
     return false;
   });
 
@@ -109,8 +105,9 @@ $(document).ready(function() {
   }
 
   $("#admin_add").on("click", function() {
-    $("#admin_create").show();
     $("#admins_container").hide();
+    $("#admin_create")[0].reset();
+    $("#admin_create").show();
   });
 
   $('#admin_save').on('click', function() {
@@ -132,13 +129,13 @@ $(document).ready(function() {
         $("#admins_list").append("<li id =" +result.id +" class =admins"+result.id+"><span>" + result.email
          + "</span><a class=admin_edit>  <span class=\" glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></a>"
          +"<a class=admin_delete><span class=\" glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></a></li>");
-         $('#admin_create')[0].reset();
          $("#admin_create").hide();
          $("#admins_container").show();
-         return false;
+         $('#admin_create')[0].reset();
       },
       error:function() {
-        alert("Invalid data or unauthorized");
+        alert("Invalid data");
+         $('#admin_create')[0].reset();
       }
     });
   });
@@ -189,7 +186,7 @@ $(document).ready(function() {
         $("#admins_list li").eq(liIndex).remove();
       },
       error:function() {
-        alert("Can\'t delete last admin or unauthorized");
+        alert("Can\'t delete this admin");
       }
     });
   });
@@ -219,7 +216,10 @@ $(document).ready(function() {
         return false;
       },
       error:function(result) {
-        alert("Invalid data or unauthorized");
+        alert("Invalid data");
+        $('#admin_password').val('');
+        $('#admin_password_confirm').val('');
+        $("#current_password").val('');
       }
     });
   });

@@ -39,7 +39,7 @@ $(document).ready(function() {
       },
       success:function(data) {
         data.map(function(result) {
-          var eachrow = "<tbody id="+result.id +"><tr>"
+            var eachrow = "<tbody id="+result.id +"><tr>"
                    + "<td>" + result.id + "</td>"
                    + "<td>" + result.first_name + "</td>"
                    + "<td>" + result.last_name + "</td>"
@@ -127,7 +127,7 @@ $(document).ready(function() {
           Pagination();
         },
         error:function() {
-          alert("Invalid data or unauthorized");
+          alert("Invalid data");
         }
       });
       $('#frm')[0].reset();
@@ -237,7 +237,7 @@ $(document).ready(function() {
           editSelectedRow();
         },
         error:function() {
-          alert("Invalid data or unauthorized");
+          alert("Invalid data");
         }
       });
       $('#frm')[0].reset();
@@ -284,7 +284,6 @@ $(document).ready(function() {
       $('#table').show();
       $("#tabs-min").show();
       $("#tabs-min").tabs();
-      $('#signbtn').hide();
       $('#signout').show();
       getUsers();
       getCountry();
