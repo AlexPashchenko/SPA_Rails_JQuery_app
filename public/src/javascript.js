@@ -14,18 +14,26 @@
   });
 
   $("#btncreate").on("click", function() {
+    openForm();
+  });
+
+  function openForm() {
     $("#frm")[0].reset();
-    $("#frm").show()
+    $("#frm").show();
     $("#users_container").hide();
     $("#btnupdate").hide();
     $("#btnsave").show();
-  });
+  };
 
   $("#usersclose").on('click', function() {
-    $(this).closest('form').hide();
-    $("#users_container").show();
-    $(this).closest('form')[0].reset();
+    closeForm();
   });
+
+  function closeForm() {
+    $('.form').hide();
+    $("#users_container").show();
+    $('.form')[0].reset();
+  }
 
   var getUsers = function() {
     $('#table tbody').remove();
@@ -293,3 +301,4 @@
       getHobbies();
     }
   }
+  
