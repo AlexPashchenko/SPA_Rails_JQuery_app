@@ -11,6 +11,7 @@
     <link href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.0.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="sammy.js"></script>
     <script type="text/javascript" src="country.js"></script>
     <script type="text/javascript" src="admin.js"></script>
     <script type="text/javascript" src="hobby.js"></script>
@@ -19,155 +20,155 @@
   </head>
 
   <body>
-    <form id="loginform" class="loginform">
-      <span>Please, sign in to continue</span>
-      <input type="text" id ="email_input" placeholder="email">
-      <input type="password" id ="password_input" placeholder="password"><br/>
-      <div class="buttons">
-        <button id="login_submit" type="button" class="btn btn-success">Submit</button>
-      </div>
-    </form>
-    <div id="tabs-min">
-      <ul>
-        <li id="users_tab"><a href="#tabs-1">Users</a></li>
-        <li id="hobbies_tab"><a href="#tabs-2">Hobbies</a></li>
-        <li id="countries_tab"><a href="#tabs-3">Countries</a></li>
-        <li id="admins_tab"><a href="#tabs-4">Admins</a></li>
-        <li><button id="signout" type="button" class="btn">Sign_out</button></li>
-      </ul>
-      <div id="dialog" title="Show detal information">
-      </div>
-      <div id="tabs-1">
-          <form id="frm" class="form">
-            <input type="text" id ="firstname" name="FirstName" placeholder="FirstName">
-            <input type="text" id ="lastname" name="LastName" placeholder="LastName"><br/>
-            <input type="number" class="age" id ="age" min="1" max = "111" name="Age" placeholder="Age"><br />
-            <label><input type="radio" id="maleGender" name="gender" value="male">&nbsp Male</label>
-            <label><input type="radio" id="femaleGender" name="gender" value="female">&nbsp Female </label> <br />
-            <fieldset id="checkboxes">
-              <legend>Choose your interests:</legend>
-            </fieldset>
-            <div class="form-group">
-              <fieldset>
-                <legend>Choose your country:</legend>
-                <select class="form-control" id="country">
-                </select>
+      <form id="loginform" class="loginform">
+        <span>Please, sign in to continue</span>
+        <input type="text" id ="email_input" placeholder="email">
+        <input type="password" id ="password_input" placeholder="password"><br/>
+        <div class="buttons">
+          <button id="login_submit" type="button" class="btn btn-success">Submit</button>
+        </div>
+      </form>
+      <div id="tabs-min">
+        <ul>
+          <li id="users_tab"><a href="#users-tab">Users</a></li>
+          <li id="hobbies_tab"><a href="#hobbies-tab">Hobbies</a></li>
+          <li id="countries_tab"><a href="#countries-tab">Countries</a></li>
+          <li id="admins_tab"><a href="#admins-tab">Admins</a></li>
+          <li><button id="signout" type="button" class="btn">Sign_out</button></li>
+        </ul>
+        <div id="dialog" title="Show detal information">
+        </div>
+        <div id="users-tab">
+            <form id="frm" class="form">
+              <input type="text" id ="firstname" name="FirstName" placeholder="FirstName">
+              <input type="text" id ="lastname" name="LastName" placeholder="LastName"><br/>
+              <input type="number" class="age" id ="age" min="1" max = "111" name="Age" placeholder="Age"><br />
+              <label><input type="radio" id="maleGender" name="gender" value="male">&nbsp Male</label>
+              <label><input type="radio" id="femaleGender" name="gender" value="female">&nbsp Female </label> <br />
+              <fieldset id="checkboxes">
+                <legend>Choose your interests:</legend>
               </fieldset>
-            </div>
-            <div class="buttons">
-              <button id="btnsave" type="button" class="btn btn-success">Save</button>
-              <button id="btnupdate" type="button" class="btn btn-warning">Update</button>
-              <button id="usersclose" type="button" class="btn btn-primary">Close</span></button>
-            </div>
-          </form>
-        <div id="users_container">
-          <h3 > Users: </h3>
-          <button id="btncreate" type="button" class="btn btn-success"><span class=" glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-          <table  class="table" id="table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Interests</th>
-                <th>Country</th>
-                <th>Ections</th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-          <p id="pagin"> </p>
-        </div>
-      </div>
-      <div id="tabs-2">
-        <div id="hobbies_container">
-          <button id="hobby_add" type="button" class="add_buttn">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-          </button>
-          <div id="list">
-            <ul id="hobbies_list" class="hobbies_list">
-            </ul>
+              <div class="form-group">
+                <fieldset>
+                  <legend>Choose your country:</legend>
+                  <select class="form-control" id="country">
+                  </select>
+                </fieldset>
+              </div>
+              <div class="buttons">
+                <button id="btnsave" type="button" class="btn btn-success">Save</button>
+                <button id="btnupdate" type="button" class="btn btn-warning">Update</button>
+                <button id="usersclose" type="button" class="btn btn-primary">Close</span></button>
+              </div>
+            </form>
+          <div id="users_container">
+            <h3 > Users: </h3>
+            <button id="btncreate" type="button" class="btn btn-success"  action="#frm"><span class=" glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+            <table  class="table" id="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <th>Interests</th>
+                  <th>Country</th>
+                  <th>Ections</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+            <p id="pagin"> </p>
           </div>
         </div>
-        <div id="hobby_update_form">
-          <form id="hobby_form" class="hobby_form">
-            <input type="text" id ="hobby_title" placeholder="title">
-            <div class="buttons">
-              <button id="hobby_update" type="button" class="btn btn-warning">Edit</button>
-              <button id="hobbyclose" type="button" class="btn btn-primary">Close</span></button>
-            </div>
-          </form>
-        </div>
-        <div id="hobby_create_form">
-          <form id="hobby_create" class="hobby_form">
-            <input type="text" id ="hobby_name" placeholder="title">
-            <div class="buttons">
-              <button id="hobby_save" type="button" class="btn btn-success">Save</button>
-              <button  id="newhobbyclose" type="button" class="btn btn-primary">Close</span></button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div id="tabs-3">
-        <div id="countries_container">
-          <button id="country_add" type="button" class="add_buttn">
+        <div id="hobbies-tab">
+          <div id="hobbies_container">
+            <button id="hobby_add" type="button" class="add_buttn">
               <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-          </button>
-          <div id="list">
-            <ul id="countries_list" class="countries_list">
-            </ul>
+            </button>
+            <div id="list">
+              <ul id="hobbies_list" class="hobbies_list">
+              </ul>
+            </div>
+          </div>
+          <div id="hobby_update_form">
+            <form id="hobby_form" class="hobby_form">
+              <input type="text" id ="hobby_title" placeholder="title">
+              <div class="buttons">
+                <button id="hobby_update" type="button" class="btn btn-warning">Edit</button>
+                <button id="hobbyclose" type="button" class="btn btn-primary">Close</span></button>
+              </div>
+            </form>
+          </div>
+          <div id="hobby_create_form">
+            <form id="hobby_create" class="hobby_form">
+              <input type="text" id ="hobby_name" placeholder="title">
+              <div class="buttons">
+                <button id="hobby_save" type="button" class="btn btn-success">Save</button>
+                <button  id="newhobbyclose" type="button" class="btn btn-primary">Close</span></button>
+              </div>
+            </form>
           </div>
         </div>
-        <form id="country_form" class="country_form">
-          <input type="text" id ="country_title" placeholder="title">
-          <div class="buttons">
-            <button id="country_update" type="button" class="btn btn-warning">Edit</button>
-            <button  id="countryclose" type="button" class="btn btn-primary">Close</span></button>
+        <div id="countries-tab">
+          <div id="countries_container">
+            <button id="country_add" type="button" class="add_buttn">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </button>
+            <div id="list">
+              <ul id="countries_list" class="countries_list">
+              </ul>
+            </div>
           </div>
-        </form>
-        <form id="country_create" class="country_form">
-          <input type="text" id ="country_name" placeholder="title">
-          <div class="buttons">
-            <button id="country_save" type="button" class="btn btn-success">Save</button>
-            <button id="newcountryclose" type="button" class="btn btn-primary">Close</span></button>
-          </div>
-        </form>
-      </div>
-
-      <div id="tabs-4">
-        <div id="admins_container">
-          <button id="admin_add" type="button" class="add_buttn">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-          </button>
-          <div id="list">
-            <ul id="admins_list" class="admins_list">
-            </ul>
-          </div>
+          <form id="country_form" class="country_form">
+            <input type="text" id ="country_title" placeholder="title">
+            <div class="buttons">
+              <button id="country_update" type="button" class="btn btn-warning">Edit</button>
+              <button  id="countryclose" type="button" class="btn btn-primary">Close</span></button>
+            </div>
+          </form>
+          <form id="country_create" class="country_form">
+            <input type="text" id ="country_name" placeholder="title">
+            <div class="buttons">
+              <button id="country_save" type="button" class="btn btn-success">Save</button>
+              <button id="newcountryclose" type="button" class="btn btn-primary">Close</span></button>
+            </div>
+          </form>
         </div>
-        <form id="admin_form" class="admin_form">
-          <input type="text" id ="admin_email" placeholder="email">
-          <input type="password" id ="admin_password" placeholder="new password">
-          <input type="password" id ="admin_password_confirm" placeholder="new password confirmation">
-          <input type="password" id ="current_password" placeholder="current password">
 
-          <div class="buttons">
-            <button id="admin_update" type="button" class="btn btn-warning">Edit</button>
-            <button id="adminclose" type="button" class="btn btn-primary">Close</span></button>
+        <div id="admins-tab">
+          <div id="admins_container">
+            <button id="admin_add" type="button" class="add_buttn">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </button>
+            <div id="list">
+              <ul id="admins_list" class="admins_list">
+              </ul>
+            </div>
           </div>
-        </form>
-        <form id="admin_create" class="admin_form">
-          <input type="text" id ="new_admin_email" placeholder="email">
-          <input type="password" id ="new_admin_password" placeholder="password"><br/>
-          <input type="password" id ="new_admin_password_confirm" placeholder="password confirmation"><br/>
-          <div class="buttons">
-            <button id="admin_save" type="button" class="btn btn-success">Save</button>
-            <button id="newadminclose" type="button" class="btn btn-primary">Close</span></button>
-          </div>
-        </form>
+          <form id="admin_form" class="admin_form">
+            <input type="text" id ="admin_email" placeholder="email">
+            <input type="password" id ="admin_password" placeholder="new password">
+            <input type="password" id ="admin_password_confirm" placeholder="new password confirmation">
+            <input type="password" id ="current_password" placeholder="current password">
+
+            <div class="buttons">
+              <button id="admin_update" type="button" class="btn btn-warning">Edit</button>
+              <button id="adminclose" type="button" class="btn btn-primary">Close</span></button>
+            </div>
+          </form>
+          <form id="admin_create" class="admin_form">
+            <input type="text" id ="new_admin_email" placeholder="email">
+            <input type="password" id ="new_admin_password" placeholder="password"><br/>
+            <input type="password" id ="new_admin_password_confirm" placeholder="password confirmation"><br/>
+            <div class="buttons">
+              <button id="admin_save" type="button" class="btn btn-success">Save</button>
+              <button id="newadminclose" type="button" class="btn btn-primary">Close</span></button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
   </body>
 </html>
